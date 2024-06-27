@@ -1,0 +1,12 @@
+dags:
+  - name: avl
+    description: DAG to run AVL spider
+    company_name: example_company
+    spider_name: avl
+    schedule_interval: '30 3 * * 1'
+
+  - name: another_dag
+    description: DAG to run Another Spider
+    company_name: another_company
+    spider_name: another_spider
+    schedule_interval: '@daily'
