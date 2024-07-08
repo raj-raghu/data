@@ -316,13 +316,13 @@ companies:
         - "we offer"
   MAHLE:
     responsibilities_keywords:
-    - "Responsibilities:"
-    - "Tasks"
+      - "Responsibilities:"
+      - "Tasks"
     eligibility_keywords:
-    - "Requirements:"
-    - "Education and experience level"
+      - "Requirements:"
+      - "Education and experience level"
     fallback_endings:
-    - "Do you have any questions?"
+      - "Do you have any questions?"
     
 
         
