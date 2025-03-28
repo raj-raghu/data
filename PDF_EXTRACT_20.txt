@@ -1,0 +1,159 @@
+ 
+7
+IV
+April 2019
+https://doi.org/10.22214/ijraset.2019.4318
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET) 
+                                                                                           ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 6.887 
+                                                                                                                Volume 7 Issue IV, Apr 2019- Available at www.ijraset.com 
+ 
+ 
+ 
+ 
+ 
+1752
+©IJRASET: All Rights are Reserved 
+Design and Modelling of Wrong Way Warning 
+Sreeraj S 
+Software Engineer, Continental Automotive Components Pvt Ltd, India 
+Abstract: Driving through the wrong way on road has been a constantly harassing traffic safety issue everywhere in the world.  
+Wrong way or Ghost drivers cause hundreds of fatalities each year in Europe or North America. Often these drivers are not 
+conscious of their dangerousness. The best way to prevent accidents is to warn these drivers once they enter a wrong way.  This 
+paper talks about the architecture and functional flow of a warning generating system which detects the entry of vehicle into a 
+road where a ‘No Entry’ sign is kept and provides an acoustic warning. The system is modelled in Matlab-Simulink. This model 
+takes input data from different ECUs in the vehicle and checks whether the vehicle entered a wrong way or not.  
+Keywords: Advanced Driver Assistance System (ADAS), WWW (Wrong Way Warning), No Entry Sign, NE gate, Subsystem 
+I. INTRODUCTION 
+Most road accidents occurred due to the human error.  Advanced driver-assistance systems (ADAS) are systems developed to 
+automate, adapt and enhance vehicle systems for safety and better driving [1]. The automated system which is provided by ADAS to 
+the vehicle is proven to reduce road fatalities, by minimizing the human error. Safety features are designed to avoid collisions and 
+accidents by offering technologies that alert the driver to potential problems, or to avoid collisions by implementing safeguards and 
+taking over control of the vehicle. Systems such as electronic stability control, anti-lock brakes, lane departure warning, adaptive 
+cruise control and traction control are some available features of ADAS. ADAS relies on inputs from multiple data sources, 
+including automotive imaging, LiDAR, radar, image processing, computer vision, and in-car networking. Additional inputs are 
+possible from other sources separate from the primary vehicle platform, such as other vehicles, referred to as Vehicle-to-
+vehicle (V2V), or Vehicle-to-Infrastructure (such as mobile telephony or wifi data network) systems. 
+Wrong way crashes are often head-on collisions that are more likely to produce serious injuries and fatalities.  Typically, offenders 
+are confused, distracted, or intoxicated drivers who tend to keep their eyes on the road directly in front of them often not seeing 
+roadside warning signals and signs. Drivers who are tired, confused by poor road signs, or driving in bad weather can take the 
+wrong turn, only to find they have put themselves and other people on the motorway in real danger Driving the wrong way in one-
+way traffic or on the wrong side of the road factored into over 3 percent of all fatal crashes in the US [3]. Wrong Way Warning or 
+WWW is a warning/alert system which notify the driver in case he or she drives in wrong way road. Thus, WWW can also be added 
+as a new feature in the ADAS technology as it also assists driver for safe driving. In the case of signs imposing access restrictions, 
+through the wrong-way driver warning function an acoustic warning is emitted together with a visual warning in the instrument 
+cluster – making an effective contribution towards helping to prevent serious accidents caused by wrong-way drivers. system relies 
+on a windshield-mounted camera to pick up Do Not Enter or Wrong Way signs and pairs it with data from the car's navigation 
+system. If the car starts driving against the flow of traffic, it fires off visible and audible warnings for the driver [2]. Unfortunately, 
+the system stops short of intervening or stopping the car from traveling the wrong way. As in starting stage, the system is modelled 
+to react to the sign conventions in European countries like Austria, Germany, Switzerland etc. 
+In following sections, the architecture and functional flow of the WWW model is explained.  
+II. MODAL ARCHITECTURE AND FUNCTIONAL FLOW 
+Top level of the model consists for four main subsystems as shown in Fig. 1. 
+ 
+Fig. 1 First Level of WWW model having four main subsystems 
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET) 
+                                                                                           ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 6.887 
+                                                                                                                Volume 7 Issue IV, Apr 2019- Available at www.ijraset.com 
+ 
+ 
+ 
+ 
+ 
+1753
+©IJRASET: All Rights are Reserved 
+The model has 27 input signals and one output signal which is the warning signal which is of type Boolean. The input signals 
+include camera data, vehicle data and GPS data. Camera data has all the signals providing several information regarding the traffic 
+signs available in the camera field of view like sign id, sign type, sign lateral position, sign longitudinal position etc. Vehicle data 
+include vehicle velocity, wheel yaw rate etc. GPS data include driving side information, country code, vehicle on the road or not, 
+type of the road etc. 
+The model execution sequence is from left to right. Subsystems from left to right are briefed below. 
+A. Input Signal Conditioner 
+All inputs are first fed to this subsystem. This Subsystem converts the input raw data into the form the next subsystems require. Also, 
+it maintains each signal value within the upper and lower limit along with the prescribed datatype [4]. Also, it finds the distance 
+covered by vehicle from the vehicle velocity information. 
+B. Gate Detection 
+In European countries a No Entry road is identified by two No Entry signs placed on two sides of the road to make a No Entry gate. 
+The NE (No Entry) gate is present at the beginning of a road if the road is a one way. The actual function of WWW model is to 
+detect an NE gate and check whether the vehicle crossed the gate or not. So, this is the core subsystem of this model. The input of 
+this subsystem is the output of Input Signal Conditioner. This subsystem has eight subsystems inside it and the functionality of each 
+block is briefed below. 
+1) Sign Type Filter: The input is sign type signal information of different sign types like Speed limit, Stop sign, No entry etc. This 
+subsystem checks for only the No Entry sign and passes all other information like position, status, sign confidence etc only for a 
+NE sign. In a particular sample time, if there is no NE sign present, no calculations will be executed in the model and all the 
+internal variables in the model will be set to zero [4]. 
+2)  Gate Building: This subsystem checks for pairs of NE sign and if an NE sign pair is available, it checks for the distance 
+between the two NE signs based on the position information of the sign. If distance is within the prescribed limits, this 
+functional block identifies that NE pair as an NE gate [4]. 
+3) Driving Path Memory: Once a NE gate is detected, this subsystem will hold all the information related to both the NE signs till 
+the vehicle covers a specified distance. This distance can be calibrated [4]. 
+4) Determine Quality: This block will set the output if confidence value of both the NE signs is above 0.6. Confidence value 
+varies from 0 to 1 which relates the clarity of the captured sign [4].  
+5) Driving Path Calculation: From the time ‘Gate building’ subsystem detects a gate this subsystem updates the current and 
+previous position of the vehicle in every cycle till ‘Driving Path Memory’ subsystem resets its output [4]. 
+6)  Vehicle Crosses Gate: Based on the inputs from ‘Driving Path Memory’, ‘Determine Quality’ and ‘Driving path calculation’ 
+subsystems, this subsystem will check every cycle that the vehicle crossed the NE gate or not [4]. 
+7) WWW Turn Detection: The "Turn_Detection" uses the yaw rate to determine if the vehicle is currently driving in a left turn, 
+straight or in a right turn and sends this information to the "Warning_Generator" subsystem [4]. 
+8) Street Type Detection: This subsystem uses the GPS data to determine whether the vehicle has approached a highway entry and 
+sends this information to the "Warning_Generator" subsystem [4]. An NE gate is expected to be present at beginning of a 
+highway. 
+C. Warning Generator 
+Warning Generator subsystem [4] sets the Warning Required boolean output to one if the below conditions are true. 
+1) Vehicle crossed an NE gate. 
+2) Vehicle approached a high way entry. 
+3) WWW feature should be enabled by the user. This is an input signal to the model. 
+4) Vehicle should not be in a construction area. 
+5) Country code should be any one which is specified in the model.  
+6) Vehicle should not be driving reverse. 
+Information mentioned in point numbers 4 and 5 are available in the inputs provided by GPS. 
+ 
+ 
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET) 
+                                                                                           ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 6.887 
+                                                                                                                Volume 7 Issue IV, Apr 2019- Available at www.ijraset.com 
+ 
+ 
+ 
+ 
+ 
+1754
+©IJRASET: All Rights are Reserved 
+D. Output Signal Conditioner 
+Once a warning is generated by ‘Warning generator’, this subsystem will set the output to one and hold it either for a predefined 
+time or until the user acknowledges it from the IPC (Instrument Cluster Panel). The resetting mode can be calibrated by boolean 
+variable in the software. If calibration variable is 1, Reset from IPC mode will be active else Reset after specified time mode will be 
+active [4]. 
+III. FUNCTIONAL ANALYSIS 
+Keeping the WWW feature enabled, the model was tested in MIL testing environment by feeding two NE signs and vehicle allowed 
+to cross the NE gate. The sign type value for NE sign is 18. So, a warning is expected to be generated once the vehicle crosses the 
+gate. Model was calibrated to ‘Warning Hold for Time’ mode so that warning will sustain for 5 secs which is specified in the model. 
+Test result is captured in Fig.2 . 
+ 
+Fig. 2 Plot showing the input and output 
+As shown in the above plot, at time = 0.5sec vehicle crosses the NE gate formed by the two NE signs detected. This results in 
+setting of the signal ‘Warning Required’ to one for that cycle. It triggered WWW warning output to one which is held for 5 secs as 
+expected.  
+IV. CONCLUSION 
+Wrong Way Warning uses a wind screen mounted camera which look for the traffic signs and detects the No Entry signs. It also 
+takes information from the car’s navigation system. It provides visual and audible alerts to driver once the car goes into a wrong 
+way. This system is aimed to warn drivers before they become a risk to themselves and others. For autonomous vehicles this 
+technology can be extended so that the car should not enter a Wrong way. 
+ 
+REFERENCES 
+[1] 
+JIAN Xing, “Evaluation of Roadside Wrong-Way Warning Systems with Different Types of Sensors”, in Journal of Traffic and Transportation Engineering, 
+vol 4, pp. 155 – 166, March 2016. 
+[2] 
+S. Haendeler, A. Lewandowski and C. Wietfeld, "Passive Detection of Wrong Way Drivers on Motorways Based on Low Power Wireless 
+Communications," 2014 IEEE 79th Vehicular Technology Conference (VTC Spring), Seoul, 2014, pp. 1-5.  
+[3] 
+Pour-Rouholamin, M., Zhou, H., Zhang, B., & Turochy, R. E. (2016). Comprehensive Analysis of Wrong-Way Driving Crashes on Alabama 
+Interstates. Transportation Research Record, 2601(1), 50–58. 
+[4] 
+FORD Requirement documents 
+ 
+
+ 

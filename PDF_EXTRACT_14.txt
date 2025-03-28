@@ -1,0 +1,1046 @@
+400 Commonwealth Drive, Warrendale, PA 15096-0001 U.S.A.
+Tel: (724) 776-4841  Fax: (724) 776-5760
+SAE TECHNICAL
+PAPER SERIES
+2001-01-0797
+Development of a Lane-Keeping Support System
+Hiroshi Kawazoe, Takuya Murakami, On Sadano,
+Katsuhiro Suda and Hitoshi Ono
+Nissan Motor Co.,Ltd
+Reprinted From:  Intelligent Vehicle Initiative (IVI) Technology
+ and Navigation Systems
+(SP–1593)
+SAE 2001 World Congress
+Detroit, Michigan
+March 5-8, 2001
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+The appearance of this ISSN code at the bottom of this page indicates SAE’s consent that copies of the
+paper may be made for personal or internal use of specific clients. This consent is given on the condition,
+however, that the copier pay a $7.00 per article copy fee through the Copyright Clearance Center, Inc.
+Operations Center, 222 Rosewood Drive, Danvers, MA 01923 for copying beyond that permitted by Sec-
+tions 107 or 108 of the U.S. Copyright Law. This consent does not extend to other kinds of copying such as
+copying for general distribution, for advertising or promotional purposes, for creating new collective works,
+or for resale.
+SAE routinely stocks printed papers for a period of three years following date of publication. Direct your
+orders to SAE Customer Sales and Satisfaction Department.
+Quantity reprint rates can be obtained from the Customer Sales and Satisfaction Department.
+To request permission to reprint a technical paper or permission to use copyrighted SAE publications in
+other works, contact the SAE Publications Group.
+No part of this publication may be reproduced in any form, in an electronic retrieval system or otherwise, without the prior written
+permission of the publisher.
+ISSN 0148-7191
+Copyright 2001 Society of Automotive Engineers, Inc.
+Positions and opinions advanced in this paper are those of the author(s) and not necessarily those of SAE. The author is solely
+responsible for the content of the paper. A process is available by which discussions will be printed with the paper if it is published in
+SAE Transactions. For permission to publish this paper in full or in part, contact the SAE Publications Group.
+Persons wishing to submit papers to be considered for presentation or publication through SAE should send the manuscript or a 300
+word abstract of a proposed manuscript to: Secretary, Engineering Meetings Board, SAE.
+Printed in USA
+All SAE papers, standards, and selected
+books are abstracted and indexed in the
+Global Mobility Database
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+2001-01-0797
+Development of a Lane-Keeping Support System
+                            Hiroshi Kawazoe, Takuya Murakami, On Sadano, Katsuhiro Suda and Hitoshi Ono
+Nissan Motor Co.,Ltd
+Copyright © 2001 Society of Automotive Engineers, Inc.
+ABSTRACT
+This paper describes a lane-keeping support system that
+has been developed and implemented in a production
+model. This system uses a CCD camera unit to
+recognize white lane markers on the road ahead and to
+calculate the host vehicle’s lateral displacement from the
+center of its lane. An electronic control unit calculates the
+amount of steering torque needed to keep the vehicle in
+the center and sends a signal to a steering actuator that
+steers the front wheels. The electronic control unit has
+been designed on the basis of analyses of vehicle
+behavior and drivers’ steering behavior. A general outline
+of the system is presented along with the results of
+driving simulations and actual driving tests. The results
+of evaluations conducted on a proving ground course
+and with a driving simulator have confirmed that this
+system is effective in reducing the driver’s workload.
+INTRODUCTION
+Vehicle control systems for reducing the driver’s
+workload by assisting with the execution of driving
+operations 
+have 
+been 
+actively 
+researched 
+and
+commercialized in recent years. For example, many
+automobile manufacturers have commercialized an
+adaptive cruise control (ACC) system, which uses a
+radar-based sensor to detect a vehicle ahead and
+controls the throttle and brakes accordingly to maintain a
+certain set headway distance. Against this backdrop, we
+have developed a lane-keeping support (LKS) system
+with the aim of reducing the driver’s workload further on
+expressways by helping him/her to execute steering
+maneuvers. This system uses a CCD camera to
+recognize white lane markers on the road. Based on the
+recognition result, an actuator mounted on the steering
+shaft generates torque to keep the host vehicle
+approximately in the center of its lane. In this way, the
+LKS system assists the driver’s steering actions for
+keeping the vehicle in its lane. However, while the
+provision of an ACC system or an LKS system can
+greatly reduce the driver’s workload, there is also
+concern about the possibility for various undesirable
+effects. These include a delay by the driver in executing
+necessary driving actions, the possibility that the assist
+force might interfere with the driver’s steering action and
+a possible decline in the level of driver alertness. To
+resolve 
+these 
+fundamental 
+issues, 
+the 
+control
+parameters of the LKS system have been designed on
+the basis of analyses of the relationship between
+steering control performance and the driver’s operation
+of the vehicle.
+This paper describes the design concept and the
+effectiveness of the system along with presenting the
+results of simulations and driving tests.
+FEATURES OF LKS SYSTEM
+The LKS system generates torque to assist the driver’s
+steering 
+action 
+for 
+keeping 
+the 
+host 
+vehicle
+approximately in the center of its lane when traveling
+straight ahead on an expressway. This system has the
+fundamental capacity to be used on virtually all sections
+of Japan’s nationwide expressway network. However,
+since it does not ensure absolute reliability for
+autonomous driving, its use is limited to providing lane-
+keeping support only when traveling straight ahead.The
+maximum torque generated by the system is set at a
+level that any driver can easily override to steer the
+vehicle manually. Moreover, the torque generated by the
+system is controlled so that it does not interfere with the
+driver’s steering action. This is accomplished by
+estimating the driver’s steering action and reducing the
+assist force based on the signal from a steering wheel
+angle sensor and the output current characteristic or the
+signal from a turn signal switch.
+The configuration of the LKS system is shown in Fig. 1.
+Its major components include a CCD camera unit that
+functions to detect white lane markers and to calculate
+the forward position the host vehicle is estimated to
+reach; a control unit that calculates the torque (current)
+for 
+assisting 
+the 
+driver 
+in 
+keeping 
+the 
+vehicle
+approximately in the center of its lane, based on the
+vehicle’s estimated forward position, the steering angle
+velocity computed from the output of the steering wheel
+angle sensor, and the host vehicle’s speed; a steering
+actuator mounted on the steering shaft for generating the
+assist force; and a buzzer and a display for indicating to
+the driver whether the system is operating or not. The
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+LKS system also incorporates a function for warning the
+driver of lane departure.
+Indicator
+Buzzer
+CDD camera
+Vehicle velocity sensor
+Hydraulic PS
+Electric signal flow
+Steering actuator (motor,clutch)
+Steering wheel angle sensor
+Turn signal switch
+Main switch
+Lane keeping switch
+Brake pedal switch
+Steering angle encoder
+Fig.1.Configuration of LKS System
+Control
+   unit
+CAN  BUSS
+A brief explanation is given here of the key elements of
+the system, including white lane marker recognition, LKS
+control and the steering actuator.
+OVERVIEW OF LANE MARKER RECOGNITION—The
+operations involved in lane marker recognition are shown
+in Fig. 2. Image data captured with the monochrome
+CCD camera are preprocessed to detect the edges of
+the lane markers and to calculate the coordinates of line
+candidate points (Fig. 3). Based on these candidate
+points, an Observer is used to estimate the road
+curvature and the host vehicle’s behavior (pitching and
+yawing), which results in the generation of a road model.
+The host vehicle’s lateral displacement from the center
+of the lane is then calculated.1
+　
+Fig.2.Outline of Lane Marker Recognition Process
+Image
+input
+(CCD)
+Pre-
+processing
+Definition of
+detection regions
+Lane marker
+detection
+CAN out put
+Parameter
+estimation
+Parameter
+updating
+Road model
+generation
+Output
+calculation
+Fig.3.Lane Marker Candidate Points and Road Model Estimation
+OVERVIEW OF LKS CONTROL—Lane-keeping support
+control is accomplished with an optimal servo system
+using an Observer to estimate the vehicle state. The
+configuration of the system is shown in Fig. 4.Two values
+are input into the control unit, namely, the lateral
+displacement at a forward observed point and the
+steering wheel angle, control current is outputted into the
+steering actuator. The equations of motion used in
+designing the control system are expressed as Eqs. (1),
+(2) and (3) below. The vehicle model and the steering
+system model are shown in Figs. 5 and 6, respectively.2
+     
+)
+(
+)
+(
+ 
+V
+y
+V
+C
+V
+y
+V
+C
+I
+cr
+r
+r
+r
+r
+cr
+r
+f
+f
+f
+&
+&
+l
+l
+&
+&
+l
+l
+&&
+−
++
+−
+−
++
+−
+=
+φ
+φ
+φ
+φ
+δ
+φ
+   (1)
+        
+)
+(
+)
+(
+V
+y
+V
+C
+V
+y
+V
+C
+y
+m
+cr
+r
+r
+r
+cr
+r
+f
+f
+cr
+&
+&
+l
+&
+&
+l
+&&
+−
++
++
+−
++
+−
+=
+φ
+φ
+φ
+φ
+δ
+   (2)
+d
+a
+t
+a
+s
+cr
+r
+f
+f
+a
+m
+T
+N
+i
+K
+N
+C
+V
+y
+V
+C
+NN
+Kp
+J
+1
+)
+(
+2
++
++
+−
+−
++
+−
+=
+α
+φ
+φ
+δ
+ξ
+α
+&
+&
+&
+l
+&&
+  (3)
+cr
++
+-
++
++
++
+-
+-
+A
+1/ S
+B
+K1
+C
+Vehicle
+K2
+Estimator
+Fig.4.Configuration of Control System
+L
+S
+1/
+y
+fl
+rl
+d
+f
+C
+r
+C
+cr
+y
+rf
+V
+b
+Target Line
+N
+a
+N
+tK
+m
+J
+s
+C
+x
+Fig.5.Vehicle Model
+Fig.6.Steering model
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+ACTUATOR CONSTRUCTION—Figure 7 shows the
+configuration of the steering actuator. A DC motor is
+connected to the steering shaft via a speed change gear.
+An electromagnetic clutch is provided to avoid any
+degradation of steering feel due to motor inertia when
+the LKS system is not operating. The use of a torque
+sensor is effective in judging steering intervention by the
+driver. However, this system has been configured without
+a torque sensor because it is fully capable of judging the
+driver’s steering intervention on the basis of the steering
+angle velocity and output current characteristic.
+Encoder
+Wheel and Worm
+Motor
+Electromagnetic clutch
+Fig.7.Schematic of Actuator Construction
+DESIGN OF CONTROL PARAMETERS
+  As the first step in the process of commercializing this
+system, an investigation was made of the maximum total
+steering wheel force that is equivalent to the steering
+shaft torque multiplied by steering wheel radius. (This is
+equivalent to the force that the driver must apply to turn
+the steering wheel in the opposite direction under a
+condition of maximum actuator output.) The maximum
+total steering wheel force applied by LKS control was set
+at a level which any drivers would be able to override and
+turn the steering wheel in the opposite direction. This
+force was set based on the results of tests conducted
+with many subjects of both genders and all ages from
+young to old. On the basis, the maximum actuator output
+(LKS force limit) was designed as explained below.
+Fout_max: Maximum total steering wheel force
+Factr: Actuator output (converted to an equivalent
+steering wheel force)
+Factr_lmt: Maximum actuator output (LKS force limit)
+Fstr_frc: Overall steering system friction
+Factr_frc: Actuator friction loss
+Fsat: Steering wheel force generated by self-aligning
+torque
+The actuator output needed to turn the steering wheel is
+defined by the following condition
+Factr>Fstr_frc + Fsat
+ (4)
+The condition of a maximum total steering wheel force of
+Fout_max N can be maintained by satisfying the
+following equation:
+Factr + Fstr_frc + Factr_frc – Fsat ≤ Fout_max       (5)
+Based on Eqs. (4) and (5), the LKS force generated by
+the actuator is controlled as follows:
+Fstr_frc+ Fsat    < Factr
+       ≤ Fout_max – Fstr_frc – Factr_frc + Fsat              (6)
+Using Eq. (6), the LKS force limit of the actuator was
+designed as
+Constant A + Fsat ≤ Factr_lmt
+                                   ≤ Constant B + Fsat                   (7)
+In actual operation, the maximum actuator output is
+limited by the motor control current and has been
+designed as shown in Fig. 8.
+ 
+Fig.8.Characteristic of Lateral Acceleration and The limitation
+            of Maximum Control Current
+Turn to right
+Turn to left
+Lateral acceleration
+ [m/s2]
+Control current [A]
+I(Factr_lmt)
+Control to steer to left
+Control to steer to right
+I(Factr_lmt)
+An analysis was then made of the relationship between
+the maximum cornering acceleration achieved under
+LKS control and the driver’s steering response delay.
+That was done on the basis of simulations and
+evaluations of the system by test subjects. Although this
+system is basically designed to assist the driver’s
+steering action, a region actually exists where steering
+action by the control is dependable. In this case, there is
+concern that, if the system were suddenly released, the
+host vehicle might depart from its lane due to the driver’s
+steering delay. Possible instances when steering control
+might be released include cases where the CCD camera
+cannot recognize the lane markers and the occurrence
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+of a system failure. A simulation was run to analyze the
+yaw rate and lateral displacement of the host vehicle as
+a function of cornering acceleration in a hypothetical
+case where the steering assist torque dropped to zero
+during cornering. The simulation results are explained
+below.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+-4
+Yaw rate  [deg/s]
+-3
+-2
+-1
+0
+lateral displacement  [m]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+-2
+0
+2
+4
+3 m/s^2
+2 m/s^2
+1 m/s^2
+T[s]
+T [s]
+. Fig.9.Vehicle Behavior During Cornering
+            with LKS System Off (simulated)
+3 m/s^2
+2 m/s^2
+1 m/s^2
+The reaction time of a driver in executing a steering
+maneuver is reported to be around 0.75 s, including the
+person’s visual reaction time.3 In order to allow an extra
+margin, a design value of 1 s was set for this system. A
+distance of 1 meter was set for the departure distance
+from the center of the lane. As shown in Fig. 9, the
+maximum cornering acceleration rate was found by
+simulation to be 2 m/s2 when the vehicle departed from
+the center of the lane for at least 1 s.
+Actual driving tests were then conducted on a proving
+ground course using eight male and female subjects,
+who were selected at random and had no connection at
+all with the development of this system. In these tests,
+measurements were made of the yaw rate with the
+control system turned off and of the yaw rate when the
+subjects steered the test vehicle to keep it in its lane.
+The purpose of the tests was not explained to the
+subjects in advance. They first drove the test vehicle for
+approximately 20 minutes with the control system turned
+on and were instructed to keep their hands on their
+knees. In the next series of tests, the control system was
+suddenly turned off during cornering, and the yaw rate
+was measured when the subjects executed a corrective
+steering 
+maneuver. 
+The 
+maximum 
+cornering
+acceleration rate for all the subjects when they kept the
+vehicle in its lane without any departure was 2.0 m/s2.
+Representative vehicle yaw rates measured in the tests
+are shown in Fig. 10. The yaw rate measured with the
+control system turned off was 5.5°/s and that measured
+when the subjects executed a corrective steering
+maneuver was 6.7°/s. The duration of the maximum
+lateral displacement was 0.7 s, indicating that the
+subjects kept the vehicle in its lane within the lane
+departure time set for the simulation.
+T [s]
+Yaw rate [deg/s]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+6
+-2
+0
+2
+4
+8
+5.5
+6.7
+0.7
+Fig.10.Vehicle Behavior During Cornering
+             with LKS System Off (experimental)
+The foregoing results were obtained under a condition
+where control was abruptly lost due to a system failure
+(i.e., the clutch was intentionally disengaged). Under
+normal operation, the control system is gradually turned
+off if the CCD camera can no longer detect the white
+lane markers. In this case, the yaw rate measured at a
+cornering acceleration rate of 2.0 m/s2 was 3.2°/s and
+that measured when the subjects executed a corrective
+steering maneuver was 4.3°/s, both of which were
+smaller than the above-mentioned values.
+It has been reported that drivers are capable of handling
+a yaw rate of up to 15°/s when vehicle behavior suddenly
+changes due to a control system failure and that an
+amply smooth cornering acceleration rate is 4.3°/s.7
+Judging from these values, it is thought that drivers
+should be able to handle cornering acceleration of 2.0
+m/s2 with sufficient leeway.
+In production vehicle application, however, cornering
+acceleration is limited to 0.5 m/s2 because the system
+does not have absolute reliability to ensure autonomous
+driving. At that rate, the system can support straight-
+ahead 
+driving 
+against 
+disturbances 
+of 
+0.2%
+superelevation (based on the maximum superelevation
+on the straight segments of expressways and typical
+road configuration examples) and a 5 m/s crosswind.
+An investigation was then made of control system
+behavior in relation to the driver’s steering intervention.
+When the driver executes a steering maneuver, the
+assist control force must be reduced quickly so that the
+steering torque generated by the LKS system does not
+interfere with the driver’s steering action. Usually, a
+torque sensor is used to detect steering by the driver. A
+torque sensor is particularly effective when the LKS
+system is applied to an electronically controlled power
+steering system because such a device is originally
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+included in the steering system. However, when the LKS
+system is applied to an ordinary hydraulic power steering
+system, the use of a torque sensor is not practical owing
+to numerous limitations stemming from the installation
+requirements and desired steering performance. An
+analysis was made of lane-keeping steering behavior
+and other steering maneuvers, including lane changing
+and obstacle avoidance, in driving tests conducted on an
+expressway using ordinary drivers. A major expressway
+in Japan was selected as the road for making this
+evaluation. Frequency distributions of the drivers’
+steering angle velocity are shown in Fig. 11.
+50
+Steering angle velocity [°/s]
+30
+Fig.11.Steering Angle Velocity Distributions
+A:Steering angle velocity with the
+intention to run along the lane
+B:Steering angle velocity with the
+intention to change the lane or avoid the
+object.
+Steering angle velocity during emergency
+maneuvers is more than 80°/s
+A
+B
+10
+0
+Distribution [%]
+50
+The results indicate that steering maneuvers executed
+for purposes other than lane keeping during LKS system
+operation can be distinguished on the basis of the
+steering angle velocity. From these results, 
+we
+considered different situations in which the driver’s
+steering action produced steering angle velocity. It was
+found that the steering angle velocity could not be
+detected when the driver held the steering wheel steady
+so that it did not turn in relation to the control force
+generated by the LKS system. Accordingly, we focused
+on the current characteristics during LKS system
+operation and when the driver held the steering wheel
+steady in relation to the control force. The current
+characteristics of these two situations are compared in
+Fig. 12. It is seen in the figure that the frequency at which
+the current limit was exceeded clearly differed between
+LKS system operation and when the driver was holding
+the steering wheel steady. This frequency difference
+makes it possible to detect the latter state. The threshold
+and timing for making this judgment in real-world driving
+were determined by tuning the parameters in driving
+tests conducted with an actual vehicle. As a result, the
+system 
+has 
+been 
+designed 
+such 
+that 
+steering
+intervention by the driver can be judged without using a
+torque sensor.
+0
+5
+10
+15
+20
+25
+30
+35
+40
+-8
+-6
+-4
+-2
+0
+2
+4
+6
+Control current [A]
+Time [s]
+45
+-10
+Fig.12.Comparison of Control Current Characteristic Between
+            LKS System Operation and When the Driver Hold the
+            Steering Wheel Steady
+the Driver Hold the
+     Steering Wheel
+LKA System Operation
+The following discussion concerns an investigation of
+lane departure warnings. Three conditions were set for
+the issuance of a warning.
+Condition 1: When the host vehicle’s present position
+deviates from the center of the lane by around 1m.
+Condition 2: When the forward position estimated for the
+host vehicle one second hence deviates from the center
+of the lane by around 1m or more.
+Condition 3: When the yaw rate estimated at a forward
+distance of 30 m differs from the present yaw rate by
+more than about 3 °/s.
+In the case of the second condition, lane departure is
+predicted and a warning is issued taking into account the
+steering response of ordinary drivers, which was
+mentioned earlier. In the case of the third condition, lane
+departure is predicted based on the steering response
+limit of the LKS system and a warning is issued. The
+actual parameters for issuing lane departure warnings
+were determined on the basis of evaluation results
+obtained with an actual vehicle.
+EFFECTIVENESS—Using 
+the 
+control 
+algorithm
+described earlier, the system was further tuned in tests
+conducted with an actual vehicle, and Fig. 13 shows the
+lane-keeping performance that was obtained as a result.
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+Steering angle [°] 
+-6
+Lateral displacement [m]
+6
+0
+0
+20
+40
+60
+80
+100
+T [s]
+0
+20
+40
+60
+80
+100
+T [s]
+0.2
+0.4
+-0.2
+-0.4
+0
+LKA
+Test Driver
+LKA
+Test Driver
+Fig.13.Lane-Keeping Performance
+ It is seen that the amount of steering wheel movement
+during lane keeping by the LKS system was nearly the
+same as that measured for a test driver with the system
+turned off. The LKS system shows a high level of lane-
+keeping performance in terms of lateral displacement
+from the lane center and weaving, compared with the
+test driver’s straight-line steering behavior when the
+system was off. (The steering data shown here for the
+test driver were measured when the driver consciously
+tried to drive in a straight line.)
+Distribution [%]
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11 12 13 14 15 16 17 18
+Voltage [mV]
+Fig.14. Comparison of Electromyograms with LKS
+             and without LKS System
+with LKS
+without LKS
+Tests were also carried out to investigate the effect of
+the LKS system on reducing the driver’s workload. In
+order to measure the workload reduction effect
+quantitatively, 
+frequency 
+distributions 
+of
+electromyograms of the upper arm muscles were
+compared with and without the LKS system. Tests were
+conducted on a proving ground course with two ordinary
+test subjects who drove the test vehicle for two hours
+with the LKS system on and for two hours with it turned
+off. The ACC speed under both conditions was set at
+100 km/h. The results are shown in Fig. 14. It is seen
+that the electromyogram distributions were reduced to
+approximately one-half when the LKS system was on,
+indicating that it reduced the subjects’ steering effort.
+The effect of the reduced steering workload on the
+driver’s alertness level was then evaluated using test
+subjects. In order to make the results clearer, the tests
+were conducted with two vehicles. One was fitted with
+the LKS system and an ACC system so that it could
+navigate the proving ground test course with hardly any
+steering by the driver, and the other was equipped with
+an 
+ACC 
+system. 
+Driving 
+tests 
+were 
+conducted
+continuously for a maximum of two hours with each
+vehicle, with a 15-minute rest interval between the tests.
+Alertness was divided into three levels on the basis of
+the driver’s blinking rate, and the evaluation was based
+on the respective percentage of each alertness
+level.5The results are shown in Fig. 15. The results of
+these tests did not show any significant difference in
+alertness levels between the vehicle fitted with the LKS
+and ACC systems and the vehicle equipped with the
+ACC system, although the alertness level tended to drop
+in the vehicle that was driven in the second test.
+（％）
+(119) (115)
+(113.5) (115)
+(41)
+(33)
+(54) (115.5)
+0
+20
+40
+60
+80
+100
+level 1
+level 2
+level 3
+Alertness level
+high
+low
+(    )Continuous driving time in minutes
+Subject A
+Subject B
+Subject C
+Subject D
+1st test  2nd test
+1st test  2nd test
+1st test  2nd test
+1st test  2nd test
+LKS        ACC
+ +ACC
+LKS        ACC
+ +ACC
+ACC      LKS
+              +ACC
+ACC      LKS
+              +ACC
+Fig.15.Alertness Level Percentage During Driving
+We‘ve expounded the design and the effect of the Lane-
+Keeping 
+Support 
+system. 
+In 
+production 
+vehicle
+application, however, the activation of the control is
+restricted on the about straight road of expressway by
+the radius of curvature calculated by the camera
+because the system does not have absolute reliability to
+ensure autonomous driving.
+CONCLUSION
+If the LKS system is to be accepted by customers as a
+highly practical system, it will be essential to resolve
+certain issues, such as the avoidance of any unnatural
+feeling when the driver steers and any response delay, in
+addition to providing good lane-keeping performance.
+The LKS system we have developed incorporates a
+control algorithm that achieves excellent lane-keeping
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018
+
+ 
+ 
+performance based on the use of a CCD camera to 
+recognize lane markers. Moreover, as a result of 
+developing and optimizing an algorithm for detecting the 
+driver’s steering intervention and optimizing the range of 
+control operation, this newly developed LKS system is 
+sufficiently capable of being used in Japan’s expressway 
+traffic environment. Tests conducted with actual vehicles 
+and a driving simulator have confirmed that this LKS 
+system is effective in reducing the driver’s workload. 
+Vehicle control systems that reduce the driver’s workload 
+by assisting in the execution of driving operations show 
+one direction for the future evolution of vehicles. 
+Research and development work on technologies in this 
+field is projected to accelerate in the next few years. The 
+synergies resulting from such advances as well as 
+innovations in onboard information and communications 
+devices 
+are 
+expected 
+to 
+expand 
+the 
+functional 
+capabilities of vehicles dramatically. 
+REFERENCES 
+1. S. Sato, et al., ” Study of Lane-Tracking Control”, 
+Proceeding of the 7
+th World Congress on ITS, 
+November 2000, Italy ,3157S 
+2. H. Furusho, et al., “ Estimation of road Sharp and 
+Vehicle State Quantities Considering Dynamic 
+Vehicle Characteristics”, Proceeding of the 7
+th World 
+Congress on ITS, November 2000, Italy ,3155S 
+3. R. Sirato, et al.,” Estimation of Road Figure and 
+Vehicle and Behavior by Image Processing” JSAE 
+Review,2000 
+4. K. Yokoyama and A. Komatsubara “ Ergonomics for 
+Engineering” (Rev. Ed.), (in Japanese) 
+5. H. Furusho and H. Mouri, "Research on automated 
+lane tracking using linear quadratic control: control 
+procedure for a curved path," JSAE Review, 20 
+(1999), pp. 325-329 
+6. H. Mouri and H. Furusho, "Automatic path tracking 
+control using linear quadratic control theory," 1997 
+IEEE Conference on Intelligent Transportation 
+Systems 
+7. “Driving Test Evaluation and Confirmation of a 
+Method for Rating and Judging Vehicle Behavior 
+(Summary),” report of research commissioned from 
+1993-1995 by Japan Automobile Manufacturers 
+Association, Inc. (in Japanese) 
+8. Y.Seko, S.Kataoka and T.Senoo, Analysis of Driving 
+Behavior under a State of Reduced Alertness, JSAE 
+Review, April 1985 pp.66-71 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Downloaded from SAE International by Univ of California Berkeley, Monday, August 06, 2018

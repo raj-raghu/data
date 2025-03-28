@@ -1,0 +1,201 @@
+Advanced Driver Assistance Systems:
+A Cost-Eﬀective Implementation of the 
+Lane Departure Warning System
+www.lnttechservices.com
+
+Table of Contents
+Abstract  
+03
+Introduction  
+03
+Solution Overview 
+03
+Project outcome 
+06
+Conclusion 
+06
+References 
+06
+
+ABSTRACT
+INTRODUCTION
+A lane departure warning system (LDWS) is deﬁned as system that warns the driver when an unintentional lane 
+departure is about to occur. This system can assist drivers to maintain proper driving within the lane and also 
+warn the driver when the vehicle is departing from current lane so that driver is alerted to take appropriate 
+action. This system comes under application of ADAS. 
+LDWS monitors the position of vehicle with respect to boundary. When the vehicle is in danger of leaving the lane 
+unintentionally, since the driver is not paying full attention to the road ahead, the system delivers the warning to 
+driver. 
+L&T Technology Services has developed a Vision-based Lane Departure Warning System (LDWS) for intelligent 
+Advanced Driver Assistance Systems applications. An important component of ADAS is evaluation of sequences of 
+images recorded with real time camera mounted on moving vehicle. Sequence of images gives information about 
+the automotive environment which has to be analyzed to support the driver. 
+This paper focuses on the implementation carried out for Cost eﬀective LDWS that can be applied for Low and 
+Medium range vehicles. This paper also talks about the Veriﬁcation of the developed algorithms using live videos 
+as well as a Simulator. 
+With the advent of requirement to provide Advanced Driver Assistance Systems in Mid-and-Low Cost Car 
+segments, usage of cost-eﬀective Sensors has become imperative. Usually, High-end Cars have Radar, Lidar and 
+similar systems to implement ADAS. 
+At L&T Technology Services, we have come up with a cost eﬀective and optimized methodology, so that our 
+system can be adopted by low and medium range vehicles. Also we have simulated our system with extremely 
+adverse scenarios in order to make sure it will be robust in any climate. 
+Cameras are a suitable solution for this kind of requirement, even when Cameras are used, usage of Monocular 
+single Cameras prove the most challenging but also turn out to be economical and thus, have a cost-advantage.
+SOLUTION OVERVIEW
+To demonstrate our system, we developed a prototype which completely depends on image processing 
+algorithms. To analyze the computer vision, image processing algorithms are necessary. All algorithms are 
+developed in-house with minimum dependency on OpenCV — which is an open source computer vision library 
+by Intel.
+The following is the block diagram of the Lane Departure Warning System (LDWS):
+Fig. 1: Block diagram of LDWS
+Lane departure Warning system
+ROI cropping 
+Image 
+enhancement 
+Edge 
+detection 
+Line ﬁtting
+Elimination
+Lane 
+departure 
+warning 
+03
+PAGE
+L&T TECHNOLOGY SERVICES 
+
+2.1 Development 
+At L&T Technology Services, we follow the V model for S/W development life cycle. With reference to IEEE Papers, 
+suitable algorithms are selected. Selection of the algorithm is done not only based on theoretical reference but 
+also based on the trial and error method, in which execution time & performance factors play a major role. 
+Tools used to develop our algorithm are MS Visual studio 2012, OpenCV library, Eclipse Helios IDE. 
+Algorithms developed in-house: 
+• Region of Interest 
+• Median Blur 
+• Sobel Edge detection
+• Hough Transformation 
+• Lane Departure warning calculation
+2.2 Overview of Algorithm 
+The OpenCV methodology is used to fetch frames from video, to convert the frame into matrix. 
+(i) Image Enhancement 
+     • First step involves selecting Region of Interest so that only core part of image is only processed. 
+• Raw image is blurred using median blur to remove salt and pepper noise. 
+• Then it is converted to HSV Plane to concentrate only on yellow and white colors in the image. 
+(ii) Edge Detection 
+Edge detection plays a vital role in Lane departure warning system, through which lanes are detected. 
+The algorithm adopted for this process is the canny edge detection algorithm. To make the output more precise, 
+morphological operations are carried out over edge detected output. 
+(iii) Line Fitting 
+Once the edges are detected, the image should undergo Hough transformation in order to detect the lines. 
+These detected lines are ﬁtted back to the original image. 
+(iv)Departure warning estimation 
+With reference to detected lines, parameters and other factors like car width, Lane width, Position of car, vehicle’s 
+departure is calculated. Once the value exceeds the threshold value, appropriate warnings are issued via HMI. 
+2.3 Departure Warning 
+Once the vehicle crosses the threshold value, departure warnings are issued. Depending on the driver’s 
+convenience, one of the following type of warnings are issued. 
+a. Steering Vibration 
+b. Audible alert 
+c. Visible LED Blink
+Following are the pictograms that will be displayed in HMI once the vehicle departs the lane. 
+Fig. 2: When the vehicle is safely driving inside lanes
+Fig. 3: When the vehicle is about to cross the Left lane
+Fig.4 : When the vehicle is about to cross the Right Lane
+Fig. 5: When the vehicle has departed from the lane completely
+04
+PAGE
+L&T TECHNOLOGY SERVICES 
+
+2.4 Avoiding False Alarm 
+To avoid false warnings during intended lane departures, additional information is necessary. 
+The following intended departures are considered: 
+• Lane changes which are announced by the driver using the blinker, 
+• Emergency maneuvers with brake and high steering activity, 
+Before changing a lane, drivers are obliged to set the blinker. So, if the blinker is set while departing the lane, 
+warnings are suppressed. 
+If the driver brakes, he already reacts to some situation and is most likely aware of the situation.
+Additional warnings would be disturbing in such cases and are, therefore, suppressed. The same argument holds 
+if there is a high steering activity.
+2.5 Veriﬁcation of Algorithm 
+The developed algorithms are validated using simulated scenarios before testing them on the ﬁeld. The following 
+are some of the scenarios: 
+2.6 Veriﬁcation System Set-up 
+• PC with 8 GB Graphics card 
+• 2 Monitors 
+• Logitech Game joystick set up 
+• Real time simulator game 
+In this set-up, the ﬁrst monitor displays the input simulated video (fast-paced game to simulate real-life 
+scenarios). The second monitor is used to display the processed output along with the associated warnings. 
+ 
+Fig.6 Various scenarios of LDWS
+S.No   
+i.
+ii.
+iii.
+iv.
+Description
+Subject vehicle is 
+about to depart from
+the left side of the 
+double solid lane 
+Subject vehicle is 
+about to depart 
+from the Right Lane
+Subject vehicle is 
+about to depart from
+the Right Lane of 
+the curved roadways
+Subject vehicle is 
+approaching a 
+jersey barrier 
+instead of the 
+Lane marking
+Figure
+05
+PAGE
+L&T TECHNOLOGY SERVICES 
+
+In this paper, a cost-eﬀective lane departure warning system using Monocular camera is presented. The lane 
+departure method is improved by ROI segmentation technique and color based lane detection. Monocular 
+camera parameters like focal length, intrinsic and extrinsic parameters are used for measuring the distance 
+between the lanes, position of the vehicle, based on which decision for left or right departure is derived. In this 
+way accuracy in issuance of warning is improved and false warnings are reduced. 
+With this approach, L&T Technology Services have been able to oﬀer an improved, optimized low-cost solution to 
+Lane Departure Warning System. We also have the infrastructure to verify and validate the developed product, 
+test the performance of algorithms, carry out Competitor Benchmarking and such other exercises enabling the 
+customer to gain a competitive edge in an already mature market. 
+PROJECT OUTCOMES 
+CONCLUSION
+OUTPUT SAMPLES 
+Fig. 7: Snapshot of Veriﬁcation system set-up
+Fig.8 A vehicle is driven in between lanes without any violation in a “day” scenario 
+(i) Normal Day Scenario
+(ii)Night Scenario
+(iii)Shadow Scenario
+(iv) Simulated output
+Fig. 9 A vehicle is driven in between lanes without any violation in a “night” scenario
+Fig. 10 A vehicle is driven  in between  lanes without any violation i
+n a “shadow” scenario
+Fig. 11 A vehicle is driven in between lanes without any violation in 
+“shadow” scenario
+06
+PAGE
+L&T TECHNOLOGY SERVICES 
+
+REFERENCES 
+i. National Highway Traﬃc Safety Administration, http://www.nhtsa.dot.gov/ 
+ii. Robert Laganiere “OpenCV 2 Computer vision Application programming cook book”, Aug 2013. 
+iii. Bruno Keymolen “Theory of Hough Transformation” May 2013. 
+iv. Probabilistic and non-probabilistic Hough transforms: overview and comparisons, by Heikki, Petri, Lei Xu. 
+07
+PAGE
+L&T TECHNOLOGY SERVICES 
+ABOUT L&T TECHNOLOGY SERVICES
+L&T Technology Services is a subsidiary of Larsen & Toubro with a focus in the engineering services space, 
+partnering with a large number of Fortune 500 companies globally. We oﬀer design and development solutions 
+through the entire product development chain, across various industries such as Industrial Products, Medical 
+Devices, Transportation, Telecom and Hi-tech and the Process Industry. We also oﬀer solutions in the areas of 
+Mechanical Engineering Services, Embedded Systems & Applications, Engineering Process Services, Product 
+Lifecycle Management, Engineering Analytics, Power Electronics and Machine-to-Machine and the 
+Internet-of-Things (IoT).
+
+www.lnttechservices.com

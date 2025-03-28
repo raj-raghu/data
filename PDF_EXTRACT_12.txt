@@ -1,0 +1,1572 @@
+ 
+    
+Design of a Strategy for Lane Change Assistance System 
+ 
+Junyung Lee*. Kyuwon Kim**, Dongwook Kim*** and Kyongsu Yi**** 
+
+* School of Mechanical and Aerospace Engineering, Seoul National University, Seoul, Korea (e-mail:wnsdud85@snu.ac.kr) 
+** School of Mechanical and Aerospace Engineering, Seoul National University, Seoul, Korea (e-mail:ghostkitten@snu.ac.kr) 
+*** School of Mechanical and Aerospace Engineering, Seoul National University, Seoul, Korea (e-mail:mechar04@snu.ac.kr) 
+**** School of Mechanical and Aerospace Engineering, Seoul National University, Seoul, Korea (e-mail:kyi@snu.ac.kr) 
+Abstract: This paper describes a strategy for warning and intervention to assist the driver in a lane change 
+manoeuvre. The proposed strategy consists of a relative motion estimator and supervisor. In order to assess 
+threat in a lane change situation, vehicle sensor information and rear-side radar sensor information have 
+been combined in the relative motion estimator. An Extended Kalman Filter is used to estimate and revise 
+information of relative motion between the subject vehicle and threat vehicle in the adjacent lane. The 
+supervisor is designed to determine criterions of warning and intervention by the lateral driver support 
+system and desired dynamics to prevent a collision in a lane change situation. In order to determine 
+appropriate criterions with a consideration of threat level, the kinematics of the vehicles in longitudinal and 
+lateral direction have been analyzed. The results of this research could be used to assess safety and threat 
+in a lane change situation. Furthermore it could be applied to provide warnings or intervention for the lane 
+change assistance system.   
+Keyword: Driver support system, Lane change assistance system, Lane change manoeuvre 
+
+NOMENCLATURE 
+ax,rel : Relative longitudinal acceleration 
+ax,sub : Longitudinal acceleration of subject vehicle 
+ax,side : Longitudinal acceleration of vehicle in the adjacent  
+lane 
+Vx,rel : Relative longitudinal velocity 
+Vy,rel : Relative lateral velocity 
+Vx,sub : Longitudinal velocity of subject vehicle 
+Vx,side : Longitudinal velocity of vehicle in the adjacent lane 
+w : Process noises 
+1. INTRODUCTION 
+In recent years, the interest in the safety and comfort of 
+passengers has been growing. According to previous research 
+by NHTSA (2007), traffic accidents during a lane change 
+manoeuvre account for about 12percent of all traffic 
+accidents in USA. Also according to another research, the 
+reason of 13percent of all traffic accidents on German 
+freeways in 2009 is a collision by lateral moving vehicles in 
+the same direction (Habenicht et al. 2011). During these 
+types of collisions, most drivers do not attempt to avoid a 
+collision due to unawareness of a crash danger (Tiderman et 
+al. 2007).  Moreover the driver faces a high level of stress by 
+many tasks which should be carried out in parallel during a 
+lane change manoeuvre. For instance, the driver has to 
+manoeuvre the throttle pedal, brake pedal and steering wheel 
+and monitor for vehicles in the adjacent lanes at the same 
+time. Therefore it can be concluded that lateral driver support 
+systems have the potential to decrease the number of traffic 
+accidents in a lane change situation.   
+In order to reduce these types of accidents, there are many 
+ongoing studies on lane change assistance (LCA) system. 
+Ruder et al. (2002) designed a lane change assistant system to 
+help the driver avoiding critical situation during lane changes. 
+Ruder et al. assumed that the vehicles involved in lane 
+change manoeuvre to keep constant velocity. Bascunana et al. 
+(1997) determined the conditions for two vehicles involved in 
+lane change manoeuvre for safe lane changing. Jula et al. 
+(2000) presented a general algorithm to determine the 
+minimum longitudinal safety spacing (MSS) that all vehicles 
+involved in lane change manoeuvre should initially have so 
+that no collision occurs. In order to determine the condition 
+for safe lane changing, Bascunana et al. (1997) and Jula et al. 
+(2000) analysed the kinematics of the vehicles in a lane 
+changing scenario and all vehicles except for the subject 
+vehicle are assumed to keep constant velocity during the 
+manoeuvre. Sepulcre et al. (2011) used the constant 
+acceleration model to obtain the MSS. In these researches 
+mentioned above, the relative motion in the longitudinal 
+direction has been simply considered to obtain a safe region 
+in the initial longitudinal spacing and relative longitudinal 
+velocity plane. However the risk of the collision during a lane 
+change manoeuvre is related to not only the relative motion 
+in the longitudinal direction but also the relative motion in 
+the lateral direction.  
+This paper focuses on the design of a strategy for warning 
+and intervention to assist the driver to change the lane. In 
+order to consider relative longitudinal and lateral motion 
+7th IFAC Symposium on Advances in Automotive Control
+The International Federation of Automatic Control
+September 4-7, 2013. Tokyo, Japan
+978-3-902823-48-9/2013 © IFAC
+762
+10.3182/20130904-4-JP-2042.00134
+
+ 
+ 
+ 
+    
+ 
+between the subject vehicle and the vehicle in the adjacent 
+lane, vehicle sensor information and rear-side radar sensor 
+information have been combined. Moreover, the kinematics 
+of the vehicles has been analysed to determine criterions of 
+warning and intervention for lane change assist system. Then 
+the desired dynamics to avoid a collision during a lane 
+change manoeuvre are determined.  
+The rest of this paper is organized in the following manner: 
+Section 2 presents the overall architecture of the proposed 
+strategy for LCA. The design of the relative motion estimator 
+is described in Section 3 and the supervisor is described in 
+Section 4. The contribution of this research and introduction 
+of future works are summarized in Section 5.  
+2. ARCHITECTURE 
+ The overall architecture of the proposed strategy for LCA is 
+organized as shown in Fig. 1. The proposed strategy consists 
+of a relative motion estimator and supervisor. An Extended 
+Kalman Filter (EKF) is used to estimate and revise 
+information of relative motion between the subject vehicle 
+and threat vehicle in the adjacent lane. The supervisor is 
+designed to assess safety and determine a desired dynamics 
+in a lane change situation. Based on the analysis of the 
+kinematics of the vehicle in longitudinal and lateral direction, 
+the condition of activation of LCA is determined and the 
+current safety is assessed in the supervisor. Then the desired 
+longitudinal and lateral acceleration are determined to 
+prevent a collision between the subject vehicle and 
+approaching vehicle in the adjacent lanes.   
+
+
+1
+(
+)
+T
+T
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+K
+P
+H
+H
+P
+H
+R
+P
+I
+K
+H
+P
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+ˆ
+ˆ
+ˆ
+(
+,
+)
+k
+d
+k
+k
+k
+k
+k
+x
+f
+x
+u
+K
+z
+z
+
+
+
+
+
+
+
+
+1
+1
+1
+1
+1
+1
+[ , ]
+ˆ
+ˆ
+, 
+, 
+ˆ
+ˆ
+,
+,
+,
+k
+k
+k
+k
+k
+d
+k
+k
+T
+k
+k
+k
+k
+i
+i
+i j
+k
+j
+j
+x
+u
+x
+u
+x
+f
+x
+w
+P
+A
+P
+A
+Q
+f
+h
+where A
+H
+x
+x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 1. Overall architecture of the proposed strategy for LCA 
+3. DESIGN OF RELATIVE MOTION ESTIMATOR 
+ Since the information of relative motion between the subject 
+vehicle and approaching vehicle in the adjacent lanes is 
+needed to assess safety or risk during a lane change 
+manoeuvre, the relative motion estimator has been designed 
+as shown in Fig. 2. The commercial sensors including sonar, 
+vision and radar provide quite precise relative measurements 
+such as relative longitudinal position and velocity. However, 
+the performance of relative measurements such as relative 
+lateral position and velocity is not enough to design a driver 
+support system using only these environment sensors (Kim et 
+al. 2012a). Detailed and precise information about the vehicle 
+surroundings is required to active safety technology. In order 
+to obtain more precise information about the vehicle 
+surroundings, vehicle sensor information and rear-side radar 
+sensor information have been combined as mentioned above.   
+Radar
+- Estimated Relative X Position
+- Estimated Relative Y Position
+- Estimated Relative Longitudinal Velocity
+- Estimated Relative Lateral Velocity
+- Estimated Relative Longitudinal Acceleration
+Estimatied 
+Signals
+- Relative X Position
+- Relative Y Position
+- Relative Longitudinal Velocity
+- Relative Lateral Velocity
+- Longitudinal Velocity
+- Longitudinal Acceleratoin
+- Yawrate
+Relative Motion
+Estimator
+
+
+1
+(
+)
+T
+T
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+K
+P
+H
+H
+P
+H
+R
+P
+I
+K
+H
+P
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+ˆ
+ˆ
+ˆ
+(
+,
+)
+k
+d
+k
+k
+k
+k
+k
+x
+f
+x
+u
+K
+z
+z
+
+
+
+
+
+
+
+
+1
+1
+1
+1
+1
+1
+[ , ]
+ˆ
+ˆ
+, 
+, 
+ˆ
+ˆ
+,
+,
+,
+k
+k
+k
+k
+k
+d
+k
+k
+T
+k
+k
+k
+k
+i
+i
+i j
+k
+j
+j
+x
+u
+x
+u
+x
+f
+x
+w
+P
+A
+P
+A
+Q
+f
+h
+where A
+H
+x
+x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Measurement Update
+Time Update
+VEHICLE
+Fig. 2. Scheme of a relative motion estimator 
+ The tracking model is defined as the form of a nonlinear 
+state space model represented by equation (1) (Kim et al. 
+2012b).  
+
+1
+2
+3
+4
+0
+0
+0
+0
+0
+r
+r
+r
+r
+r
+r
+r
+s
+r
+s
+s
+s
+r
+x
+x
+x
+w
+x
+y
+y
+d
+x
+f
+x
+w
+y
+w
+x
+dt
+w
+x
+w
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      (1) 
+where 
+rx  is the relative longitudinal distance, rx  is the 
+relative longitudinal velocity, 
+ry
+ is the relative lateral 
+distance, is the relative lateral velocity, 
+s
+ is the yaw angle 
+of the subject vehicle, s
+ is the yaw rate of the subject 
+vehicle and rx  is the relative longitudinal acceleration. The 
+measurement vector contains the information such as relative 
+positions, relative velocities. Furthermore the information 
+about yaw rate, longitudinal velocity and acceleration of the 
+subject vehicle are included in measurement vector. After the 
+discretization of this continuous system, EKF has been 
+applied to obtain more accurate information about the relative 
+motion between the subject vehicle and approaching vehicle 
+in the adjacent lanes (Caveney et al. 2004, Eidehall et al. 
+2005).  
+In order to evaluate this relative motion estimator, the 
+vehicle tests were conducted on a test track. The rear-side 
+radar sensors were implemented on the subject vehicle. For 
+the evaluation of the accuracy of the estimated relative 
+motion, GPS was implemented on the vehicles to measure 
+accurate relative positions and velocities. The blue solid lines 
+and black dashed lines in Fig. 3 indicate the measurements of 
+GPS and rear-side radar respectively. The red dashed lines in 
+Fig. 3 indicate the estimated signals by the proposed relative 
+motion estimator. Comparisons of the relative longitudinal 
+distance and velocity are shown in Fig. 3-(a) and (c). It can 
+be known that the rear-side radar provides accurate 
+information on the relative longitudinal distance and velocity. 
+Fig. 3-(b) and (d) show relative position and velocity in the 
+lateral direction. As shown in Fig. 3-(d), the relative lateral 
+velocity information should be estimated and revised since 
+the measurement of the rear-side radar is imprecise on some 
+occasions. It can be seen that the estimated information of 
+relative lateral velocity is similar to the measurement of GPS. 
+Therefore it can be concluded that the estimated information 
+IFAC AAC 2013
+September 4-7, 2013. Tokyo, Japan
+763
+
+ 
+ 
+ 
+    
+ 
+ 
+Fig. 3. Research scenario of vehicle lane change 
+of relative lateral velocity can be used to assess risks by 
+approaching vehicles in the adjacent lanes. Fig. 3-(e) shows 
+the estimated information of relative longitudinal acceleration.  
+15
+20
+25
+30
+35
+-40
+-35
+-30
+-25
+-20
+-15
+Time [sec]
+Distance [m]
+Relative Distance - Longitudinal
+ 
+ 
+GPS
+Radar
+Filtered
+(a) Relative longitudinal distance [m] 
+15
+20
+25
+30
+35
+4
+5
+6
+7
+8
+9
+Time [sec]
+Distance [m]
+Relative Distance - Lateral
+ 
+ 
+GPS
+Radar
+Filtered
+(b) Relative lateral distance [m] 
+15
+20
+25
+30
+35
+-8
+-6
+-4
+-2
+0
+2
+4
+Time [sec]
+Velocity [m/s]
+Relative Longitudinal Velocity : Vx,rel
+ 
+ 
+GPS
+Radar
+Filtered
+ (c) Relative longitudinal velocity [m/s] 
+15
+20
+25
+30
+35
+-1
+-0.5
+0
+0.5
+1
+1.5
+2
+Time [sec]
+Velocity [m/s]
+Relative Lateral Velocity : Vy,rel
+ 
+ 
+GPS
+Radar
+Filtered
+(d) Relative lateral velocity [m/s] 
+15
+20
+25
+30
+35
+-2
+-1
+0
+1
+Time [sec]
+Longitudinal Acceleration [m/s2]
+Relative Longitudinal Acceleration : Ax,rel
+ (e) Relative longitudinal acceleration [m/s2] 
+Fig. 4. Test results of the estimation of relative motion 
+4. DESIGN OF SUPERVISOR FOR LCA 
+In order to assess safety and determine criterions of warning 
+and intervention for lane change assist system, the kinematics 
+of the vehicles has been analysed. In a lane change situation, 
+the probability of the collision with the approaching vehicle 
+in the adjacent lane is higher than that with the preceding 
+vehicles running ahead of subject vehicle in current lane or 
+adjacent lanes (Tim et al. 2005). Therefore this research 
+focuses on the analysis of the kinematics of the subject 
+vehicle and approaching vehicle in the adjacent lane. The 
+scenario depicted in Fig. 4 is used in this research.  
+According to previous research by Mar et al. (2005), about 
+80% of drivers manoeuvre the throttle pedal or brake pedal in 
+the process of lane change. Based on this result, we assume 
+that the subject vehicle changes lanes with constant 
+acceleration. Moreover, when the approaching vehicle in the 
+adjacent lane is entering into the lane of the subject vehicle, 
+drivers generally tend to apply zero-throttle or brake (Moon 
+et al. 2010). Based on this result, the profile of relative 
+longitudinal acceleration of approaching vehicle in the 
+adjacent lane is assumed as shown in Fig. 5. It is assumed 
+that the subject vehicle starts the lane change manoeuvre at t 
+= 0. The time constant 
+reaction
+t
+ denotes the time-instant at 
+which the driver of approaching vehicle in the adjacent lane 
+starts to decelerate. In this research, the approaching vehicle 
+in the adjacent lane is assumed to apply relative deceleration 
+when the subject vehicle starts to cross lanes. Therefore the 
+time constant reaction
+t
+ is assumed to be same as time to lane 
+crossing which can be known from the vision sensor 
+information. The time constant 
+ch
+t
+ denotes the time-instant 
+that the subject vehicle completes the lane change. 
+,
+,
+x rel ini
+a
+ is 
+the relative longitudinal acceleration in current state and 
+IFAC AAC 2013
+September 4-7, 2013. Tokyo, Japan
+764
+
+ 
+ 
+ 
+    
+ 
+,
+,
+x rel brake
+a
+ is the relative deceleration of the vehicle in the 
+adjacent lane after the subject vehicle crosses lanes.  
+ 
+Fig. 5. Relative longitudinal acceleration profile of 
+approaching vehicle in the adjacent lane during a lane change 
+manoeuvre of subject vehicle 
+4.1  Minimum Longitudinal Safety Spacing (MSS) 
+The relative motion between the subject vehicle and 
+approaching vehicle in the adjacent lane for the kinematics 
+analysis can be depicted as shown in Fig. 6. In order to 
+ensure safety after the lane change manoeuvre, the MSS to 
+avoid rear-end collision accidents between the subject vehicle 
+and approaching vehicle in the adjacent lane is determined in 
+this section. 
+x
+C  in Fig. 6 denotes the longitudinal clearance 
+between the front side of approaching vehicle and the rear 
+side of subject vehicle and 
+y
+C  in Fig. 6 denotes the lateral 
+distance between the centre of gravity (CG) of subject vehicle 
+and CG of approaching vehicle.  
+Cx
+Cy
+Vx,rel
+Vy,rel
+Crash
+ax,rel
+Side Vehicle
+- High Speed
+- Constant
+Acceleration
+Subject Vehicle
+- Low Speed
+- Constant Acceleration
+Fig. 6. Description of relative motion during a lane change 
+manoeuvre 
+ For the determination of the appropriate longitudinal safety 
+spacing in various driving situation, the relative motion in the 
+lateral direction should be considered as mentioned above. 
+Jula et al. (2000) used a realistic model for the lateral 
+acceleration during a lane change manoeuvre designed as a 
+sine function of time and assumed the total elapsed time for a 
+lane change manoeuvre. However the driving characteristics 
+in a lane change situation varies with age, sex, driving 
+experience and driving situations. For instance, in severe lane 
+change situation, there could be some differences between 
+that assumption and current manoeuvres. In this research, the 
+required time to complete the lane change 
+ch
+t
+ is calculated 
+with consideration of current driving situation as follows:  
+,
+
+y
+ch
+y rel
+C
+t
+V
+                                                                             (2) 
+In order to determine an activation condition of warning for 
+LCA, the longitudinal clearance in the time interval [0, ch
+t ]  
+is calculated on the assumption that the relative longitudinal 
+acceleration in the current state is maintained during a lane 
+change manoeuvre.   
+
+
+2
+,
+,
+,
+1
+( )
+(0)
+,
+0,
+2
+x
+x
+x rel
+x rel ini
+ch
+C t
+C
+V
+t
+a
+t
+t
+t
+
+
+
+
+
+
+
+
+
+
+
+       (3)  
+ The intervention for LCA should be provided on the 
+condition that the approaching vehicle could not avoid a 
+collision using an admissible relative deceleration. For the 
+determination of an appropriate intervention condition, the 
+longitudinal clearance in the time interval [0, ch
+t ] is calculated 
+on the assumption that the driver of approaching vehicle 
+applies relative deceleration after reaction
+t
+when he recognizes 
+the lane change of subject vehicle. 
+
+
+
+
+
+
+
+2
+,
+,
+,
+,
+,
+,
+,
+2
+,
+,
+1
+( )
+(0)
+(
+2
+1
+),
+0,
+2
+x profile
+x
+x rel
+reaction
+x rel ini
+reaction
+x rel
+x rel ini
+reaction
+reaction
+x rel brake
+reaction
+ch
+C
+t
+C
+V
+t
+a
+t
+V
+a
+t
+t
+t
+a
+t
+t
+t
+t
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          (4) 
+Then the initial minimum safety spacing for warning 
+,min (0)
+x
+C
+ and intervention, 
+,
+,min (0)
+x profile
+C
+ to ensure that no 
+collision occurs between the subject vehicle and approaching 
+vehicle during the time interval [0,
+ch
+t
+] can be defined 
+respectively as follows:  
+
+
+
+
+,min (0)
+(0)
+( )
+0 ,
+0,
+x
+x
+x
+ch
+C
+C
+C t
+t
+t
+
+
+
+                        (5) 
+
+
+
+
+,
+,min
+,
+(0)
+(0)
+( )
+0 ,
+0,
+x profile
+x
+x profile
+ch
+C
+C
+C
+t
+t
+t
+
+
+
+             (6) 
+In order to guarantee no collision after ch
+t , the  minimum 
+required clearance to prevent a collision after 
+ch
+t
+ and the 
+safety distance which depends on the longitudinal velocity of 
+subject vehicle are considered to obtain the MSS for warning 
+and intervention as follows:  
+
+
+min
+min
+,min
+0,
+,
+(
+)
+(0)
+
+
+ch
+x
+x
+t
+t
+C t
+C
+                                       (7) 
+
+
+,min
+,
+,min
+,
+,min
+0,
+,
+(
+)
+(0)
+
+
+profile
+ch
+x profile
+profile
+x profile
+t
+t
+C
+t
+C
+          (8) 
+
+
+2
+,
+min
+,
+,warning
+,min
+,
+,
+,max
+(
+)
+(0)
+2
+x rel
+x MSS
+x
+x sub
+x rel
+V
+t
+C
+C
+V
+a
+
+
+
+
+                        (9) 
+
+
+2
+,
+,min
+,
+,intervention
+,
+,min
+,
+,
+,max
+(
+)
+(0)
+2
+x rel
+profile
+x MSS
+x profile
+x sub
+x rel
+V
+t
+C
+C
+V
+a
+
+
+
+
+      (10) 
+where,  indicates the time gap and 
+,
+,max
+x rel
+a
+ denotes the 
+maximum relative deceleration. Fig. 7 and Fig. 8 show the 
+relationship between MSSs for LCA and relative movement. 
+The black solid lines in these figures indicate the MSS for 
+warning and the red dotted lines indicate the MSS for 
+IFAC AAC 2013
+September 4-7, 2013. Tokyo, Japan
+765
+
+ 
+ 
+ 
+    
+ 
+intervention. In this simulation, the initial speed of subject 
+vehicle 
+,x sub
+V
+ is chosen as 80kph, initial relative acceleration 
+,
+,
+x rel ini
+a
+ of 0, the time gap of 0.3, and relative decelerations 
+,
+,
+x rel brake
+a
+ of -2.5m/s2 are used. In order to obtain a safety 
+clearance minimizing frequent warning or intervention, the 
+maximum relative decelerations is chosen as -8m/s2. As 
+shown in Fig. 7, the MSSs for LCA decrease as the lateral 
+distance decreases. It means that the activation of proposed 
+LCA strategy is dependent on the required time to complete 
+the lane change. Fig. 8 shows that the warning and 
+intervention of LCA should be provided rapidly as the 
+relative longitudinal velocity between the subject vehicle and 
+approaching vehicle increases. Meanwhile the difference 
+between MSS for warning and MSS for intervention 
+decreases as the relative lateral velocity increases. It’s 
+because ch
+t  decreases as the relative lateral velocity increases 
+and the effect of relative deceleration, 
+,
+,
+x rel brake
+a
+, decreases. 
+Therefore it can be confirmed that the warning and 
+intervention should be activated at almost the same time as 
+the relative lateral velocity increases. 
+0
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+0
+20
+40
+60
+Relative Vx [kph]
+Clearance X [m]
+Relative Vy = 1m/s, Cy = 3.6m
+ 
+ 
+MSS for Warning
+MSS for Intervention
+ (a) Case : Vy,rel =1m/s, Cy = 3.6m  
+0
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+0
+20
+40
+60
+Relative Vx [kph]
+Clearance X [m]
+Relative Vy = 1m/s, Cy = 2.4m
+ 
+ 
+MSS for Warning
+MSS for Intervention
+ 
+ (b) Case : Vy,rel =1m/s, Cy = 2.4m 
+Fig. 7 Relationship between MSSs and relative longitudinal 
+velocity 
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+0
+10
+20
+30
+40
+Relative Vy [m/s]
+Clearance X [m]
+Relative Vx = 10kph, Cy = 2.4m
+ 
+ 
+MSS for Warning
+MSS for Intervention
+ (a) Case : Vx,rel =10kph, Cy = 2.4m 
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+0
+10
+20
+30
+40
+Relative Vy [m/s]
+Clearance X [m]
+Relative Vx = 20kph, Cy = 2.4m
+ 
+ 
+MSS for Warning
+MSS for Intervention
+(b) Case : Vx,rel =20kph, Cy = 2.4m 
+Fig. 8 Minimum longitudinal safety spacing for warning and 
+intervention for LCA 
+4.2 Desired Dynamics 
+When the collision between the subject vehicle and 
+approaching vehicle is expected during a lane change 
+manoeuvre, the subject vehicle should be controlled to avoid 
+a collision. Eidehall et al. (2005) presented that the required 
+strength of overlay steering torque for emergency lane assist 
+system increases as the time to collision (TTC) decreases. 
+Szabo et al. (2004) presented a desired lateral acceleration to 
+prevent a road departure which is only dependent on lateral 
+velocity and lateral distance.  
+The supervisor proposed in this paper is designed to 
+determine not only the desired relative longitudinal 
+acceleration but also the desired relative lateral acceleration 
+for collision avoidance in a lane change situation. First the 
+desired relative longitudinal acceleration is defined as 
+follows: 
+
+
+,
+,
+1
+,
+,warning
+2
+,
+x rel req
+x MSS
+x
+x rel
+a
+k
+C
+C
+k
+V
+
+
+
+
+
+                          (11) 
+where, k1 and k2 mean the control gains and these are chosen 
+as 0.3 and 0.1 respectively in this research. Fig. 9 shows that 
+the required relative longitudinal acceleration for LCA 
+increases as the longitudinal clearance in the current state 
+decreases. 
+Meanwhile, in order to prevent a collision in lateral 
+direction, the relative lateral distance at TTC should satisfy 
+the below condition.  
+2
+,
+,
+,
+1
+2
+y
+v
+s
+y rel
+y rel req
+C
+w
+w
+V
+TTC
+a
+TTC
+
+
+
+
+
+
+                      (12) 
+where, wv is the width of vehicle and ws is the safety distance 
+to guarantee no collision. The widths of all the vehicles are 
+assumed to be same and chosen as 1.9m in this analysis. 
+Furthermore the safety distance ws is chosen as 0.3m in this 
+analysis. Based on this assumption, the minimum value of 
+require lateral acceleration to prevent a collision between the 
+subject vehicle and approaching vehicle in the adjacent lane 
+can be calculated as follows: 
+
+
+,
+,
+,
+2
+2
+y
+v
+s
+y rel
+y rel req
+C
+w
+w
+V
+TTC
+a
+TTC
+
+
+
+
+
+                             (13) 
+IFAC AAC 2013
+September 4-7, 2013. Tokyo, Japan
+766
+
+ 
+ 
+ 
+    
+ 
+As shown in Fig. 10, the absolute value of required relative 
+lateral acceleration for LCA increases as TTC decreases and 
+the relative lateral velocity increases. It means that the large 
+lateral acceleration is required to avoid a collision as the 
+collision probability in the longitudinal direction increases.  
+0
+5
+10
+15
+20
+25
+30
+0
+2
+4
+6
+8
+10
+Relative Vx [kph]
+Longitudinal Acceleration [m/s2]
+Required Ax,rel, Cy = 2.4m, Relative Vy = 1m/s
+ 
+ 
+Cx = 8m
+Cx = 4m
+ 
+Fig. 9 Required relative longitudinal acceleration with respect 
+to the relative longitudinal velocity, Configuration : Cy = 
+2.4m, Vy,rel = 1m/s 
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+-8
+-6
+-4
+-2
+0
+Relative Vy [m/s]
+Lateral Acceleration [m/s2]
+Required Ay,rel, Cy = 2.4m
+ 
+ 
+Proposed Method : TTC = 1.5 sec
+Proposed Method : TTC = 1.0 sec
+ 
+Fig. 10 Required relative lateral acceleration with respect to 
+relative lateral velocity in left lane change situation, 
+Configuration : Cy = 2.4m 
+5. CONCLUSION 
+ A strategy for warning and intervention to assist the driver 
+during a lane change manoeuvre has been proposed. The 
+proposed strategy is composed of two parts: a relative motion 
+estimator and supervisor. The vehicle sensor information and 
+rear-side radar sensor information have been combined and 
+then relative motion is estimated using EKF. Based on the 
+kinematics analysis, the supervisor is designed to activate 
+warning and intervention for LCA and determine desired 
+dynamics. The results of this research could be used to assess 
+threat and provide warning or intervention during a lane 
+change or lane departure situation. In the future, the vision 
+sensor information should be integrated to obtain more 
+precise information about the vehicle surroundings and all the 
+vehicles around the subject vehicle should be considered in 
+determining the desired dynamics for LCA. Furthermore the 
+control algorithm which distributes actuator’s control inputs 
+to obtain the desired dynamics should be designed in the 
+future.    
+REFERENCES 
+National Highway Traffic Safety Administration (NHTSA) 
+(2007). Pre-Crash Scenario Typology for Crash 
+Avoidance Research. www.nhtsa.gov 
+Habenicht, S., Winner, H., Bone, S., Sasse, F. and Korzenietz, 
+P. (2011). A maneuver-based lane change assistance 
+system. in Proc. IEEE Intelligent Vehicle Symp., Jun. 5-9, 
+pp. 375-380 
+Ruder, M., Enkelmann, W. and Garnitz, R. (2002). Highway 
+Lane Change Assistant. in Proc. IEEE Intelligent 
+Vehicle Symp., Versailles, France, Jun.17-21, pp. 240-
+244 
+Bascunana, J. L. (1997). Analysis of lane change collision 
+avoidance. Syst. Iss. ITS 
+Jula, H., Kosmatopoulos, E. B. and Ioannou, P. A. (2000). 
+Collision Avoidance Analysis for Lane Changing and 
+Merging. IEEE Transactions on Vehicular Technology, 
+Vol. 49, pp. 2295-2308 
+Brannstrom, M., Sjoberg, J. and Coelingh, E. (2008). A 
+situation and threat assessment algorithm for a rear-end 
+collision avoidance system. in Proc. IEEE Intelligent 
+Vehicle Symp., Eindhoven, Netherlands, Jun. 4-6, pp. 
+102-107 
+Sepulcre, M. and Gozalvez, J. (2011). On the Importance of 
+Application Requirements in Cooperative Vehicular 
+Communications. International Conference on Wireless 
+On-Demand Network Systems and Services. Jan. 26-28, 
+pp. 124-131 
+Tideman, M., van der Voort, M. C., van Arem, B. and 
+Tillema, F. (2007). A review of lateral driver support 
+systems. Intelligent Transportation Systems Conference, 
+Seattle, USA, Sept. 30-Oct. 3, pp. 992-999 
+Szabo, S. and Wilson, B. (2004). Application of a Crash 
+Prevention Boundary Metric to a Road Departure 
+Warning System. in Proc. of the Performance Metrics 
+for Intelligent Systems (PerMIS) Workshop, National 
+Institute of Standards and Technology. Gaithersburg, 
+MD, August 24-26 
+Eidehall, A., Pohl, J. and Gustafsson, F. (2005). A new 
+approach to lane guidance systems. In IEEE Conference 
+on Intelligent Transportation Systems. Vienna, Austria, 
+Sept. 13-15, pp. 776-770 
+Kim, K., Her, H., Choi, J. and Yi, K. (2012a). Integrated Risk 
+Index Plane Development for Advanced Driver Assistant 
+System. Intelligent Transportation Systems Conference, 
+Vienna, Austria, Oct. 22-26 
+Kim, K., Kim, D. and Yi, K. (2012b). Development of 
+Lateral Collision Risk Index. KSAE Conference, Ilsan, 
+Korea 
+Caveney, D. S. (2004). Multiple Model Techniques in 
+Automotive Estimation and Control. Ph. D. dissertation, 
+University of California, Berkeley, USA 
+Mar, J. and Lin, H. T. (2005). The car-following and lane-
+changing prevention system based on the cascaded fuzzy 
+inference system. IEEE Transactions on Vehicular 
+Technology. Vol. 54, no.3, pp. 910-924 
+Moon, S., Kang, H. and Yi, K. (2010). Multi-vehicle target 
+selection for adaptive cruise control. Vehicle System 
+Dynamics. Vol. 48, no. 11, pp.1325-1343  
+Tim, van D., Geert, A. J. and van der Heijden. (2005). 
+VisionSense: An Advanced Lateral Collision Warning 
+System. in Proc. IEEE Intelligent Vehicle Symp., Jun. 6-
+8,  pp. 296-301 
+IFAC AAC 2013
+September 4-7, 2013. Tokyo, Japan
+767

@@ -1,0 +1,1071 @@
+Vol.:(0123456789)
+1 3
+International Journal of Intelligent Transportation Systems Research 
+https://doi.org/10.1007/s13177-021-00254-5
+Blind Spot Detection System in Vehicles Using Fusion of Radar 
+Detections and Camera Verification
+Shayan Shirahmad Gale Bagi1 · Behzad Moshiri1   · Hossein Gharaee Garakani2 · Mohammad Khoshnevisan3
+Received: 6 November 2019 / Revised: 20 January 2021 / Accepted: 2 March 2021 
+© Springer Science+Business Media, LLC, part of Springer Nature 2021
+Abstract
+Sensors are the quintessential part of Blind Spot Detection (BSD) systems, which have a profound effect on the performance 
+of the system. Every sensor has its unique deficiencies that can deteriorate the performance of the system under grievous 
+circumstances. Hence, making vital tasks in BSD such as object detection arduous. Indeed, previous studies have demon-
+strated that data fusion techniques can diminish the adverse effects of sensors and improve detection accuracy in the BSD 
+system. One of the main advantages of data fusion is to improve detection accuracy and reduce the processing time by 
+multiple sensors cooperation. We propose a BSD model that objects are detected in consecutive time intervals in the BSD 
+system. Then, association techniques are employed for multi-sensor fusion since all sensors data are not ordinarily ready for 
+fusion simultaneously. It should be noted that the orthodox approach in data association techniques in BSD often includes a 
+global nearest neighbor, joint probabilistic data association, and multiple hypothesis tests. We simulate and compare these 
+techniques by tracking multiple targets and multi-sensor fusion using virtual data in MATLAB. Furthermore, we illustrate 
+that our multi-sensor fusion detection accuracy in the BSD system is augmented compared to a single sensor BSD system.
+Keywords  Blind spot detection · Data association · Data fusion · Global nearest neighbor · Joint probabilistic data 
+association · Multiple hypothesis test · Multi-sensor fusion
+1  Introduction
+Blind spot detection (BSD) is one of the primordial applica-
+tions in Autonomous Vehicles (AVs) and Advanced Driver 
+Assistance Systems (ADAS). The primary motivation for 
+developing such systems is to avoid accidents caused by 
+blind spots where the driver is unable to see nearby vehicles. 
+Emphatically, the BSD system aims to detect vehicles blind 
+spots and warns the driver of imminent hazards [1]. In the 
+case of AVs, BSD is also required for applications such as 
+adaptive cruise control and localization since the vehicle 
+is not aware of its surroundings. AVs and ADAS consist 
+of many parts, as shown in Fig. 1. Depending on various 
+driving conditions, a blind spot could be anywhere in the 
+vicinity of the vehicle. It is shown in Figs. 2 and 3 for AVs. 
+Any place that is not covered by sensors is considered a 
+blind spot. Consequently, 360-degree coverage is one of the 
+necessary factors to achieve the desired performance in any 
+driving condition.
+According to Fig. 1, the BSD system mainly consists of 
+sensors, software, object detection, sensor fusion, and con-
+trol. Sensors are the most vital part of a BSD system, and the 
+performance of other components depends on them. There-
+fore, a proper sensing structure is required for the BSD sys-
+tem in order to achieve better performance in other parts of 
+the system. The promising results of multi-sensor fusion in 
+intelligent transportation systems (ITS) have attracted much 
+attention [4, 5]. In BSD systems, the sensors’ field of view 
+must cover the vehicle’s whole surrounding, as explained in 
+ *	 Behzad Moshiri 
+	
+moshiri@ut.ac.ir
+	
+Shayan Shirahmad Gale Bagi 
+	
+shayan.shirahmadi@ut.ac.ir
+	
+Hossein Gharaee Garakani 
+	
+gharaee@itrc.ac.ir
+	
+Mohammad Khoshnevisan 
+	
+m.khoshnevisan@northeastern.edu
+1	
+School of Electrical & Computer Engineering, College 
+of Engineering, University of Tehran, Tehran, Iran
+2	
+IRAN Telecom Research, Tehran, Iran
+3	
+Physics Department, College of Science, Northeastern 
+University, Boston, USA
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+our previous paper [6]. Furthermore, sensors have unique 
+specifications and may not perform well under specific cir-
+cumstances [6]. For example, cameras cannot provide useful 
+visual details at night or on rainy days. Therefore, multi-
+sensor BSD systems are preferred over single-sensor BSD 
+systems currently used in many commercial ADAS. Radar 
+sensors can provide information about vehicles’ speed and 
+position and perform well in bad weather, while cameras 
+can provide useful visual details and ultrasonic sensors are 
+also suitable for short-range detection [6]. In this paper, the 
+sensing structure shown in Fig. 4 will be used to study the 
+BSD system, which takes advantage of multi-sensor fusion. 
+After determining the sensing structure, the next step is to 
+employ multiple sensors data to detect vehicles. It shall be 
+noted that object detection is an essential and challenging 
+task in the BSD system. Indeed, the response time of the 
+Fig. 1   ADAS architecture [2]
+Fig. 2   Blind spot due to sensors 
+coverage [3]
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+whole system depends on it, and according to ISO17387, 
+this response time should not exceed more than 300 ms. 
+Tracking detected targets is also warranted in the BSD sys-
+tem in order to have efficient and unwavering detection [7]. 
+In recent years, numerous methods have been proposed to 
+detect vehicles using cameras with conventional methods 
+[7–10], or deep learning methods [11, 12]. These studies 
+have shown that in most cases, camera-based BSD systems’ 
+performance will deteriorate in severe circumstances such 
+as poor light and harsh weather conditions. On the other 
+hand, radar sensors have high resolution and provide noisy 
+data due to clutters. Therefore, clustering detected points and 
+separating noisy data will improve the detection accuracy. 
+Moreover, the so-called Density-Based Spatial Clustering of 
+Applications with Noise (DBSCAN) algorithm [13] could be 
+applied to radar detections for clustering them [14].
+Every sensor has constraints and deficiencies which 
+would affect the performance of the system. For example, 
+vision-based BSD systems suffer from cameras’ sensitivity 
+to light and weather. Every single-sensor BSD system has 
+these infirmities that are imposed by sensors defects. In gen-
+eral, data fusion can ameliorate the accuracy of detection by 
+reducing the adverse effect of sensors. According to Fig. 1, 
+data fusion techniques could be applied in acquisition, per-
+ception, and decision levels. Data fusion in the acquisition 
+level, called low-level fusion, involves fusing signals and 
+sensors data to reduce measurement errors. Data fusion in 
+perception level, which is referred to as intermediate level 
+fusion, will increase detection accuracy. Hence, reducing the 
+number of misdetections [15] by fusing multiple features. 
+On the other hand, at the decision level, which is called high-
+level fusion, each sensor provides its decision, and deci-
+sions are integrated to yield a more optimum resolution. 
+This paper will propose a BSD system based on data fusion 
+theory and show how data fusion techniques can improve 
+the accuracy of detections in the BSD system. The rest of 
+this paper is structured as follows. Section II reviews the 
+previous studies and proposed methods in BSD. Section III 
+includes the data fusion techniques for intermediate level 
+fusion and proper methods for fusing data in BSD. Sec-
+tion IV demonstrates simulation results and a comparison 
+between the performance of multiple-sensor and single-
+sensor BSD system. Finally, the conclusion and remarks are 
+presented in section V.
+2  Related Work
+In this section, we will review the previous works regarding 
+the BSD system. Many papers have studied the object detec-
+tion task in the BSD system, and some involve data fusion 
+in BSD, which is relevant to our work.
+Vehicle detection methods using a camera can be catego-
+rized into conventional methods and deep learning methods. 
+Conventional methods involve extracting special features of 
+vehicles in a region of interest (ROI) and are categorized 
+into motion-based and appearance-based methods [1]. The 
+region of interest must be adequately defined in order to 
+limit the searching region for objects. Shadows, edges of 
+air dams or wheels, and lamps could be used as features for 
+vehicle detection in the daytime and nighttime [10]. The 
+results provided in [10] demonstrate that there would be 
+various false alarms due to shadows of vehicles which are 
+elongated on rainy days or detection of other bright objects 
+in nighttime [10].
+With a similar idea, Bin-Feng Lin et al. applied feature 
+fusion and integrated appearance-based features and edge-
+based features for vehicle detection [8]. Their findings 
+suggest that a vision-based BSD system’s performance is 
+improved by integrating features [8]. Moreover, applying 
+various detection methods at different distances and fusing 
+their results can also improve detection accuracy [7].
+On the other hand, deep learning methods such as CNN, 
+R-CNN, and Faster R-CNN could be applied to vehicle 
+Fig. 3   Blind spot due to occlu-
+sion [3]
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+detection algorithms to reach state-of-art performance in 
+vision-based BSD systems. In [12], the principal compo-
+nent analysis (PCA) operator is applied to an image pyramid, 
+which is built of various resolutions of the main image to 
+extract features. Then the features are transformed into the 
+spatial frequency domain using discrete cosine transform 
+in order to determine the edge line density in the image 
+before they are fed into the convolutional neural network 
+[12]. The main complexity with deep learning methods is 
+their computational cost, which is a function of the consider-
+able number of parameters and hidden layers. It should be 
+stated that separable depthwise convolution can reduce the 
+number of parameters; consequently, it also will minimize 
+accuracy [11]. However, the addition of residual learning 
+and squeeze-and-excitation module in some mild non-linear 
+cases can relatively compensate for the loss of accuracy [11].
+Although data fusion methods can improve detection 
+accuracy, single-sensor BSD systems cannot perform opti-
+mally in all circumstances. In the case of vision-based BSD 
+systems, their performance deteriorates in bad weather and 
+nighttime. In addition to feature fusion [8] and multiple 
+detection methods fusion [7], multi-sensor fusion can pro-
+vide better results under severe driving conditions. Verita-
+bly, higher detection accuracy, less processing time, more 
+Fig. 4   Sensing Structure for 
+BSD system. Radar sensors, 
+cameras, and ultrasonic sensors 
+are shown in purple, green, and 
+orange colors, respectively [6]. 
+휃 is the azimuth angle, and r 
+is the detection range of each 
+sensor
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+information about detected objects, fewer measurement 
+errors, and false alarms could be achieved through multi-
+sensor fusion.
+In [16], sensor fusion of the Lidar sensor and stereo-
+vision camera is considered for vehicle detection. Some 
+of the stumbling blocks concerning sensor fusion in vehi-
+cles, such as different sample rates of sensors, time delay in 
+CAN bus, and sensors, have been pointed out. Lidar sen-
+sors can provide information about the position, velocity, 
+and shape of objects with high accuracy [1], and its data is 
+complementary to the camera [16]. Resultantly, this con-
+figuration leads to superior precision. Another setup of Lidar 
+sensors and cameras is implemented in [17], which con-
+siders a panoramic mosaic view for visualizing the blind 
+spots of the vehicle. However, due to Lidar sensors’ colos-
+sal amount of data, the system’s response time can increase 
+significantly. Besides, Lidar sensors are costly [1]. Their 
+addition to the sensing structure of the BSD system will not 
+be cost-effective.
+Sensor configuration is proposed in [15], consisting of 
+cameras, Lidar, and radar sensors. The advantages, as men-
+tioned earlier of multi-sensor fusion, could be achieved in 
+this configuration. Lidar and radar data are used for mov-
+ing object detection. Subsequently, in cooperation with the 
+detected object’s image, the data class could be determined 
+[15].
+In [18], a multi-sensor tracking system has been used in a 
+self-driving car, which consists of cameras, Lidar, and radar 
+sensors. For effective tracking of targets, data association 
+techniques have been applied to their model. This system 
+will be compared to our proposed system.
+Sensor fusion of radar sensors and cameras can increase 
+detection accuracy and reduce detection noise [19]. Radar 
+sensors can provide information about the position and 
+velocity of vehicles and ROI for cameras [19], which 
+results in less processing time. Then the vehicles in ROI 
+could be identified by image processing methods. Our sens-
+ing structure consists of cameras and radar sensors. We will 
+concentrate on the sensor fusion of these two sensors with a 
+distinct approach in the next sections.
+3  Sensor Fusion in BSD
+To detect targets consistently, we must estimate their next 
+state using previous observations or update them using cur-
+rent measurements. In a multi-sensor system, all data might 
+not be ready for fusion at a particular time due to various 
+sampling rate of sensors, internal processing time in sen-
+sors, and sensors different coverage areas, etc. Besides, sen-
+sors are placed in various locations, which means their local 
+coordinates are not the same. Therefore, sensors must be 
+synchronized and aligned spatially before sensor fusion [20]. 
+Data association is one of the data fusion techniques that can 
+determine which detections belong to a specific target [21]. 
+Global Nearest neighbor (GNN), Probabilistic Data Asso-
+ciation (PDA), Joint Probabilistic Data Association (JPDA), 
+and Mulitple Hypothesis Test (MHT) are data association 
+techniques that can be used in the BSD system. The general 
+algorithm of data association techniques is shown in Fig. 5.
+In the validation gate of the computation stage, we can 
+determine measurements around the predicted states of the 
+target. Only the measurements that are in the track’s valida-
+tion gate would be assigned to that track. In the observation 
+to the rack the association stage, the measurements which 
+lie under the validation gate are assigned to each target. This 
+is implemented by calculating the relative observation-track 
+associations using the data mentioned above association 
+techniques. Data association techniques mainly differ in the 
+observation-to-track association stage. In the third stage, 
+some of the tracks are updated, deleted, or initialized accord-
+ing to the associations calculated in the previous stage. Some 
+rules are included in the track maintenance stage. For exam-
+ple, a track will be deleted if no detection could be assigned 
+to it in four consecutive updates. In the filtering stage, state 
+estimation techniques such as the Kalman filter, extended 
+Fig. 5   Data association tech-
+niques general algorithm [22]
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+Kalman filter, and particle filter could be used. Any wrong 
+data association would impose additional errors to the fil-
+tering stage [22]. The above data association techniques is 
+described in the following sections.
+3.1  Global Nearest Neighbor
+Nearest neighbor (NN) is a conventional data association 
+technique that puts similar data in a group. The similarity 
+between data could be measured by the Euclidean distance, 
+absolute distance, or statistical function of distance [21]. 
+According to the distance of detections from each target, a 
+score is assigned to each detection. In NN, the closest detec-
+tions are assigned to targets, and detection could be assigned 
+to more than one target. Conversely, GNN considers the 
+association of all detections in the validation gate with tar-
+gets, and each detection could be assigned to at most one 
+target [22]. Detections should be assigned to targets so that 
+the sum of scores is maximized. This optimization problem 
+could be solved using the Hungarian algorithm. It should 
+be noted that NN has poor performance in noisy environ-
+ments [21].
+3.2  Probabilistic Data Association
+This technique assigns an association probability to each 
+detection in the validation gate [21]. The validation gate 훾 is 
+defined as follows [21]:
+S , z , ̂z(k|k −1) are donated as innovation covariance, 
+measurement, and measurement estimation using measure-
+ments up to moment k-1 at moment k, respectively. Z is a set 
+of valid measurements [21]:
+zi(k) is the ith valid measurement at moment k. The inno-
+vation of ith valid measurement is given as [21]:
+Considering K as the Kalman gain, update of the covari-
+ance matrix is calculated as [21]:
+where 훽i is the association probability of ith valid meas-
+urement and is calculated as [21]:
+(1)
+γ ≥(Z(k) −̂z(k|k −1)
+)TS−1(k)(z(k) −z(k|k −1))
+(2)
+Z(k) = zi(k)i = 1, … , mk
+(3)
+vi(k) = zi(k) −̂z(k|k −1)
+(4)
+P(k) = K(k)
+[ mk
+∑
+i=1
+훽i(k)vi(k)vT
+i (k) −v(k)vT(k)
+]
+KT(k)
+(5)
+v(k) =
+mk
+∑
+i=1
+훽i(k)vi(k)
+where i = 0 means that none of the measurements are 
+valid. M, 휆, Pd, Pg are denoted as the size of the measure-
+ment vector, clutter density, detection probability, validation 
+probability, respectively.
+Finally, a posterior estimation of the states is as follows 
+[21]:
+The detections could be provided by any of the cameras 
+or radar sensors. Therefore, sensors data are fused by updat-
+ing states of targets using the detections of multiple sensors.
+The main disadvantages of PDA are mentioned below 
+[21]:
+–	 Loss of target because PDA does not consider the inter-
+ference of other targets.
+–	 It is not suitable for environments with multiple targets.
+–	 It is suitable only for the targets that do not make abrupt 
+changes in their motion.
+–	 The association probabilities are unknown at the begin-
+ning of the algorithm, so another algorithm must be 
+included for track initialization or deletion.
+3.3  Joint Probabilistic Data Association
+This technique is similar to PDA, except that JPDA also 
+considers other targets’ interference in association probabili-
+ties calculation [21]. Hence, posterior state estimation and 
+a weighted sum of residuals of each target are calculated 
+as [21]:
+limitations of the JPDA technique are the following [21]:
+–	 The sum of the associated probabilities of each target 
+must be one. (∑mk
+i=0 훽t
+i(k) = 1)
+(6)
+훽i(k) =
+휌i(k)
+∑mk
+i=0 휌i(k)
+(7)
+휌i(k) =
+⎧
+⎪
+⎨
+⎪⎩
+(2휋)
+M
+2 휆√
+Si(k)(1−PdPg)
+Pd
+iﬁ= 0
+exp
+
+−1
+2vT(k)S−1(k)v(k)
+
+iﬁ= 1, … , mk
+(8)
+̂x(k|k) = ̂x(k|k −1) + K(k)v(k)
+(9)
+̂xt(k|k) = ̂x(k|k −1) + K(k)
+−v
+t
+(k)
+(10)
+−v
+t
+(k) =
+mk
+∑
+i=1
+훽t
+i(k)vt
+i(k)
+(11)
+vt
+i(k) = zi(k) −H(k)xt(k|k −1)
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+	
+  The main disadvantages of JPDA are mentioned below 
+[21]:
+–	 Similar to PDA, an algorithm must be included for track 
+initialization or deletion.
+–	 The computational cost increases exponentially with the 
+number of targets.
+JPDA is more suitable than MHT for environments with a 
+high false alarm rate [21].
+3.4  Multiple Hypothesis Test
+MHT uses more than two consecutive observations to make 
+an association, contributing to less possibility of generating 
+an error [21]. MHT builds a hypothesis tree by estimating all 
+possible hypotheses and making a new hypothesis based on 
+the previous ones [21]. According to Reid’s algorithm, these 
+hypotheses include any association between detections and 
+targets [22]. The algorithm of MHT is shown in Fig. 6.
+A score is assigned to each of these hypotheses called the 
+log-likelihood ratio (LLR). LLR is used to make an associa-
+tion between observations and a target, which is calculated as 
+follows [22]:
+D is the measurement and P0(.) is the prior probability of 
+the hypothesis. H1 andH0 are the hypotheses related to the real 
+(12)
+LLR = log
+(
+P(D|H1
+)P0
+(H1
+)
+P(D|H0
+)P0
+(H0
+)
+)
+Fig. 6   MHT algorithm [22]
+Fig. 7   Data flow in the pro-
+posed BSD system
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+target and false alarms with corresponding probabilities PT 
+and PF [22].
+The track score at moment k, L(k), can be calculated as 
+[22]:
+̂PD is the detection probability and ΔLu is a function of the 
+difference between measurement and prediction. According 
+to Eq. (14), a tracking score will be reduced if there would 
+be no update on it. A hypothesis score is the sum of the 
+tracks score [22]. A track probability is the sum of prob-
+abilities of all hypotheses [22].
+As shown in Fig. 6, MHT does not require another algo-
+rithm for track maintenance. The main disadvantage of MHT 
+is its high computational cost. Although, modified versions 
+(13)
+PT
+PF
+=
+PT
+1 −PT
+= eLLR
+(14)
+L(k) = L(k −1) + ΔL(k)
+(15)
+ΔL(k) =
+{
+ln
+(
+1 −̂PD
+)
+ifnoupdateonscank
+ΔLu(k)iftrackupdateonscank
+of MHT such as PMHT exist in which the number of targets 
+is assumed to be known in order to reduce computational 
+cost [21]. Based on the discussions made in this section, 
+the data flow in our proposed structure is shown in Fig. 7. 
+Data pre-processing is necessary to reduce noise and false 
+alarms from data.
+4  Simulation Results
+The performance of our proposed BSD system has been 
+tested using virtual data in MATLAB Automated Driving 
+Toolbox. For this purpose, we will design the sensing struc-
+ture in Fig. 4 and then simulate the NHTSA blind spot moni-
+toring tests [23] to generate virtual data. We will not include 
+the ultrasonic sensors in our simulations because they do not 
+have a significant role in the simulated scenarios. Sensors’ 
+specifications are shown in Tables 1 and 2. We will have 
+used the specifications in [24] for radar sensors.
+4.1  Comparison of Data Association Techniques 
+Performance in an Environment with a High 
+False Alarm Rate
+In this simulation, our goal is to compare data association 
+techniques performance and processing time in the follow-
+ing scenario, as shown in Fig. 8. The trajectory of vehicles 
+and their corresponding speed are shown as a red line. All 
+vehicles’ speeds are below the maximum detectable speed 
+by sensors.
+After the virtual data has been generated, we cluster the 
+radar sensors detections using the DBSCAN algorithm and 
+then apply data association techniques to detections at each 
+time interval. Results are provided in the following scene of 
+the simulated scenario, as shown in Fig. 9.
+In this scene, all sensors play a role and measure tar-
+gets’ velocity and position. It can be seen in Fig. 9 that 
+radar sensors provide many detection points because of 
+Table 1   Sensors specifications 
+in the MATLAB Automated 
+Driving Toolbox
+Front camera
+Front left radar/Front 
+right radar
+Left camera/
+Right camera
+Max detection range (m)
+80
+80
+10
+Max detectable speed (m/s)
+19.5
+-
+19.5
+Detection probability
+0.9
+0.9
+0.9
+False alarm rate/False positives per 
+image
+0.1
+3e-06
+0.1
+Azimuth (degree)
+77
+70
+43.6
+Elevation (degree)
+33.4
+5
+33.4
+Azimuth resolution (degree)
+-
+50
+-
+Range resolution (m)
+-
+0.3
+-
+Update interval (ms)
+60
+50
+60
+Table 2   Sensors specifications in the MATLAB Automated Driving 
+Toolbox
+Left radar/
+Right radar
+Front long-
+range radar
+Rear radar
+Max detection range (m)
+80
+250
+80
+Max detectable speed (m/s)
+-
+-
+-
+Detection probability
+0.9
+0.9
+0.9
+False alarm rate/False posi-
+tives per image
+3e-06
+3e-06
+3e-06
+Azimuth (degree)
+150
+20
+70
+Elevation (degree)
+10
+5
+5
+Azimuth resolution (degree)
+50
+5
+50
+Range resolution (m)
+0.3
+0.75
+0.3
+Update interval (ms)
+50
+50
+50
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+their high resolution, and this is the reason that they need 
+to be clustered. In Fig. 10, detections refer to the detections 
+of sensors at each moment, provided to the data associa-
+tion techniques discussed in the paper, such as JPDA, for 
+updating the state of tracks. Tracks are simply the vehicles, 
+and detections are used to initialize, update, or delete the 
+tracks according to the association probability of detec-
+tions. According to Fig. 10, MHT and GNN have lost track 
+of the truck and SOV vehicle due to noise and high false 
+alarm rates. On the other hand, JPDA was able to track all 
+targets during the whole scenario. However, it contains an 
+error. Since this study has no hardware implementations, 
+only software processing time and algorithms calculation 
+time could be provided to compare the performance of 
+algorithms. The processing time of these three methods is 
+shown in Table 3.
+Since MHT estimates all hypotheses, its processing 
+time is far higher than the two other techniques. The pro-
+cessing time of JPDA would be much more than 103 ms if 
+there were more targets in the scenario. It cannot clearly be 
+stated which method is the best. Nevertheless, there must 
+be a trade-off between processing time and accuracy. In our 
+present case, the processing time is of high value in BSD 
+systems. Therefore, JPDA would be a practical method in 
+highways where the number of targets is less than in urban 
+environments.
+Fig. 8   Simulated scenario
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+4.2  Comparison Between the Proposed 
+and Single‑Sensor BSD System
+One of the single-sensor BSD systems is shown in Fig. 11. 
+The structure of this BSD system is very similar to the pro-
+posed BSD system from the aspect of the number of radar 
+sensors and their locations in the vehicle. It also represents a 
+single-sensor BSD system, which will be proper for explain-
+ing the advantages of multi-sensor BSD systems.
+In the first simulation, the aim was to compare the ability 
+of data association techniques to track multiple targets in 
+the presence of false alarms. However, in this simulation, 
+we analyze the effect of multi-sensor fusion on detection 
+accuracy by comparing the performance of the single-sensor 
+BSD system and the proposed BSD system in the same sce-
+nario of Fig. 8.
+To compare the performance of two BSD systems, we 
+consider the following scenes, depicted in Figs. 12 and 13, 
+in the simulated scenario.
+In this scene, the POV vehicle is detected by a single radar 
+sensor in the single-sensor BSD system. However, in the 
+proposed BSD system, the POV vehicle has been detected 
+by cameras and radar sensors. Consequently, the detections 
+from multiple sensors can be fused in the proposed system. 
+The variance of position and velocity of detected POV vehi-
+cle by two BSD systems is depicted in Fig. 14.
+X, Y, Vx, Vy denote for position and velocity vectors com-
+ponents, respectively. To better understand the difference 
+of state variance in two systems, the variance of all targets 
+states is shown in Fig. 15. The mean of graphs in Fig. 15 is 
+shown in Table 4.
+It should be noted that some of the advantages of multi-
+sensor fusion are qualitative. For example, in a multi-sensor 
+system, the system’s performance will be least affected if 
+one of the sensors fails. There are some other quantitative 
+advantages, such as increasing accuracy, evident in Fig. 14, 
+Fig. 15, and Table 4. We have demonstrated in Table 4 that 
+the multi-sensor system’s error in determining the speed and 
+position of a detected vehicle is much less than the single-
+sensor system. It can be inferred that the accuracy of detec-
+tion is enhanced by multi-sensor fusion. The effect of multi-
+sensor fusion would be more noticeable in severe conditions 
+such as bad weather.
+In addition to improving detection accuracy, less pro-
+cessing time, and complete information about the detected 
+objects can also be accomplished. For instance, in the pro-
+posed system, objects can also be classified using images, 
+which is not possible in the single-sensor BSD system. 
+Consequently, multi-sensor fusion can help to integrate the 
+strong points of multiple sensors and compensate for their 
+deficiencies.
+4.3  Comparison Between the Performance 
+of the Proposed and Another Multi‑Sensor 
+System
+In this simulation, we compare the performance of our pro-
+posed model with another multi-sensor BSD system with 
+different sensory structures in the same scenario in Fig. 8. 
+For that purpose, we consider the sensing structure in [18] 
+for comparison, excluding the Lidar sensors. Lidar sensors 
+are costly, and it is not common to use them in a BSD system 
+[6]. The only difference of sensing structure in [18] with the 
+sensing structure of the proposed system is the number and 
+location of cameras in the vehicle.
+Fig. 9   The simulated scenario 
+at T = 2.15 s
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+According to the variance graphs of the position shown 
+in Fig. 16, due to the specific sensor installation of two 
+systems, one performs better than the other in a specific 
+direction. It can be seen from variance graphs of veloc-
+ity in Fig. 16 that two systems almost perform equally, 
+however, one slightly outperforms the other at certain 
+Fig. 10   Data association tech-
+niques results at T = 2.15 s
+Table 3   Processing time of data association techniques in MATLAB
+Method
+GNN
+JPDA
+MHT
+Processing time (ms)
+101
+103
+294
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+moments. This is due to the different FOV of sensors in 
+each BSD system. Depending on a BSD system’s sensing 
+structure, a vehicle might be in one, two, or none of the 
+sensors FOV, and consequently can affect the accuracy, 
+as shown in Section 4.2. In the latter case, the position 
+or velocity of the vehicle is updated using tracking algo-
+rithms. According to the results provided in Fig. 16 and 
+Table 5, each system has less detection error in a specific 
+direction due to their different sensing structure. Hence, it 
+can be deduced that, most likely, the location and number 
+of sensors can also impact detection accuracy in multi-
+sensor fusion.
+Fig. 11   Single-sensor BSD System [25]. Radar sensors and their field 
+of view are shown in purple
+Fig. 12   Single-sensor BSD system in the simulated scenario
+Fig. 13   Proposed BSD system in the simulated scenario
+-20
+0
+20
+40
+60
+80
+100
+cov(X,X)
+cov(Y,Y)
+cov(Vx,Vx)
+cov(Vy,Vy)
+cov(X,Y)
+cov(X,Vx)
+cov(X,Vy)
+cov(Y,Vx)
+cov(Y,Vy)
+cov(Vx,Vy)
+Proposed BSD
+Single-sensor BSD
+Fig. 14   Comparison between covariances of the states of the detected 
+target in two BSD systems
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+5  Conclusion and Remarks
+We have manifestly demonstrated the effect of multi-sensor 
+fusion in the BSD system. Unequivocally, data association 
+is the proper data fusion technique to track vehicles in con-
+secutive time intervals and fuse multiple sensors data. It can 
+ceremoniously handle constraints such as sensors different 
+sampling rates, time delays in the system, and the exist-
+ence of numerous targets. Our proposed sensing structure 
+consists of multiple radar sensors and cameras, which work 
+cooperatively, resulting in less processing time and complete 
+information about targets. We have compared the various 
+data association techniques’ performance in an environment 
+with a high false alarm rate, considering that only JPDA 
+could consistently track all targets. One of the main advan-
+tages of data fusion is increasing detection accuracy. We 
+enhanced detection accuracy and also determined detected 
+targets’ velocity and position by multi-sensor fusion. We 
+used virtual data in our simulations and showed that multi-
+sensor fusion could improve detection accuracy. This is 
+scrupulously illustrated by comparing the performance of 
+our proposed system with a single-sensor BSD system. 
+Fig. 15   Variance of position and velocity of the detected targets in the single-sensor and proposed systems
+Table 4   Mean of the variance graphs in Fig. 15
+X
+Vx
+Y
+Vy
+Proposed BSD system
+0.65
+24.9
+0.9
+36.64
+Single-sensor BSD system
+1
+40.7
+1.4
+41
+Table 5   Mean of the variance graphs in Fig. 16
+X
+Vx
+Y
+Vy
+Proposed BSD system
+0.64
+24.5
+0.9
+36.8
+Multi-sensor BSD system
+0.66
+30.4
+0.43
+29.9
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+The use of multi-sensor fusion causes fewer uncertainties 
+and more reliability compared with a single sensor. False 
+alarm rate demonstrates the number of false detections in 
+each BSD system when there is no vehicle in the danger 
+zone. In single-sensor BSD systems, since there is only one 
+type of sensor, sensors’ detections will be similarly affected 
+by the environmental conditions. for example, if we have 
+only radar sensors in the BSD system, if some of them have 
+ghost detections, it will be hard to eliminate them since all 
+radar sensors will be influenced equally by environmental 
+conditions and there are no other types of sensors. On the 
+other hand, in multi-sensor BSD systems, we can validate 
+the detections using extra information provided by other sen-
+sors. We can exemplify this by considering night time when 
+we cannot see our environment clearly and use the aid of our 
+auditory system in addition to the vision system. Our study 
+demonstrated that a multi-sensor system provides more 
+accurate detections compared to single-sensor BSD sys-
+tems. Consequently, in a multi-sensor BSD system, a vehi-
+cle’s position and velocity can be more accurately detected. 
+An alarm can be initiated to warn the driver if the detected 
+vehicle is in a danger zone.
+Indeed, the superior performance of multi-sensor BSD 
+system will be more noticeable under severe environmen-
+tal situations such as snowy weather or when one of the 
+sensors fails, however, demonstrating this requires a con-
+trolled experiment and a real environment, whereas, in 
+this paper, we have investigated the advantages of multi-
+sensor BSD systems in a virtual environment. By compar-
+ing our proposed system with another multi-sensor sys-
+tem, we also established that the number and location of 
+sensors could impact detection accuracy in multi-sensor 
+fusion. The effect of delays in the BSD system, including 
+CAN bus delay or hardware processing time, and severe 
+environmental conditions such as bad weather or extreme 
+light intensity have not been considered in our present 
+research. The absence of these factors is the limitation of 
+our proposed model. Consequently, the reported results 
+most likely will be influenced when the proposed method 
+is applied to real data.
+Fig. 16   Variance of the position and velocity of the detected targets in the multi-sensor and proposed systems
+
+International Journal of Intelligent Transportation Systems Research	
+1 3
+References
+	 1.	 Mukhtar, L.X., Tang, T.B.: Vehicle detection techniques for colli-
+sion avoidance systems: A review. IEEE Trans. Intell. Trans. Syst. 
+16(5), 2318–2338 (2015)
+	 2.	 Baustista, D.G.: Functional architecture for automated vehicles 
+trajectory planning in complex environments, Automatic. PSL 
+Research University (2017)
+	 3.	 Felix: Sensor set design patterns for autonomous vehicles. (2019) 
+[Online]. Available: https://​auton​omous-​drivi​ng.​org/​2019/​01/​25/​
+posit​ioning-​senso​rs-​for-​auton​omous-​vehic​les/
+	 4.	 Sattar, F., Karray, F., Kamel, M., et al.: Recent advances on con-
+text-awareness and data/information fusion in ITS. Int. J. ITS Res. 
+14, 1–19 (2016). https://​doi.​org/​10.​1007/​s13177-​014-​0097-9
+	 5.	 Moshiri, B., Eydgahi, A.M., Hoseinnezhad, R., Najafi, M.: Multi-
+sensor data fusion used in intelligent autonomous navigation. IAS-
+TED CA’99 (Control and Applications) Banff Canada (1999)
+	 6.	 Gale Bagi, S.S., Garakani, H.G., Moshiri, B., and Khoshnevisan, 
+M.: Sensing structure for blind spot detection system in vehicles. 
+2019 International Conference on Control, Automation and Infor-
+mation Sciences (ICCAIS), Chengdu, China, 1–6 (2019). https://​
+doi.​org/​10.​1109/​ICCAI​S46528.​2019.​90745​80
+	 7.	 Dooley, D., McGinley, B., Hughes, C., Kilmartin, L., Jones, E., 
+Glavin, M.: A blind-zone detection method using a rear-mounted 
+fisheye camera with combination of vehicle detection methods. 
+IEEE Trans. Intell. Transp. Syst. 17(1), 264–278 (2016)
+	 8.	 Lin, B.-F., et al.: Integrating appearance and edge features for 
+sedan vehicle detection in the blind-spot area. IEEE Trans. Intell. 
+Transp. Syst. 13(2), 737–747 (2012)
+	 9.	 Baek, S., Kim, H., Boo, K.: Robust vehicle detection and tracking 
+method for blind spot detection system by using vision sensors. 
+2014 Second World Conference on Complex Systems (WCCS) 
+(2014)
+	10.	 Wu, B.-F., Kao, C.-C., Li, Y.-F., Tsai, M.-Y.: A real-time embed-
+ded blind spot safety assistance system. Int. J. Veh. Technol. 2012, 
+506235, 15 (2012). https://​doi.​org/​10.​1155/​2012/​506235
+	11.	 Zhao, Y., Bai, L., Lyu, Y., Huang, X.: Camera-based blind spot 
+detection with a general purpose lightweight neural network. Elec-
+tronics 8, 233 (2019)
+	12.	 Guo, Y., Kumazawa, I., Kaku, C.: Automot. Innov. 1, 362 (2018). 
+https://​doi.​org/​10.​1007/​s42154-​018-​0036-6
+	13.	 Ester, M., Kriegel, H.-P., Sander, J., Xu, X.: A Density-based algo-
+rithm for discovering clusters in large spatial databases with noise. 
+Proc. 2nd Int. Conf. on Knowledge Discovery and Data Mining, 
+Portland: AAAI Press, 226-231 (1996)
+	14.	 Schubertm E., Meinl, F., Kunert, M., Menzel, W.: Clustering of 
+high-resolution automotive radar detections and subsequent fea-
+ture extraction for classification of road users. In 16th Interna-
+tional Radar Symposium (IRS), Dresden, 174-179 (2015)
+	15.	 Chavez-Garcia, R.O., Aycard, O.: Multiple sensor fusion and clas-
+sification for moving object detection and tracking. IEEE Transac-
+tions on Intelligent Transportation Systems, IEEE, PP(99), 1-10 
+(2015)
+	16.	 Kim, S., Kim, H., Yoo, W., Huh, K.: Sensor fusion algorithm 
+design in detecting vehicles using laser scanner and stereo vision. 
+IEEE Trans. Intell. Transp. Syst. 17(4), 1072–1084 (2016)
+	17.	 Park, M.W., Jang, K.H., Jung, S.K.: Int. J. ITS Res. 10, 101 
+(2012). https://​doi.​org/​10.​1007/​s13177-​012-​0046-4
+	18.	 Cho, H., Seo, Y., Kumar, B.V.K.V., and Rajkumar, R.R.: A multi-
+sensor fusion system for moving object detection and tracking in 
+urban driving environments. 2014 IEEE International Conference 
+on Robotics and Automation (ICRA), Hong Kong, 1836-1843 
+(2014)
+	19.	 Wang, X., Xu, L., Sun, H., Xin, J., Zheng, N.: On-road vehicle 
+detection and tracking using MMW radar and monovision fusion. 
+IEEE Trans. Intell. Transp. Syst. 17(7), 2075–2084 (2016)
+	20.	 Ghahroudi, M.R. and Sabzevari, R.: Multisensor data fusion 
+strategies for advanced driver assistance systems, sensor and data 
+fusion, Nada Milisavljevic, IntechOpen (2009). https://​doi.​org/​10.​
+5772/​6575. Available from: https://​www.​intec​hopen.​com/​books/​
+sensor_​and_​data_​fusion/​multi​sensor_​data_​fusion_​strat​egies_​for_​
+advan​ced_​driver_​assis​tance_​syste​ms
+	21.	 Castanedo, F.: A review of data fusion techniques. Sci. World J. 
+2013, 704504 19 (2013). https://​doi.​org/​10.​1155/​2013/​704504
+	22.	 Blackman, S.S.: Multiple hypothesis tracking for multiple target 
+tracking. IEEE Trans. Aerospace and Electronic Systems 19, 5–18 
+(2004)
+	23.	 Forkenbrock, G., Hoover, R.L., Gerdus, E., Van Buskirk, T.R., 
+& Heitz, M.: Blind spot monitoring in light vehicles — System 
+performance. (Report No. DOT HS 812 045). Washington, DC: 
+National Highway Traffic Safety Administration (2014)
+	24.	 Buller, W., Wilson, B., Garbarino, J., Kelly, J., Subotic, N., 
+Thelen, B., & Belzowski, B.: Radar congestion study (Report No. 
+DOT HS 812 632). Washington, DC: National Highway Traffic 
+Safety Administration (2018)
+	25.	 Blind Spot Assist Vehicle Safety Technology — Mercedes-Benz 
+2013 ML-Class. Youtube: Mercedes-Benz USA (2012)
+Publisher’s Note  Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.
+Shayan Shirahmad GaleB-
+agi  received his B.Sc. degree in 
+electrical engineering from the 
+University of Tehran in 2019 and 
+is currently a master’s student in 
+control engineering at the Uni-
+versity of Tehran. His research 
+interests include Machine 
+Vision, Deep Learning, 
+advanced instrumentation sys-
+tems, smart cities, data fusion 
+theory and implementations of 
+sensor/data fusion as well as 
+information fusion concepts in 
+areas such as robotics, intelligent 
+transportation systems (ITS). His 
+current work focuses on autonomous vehicles and developing advanced 
+driver assistance systems (ADAS).
+Behzad Moshiri   received his 
+B.Sc. degree in mechanical engi-
+neering from Iran University of 
+Science and Technology (IUST) 
+in 1984 and M.Sc. and Ph.D. 
+degrees in control systems engi-
+neering from the University of 
+Manchester, Institute of Science 
+and Technology (UMIST), U.K. 
+in 1987 and 1991 respectively. 
+He joined the school of electrical 
+and computer engineering, uni-
+versity of Tehran in 1992 where 
+he is currently professor of con-
+trol systems engineering. He has 
+been the member of Interna-
+tional Society of Information Fusion (ISIF) since 2002 and senior 
+
+	
+International Journal of Intelligent Transportation Systems Research
+1 3
+member of IEEE since 2006. He is the author/co-author of more than 
+360+ articles including 120+ journal papers and 20+ book chapters. 
+He has been as adjunct professor of department of ECE at University 
+of Waterloo since May 2014 until. He is now serving as the chairman 
+of IEEE control system chapter in Iran section since March 2019. He 
+has also been senior research fellow member of Waterloo Institute for 
+Sustainable Energy (WISE), Canada since April 2019. His fields of 
+research include advanced industrial control, advanced instrumentation 
+systems, data fusion theory and feasibility studies on applications and 
+implementations of sensor/data fusion as well as information fusion 
+concepts in areas such as robotics, process control, mechatronics, infor-
+mation technology (IT), bioinformatics, intelligent transportation sys-
+tems (ITS) and financial engineering.
+Hossein Gharaee  received B.Sc. 
+degree in electrical engineering 
+from K.N. Toosi University of 
+Technology in 1998, M.Sc. and 
+Ph.D. degree in electrical engi-
+neering from Tarbiat Modares 
+University, Tehran, Iran, in 2000 
+and 2009 respectively. Since 
+2009, he has been with the 
+Department of Network Tech-
+nology in ICT Research Institute 
+(ITRC). His research interests 
+include VLSI with emphasis on 
+basic logic circuits for low-volt-
+age low-power applications, 
+DSP, crypto chip and Intrusion 
+detection and prevention systems.
+Mohammad Khoshnevisan  Affili-
+ated Research Professor Moham-
+mad Khoshnevisan at Northeast-
+ern University, Department of 
+Physics, Boston, USA, earned 
+his B.A in Mathematics from 
+Christian Brothers University in 
+the United States and obtained 
+his Ph.D. from the University of 
+Melbourne, Department of Com-
+puter Science and Software 
+Engineering, Australia. He 
+worked as a tenured lecture, ten-
+ured senior lecturer, associate 
+professor in Australia and the 
+GCC region for approximately 
+17 years. He also gives lectures to engineering students for a graduate-
+level course in Advanced Engineering Mathematics. His research focus 
+now is on applying Quantum Mechanics in Science and Engineering 
+and the application of Mathematical Modeling and Deep Learning/
+Machine Learning in Physics and Engineering. He was formally invited 
+as a visiting scholar by UC-Berkeley and Harvard University. He is a 
+Ph. D examiner for Deakin University in Australia. He has been a 
+reviewer for Advances in Space Research (Q1 in Aerospace Engineer-
+ing) and the International Federation of Automatic Control (IFAC) 
+World Congress, 2020, in Germany. He has received a Certificate of 
+Achievement for his contribution to the BISC-FLINT-CIBI interna-
+tional joint workshop on soft computing for internet and bioinformatics 
+from the world-renowned scientist and inventor of Fuzzy Logic, late 
+Professor Emeritus Lotfi A. Zadeh, University of California-Berkeley. 
+Oxford University Press invited him to review Principles of Finance 
+with Excel. He is a member of the American Physical Society, the 
+European Physical Society, IEEE, and the International Association of 
+Quantitative Finance.

@@ -1,0 +1,1007 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/282936539
+Traction control system using a fuzzy representation of the vehicle model
+Article  in  Proceedings of the American Control Conference · July 2015
+DOI: 10.1109/ACC.2015.7172234
+CITATIONS
+3
+READS
+4,503
+3 authors:
+Hamid Dahmani
+Université de Picardie Jules Verne
+24 PUBLICATIONS   342 CITATIONS   
+SEE PROFILE
+Olivier Pagès
+Université de Picardie Jules Verne
+52 PUBLICATIONS   520 CITATIONS   
+SEE PROFILE
+Ahmed El hajjaji
+Université de Picardie Jules Verne
+570 PUBLICATIONS   6,345 CITATIONS   
+SEE PROFILE
+All content following this page was uploaded by Olivier Pagès on 16 November 2015.
+The user has requested enhancement of the downloaded file.
+
+Traction Control System Using a Fuzzy Representation of the Vehicle
+Model
+H. Dahmani, O. Pag`es and A. El Hajjaji
+Abstract— In this paper, a traction control system has been
+designed in order to improve vehicle traction on slippery roads.
+First, a nonlinear model has been formulated from the vehicle
+longitudinal dynamics, the drivetrain model and the wheel
+motion. Then, a Takagi-Sugeno (TS) fuzzy representation has
+been proposed in order to take into account the nonlinearities
+of the obtained model and to simplify the controller design.
+Based on the obtained TS model, a proportional integral (PI)
+state feedback controller has been developed. The objective is
+to compute the optimal engine torque so that the longitudinal
+slip ratio does not exceed a desired value which is the limit of
+the optimal traction and the vehicle stability. Lypunov and H∞
+approaches have been used in the controller design and stability
+conditions are given in terms of Linear Matrix Inequalities
+(LMI). In order to show the effectiveness of the developed
+approaches, the vehicle model has been simulated on a slippery
+road with and without the traction control system.
+I. INTRODUCTION
+Critical driving situations like a slippery or snowy road
+can lead to vehicle instability and reduce traction perfor-
+mance. This can be the consequence of the acceleration
+process which increases the wheel slip. In such situations,
+longitudinal forces which drive the vehicle are saturated and,
+moreover, the lateral forces decrease and approach to zero.
+At this point, the accident risk is great because the vehicle
+may spin and the front wheels cannot be correctly steered.
+Traction Control Systems (TCS) or Anti Slip Regulation
+Systems (ASR) came up since 1990 to improve the traction,
+stability and steer-ability of the vehicle. They are widely
+integrated into various vehicles nowadays.
+The objective of a traction control system is to compute
+the optimal engine torque that can be transmitted to the
+wheels in order to ensure optimal traction and stability.
+Many research works on traction control systems have been
+performed during the past decade. Different control methods
+have been proposed, some of them are formulated for traction
+with a combustion engine using throttle valve control [1]-[3].
+These approaches need to consider the behaviour of the com-
+bustion engine in the control loop [4]. In other studies, many
+authors have proposed traction control methods for electric
+vehicles [5]-[7]. Other papers have only considered the
+traction torque which is applied to the wheel as the control
+input, using several control methods, including Proportional-
+Integral-Derivative (PID) control, sliding-mode control and
+This work has been supported by the European Regional Development
+Fund within the framework of the ”CEREEV” project which is included in
+the European Union INTERREG IVA France-Manche-England program.
+H.
+Dahmani,
+O.
+Pag`es,
+and
+A.
+El
+Hajjaji,
+are
+with
+MIS
+laboratory,
+university
+of
+Picardie
+Jules
+Verne,
+France,
+e-mail:
+hamid.dahmani,opages,ahmed.hajjaji [@u-picardie.fr]
+fuzzy control [8]-[11]. The advantage of the PID controller
+is the simplicity and its application without a mathematical
+model, but it is difﬁcult to obtain the control parameters
+to achieve satisfactory results, especially when the road
+conditions change. Sliding mode control has good advantages
+to control nonlinear systems, however, problems stemming
+from chattering may have negative consequences on the TCS.
+The fuzzy control method requires many tests to ﬁnd the
+optimal rules. In this work, we propose a new approach
+which has the advantage of simplicity despite nonlinearities
+of the system. The proposed method can be easily extended
+to consider parameter variations in the vehicle model and
+the unavailability of vehicle velocity measurement. A robust
+control method is proposed to avoid wheel slip on slippery
+roads by operating on the transmitted engine torque. Firstly,
+a nonlinear state model has been developed from the vehicle
+longitudinal dynamics, the wheel motion and the drivetrain
+model. Then, the obtained model is represented using a TS
+fuzzy model. Based on this representation, a fuzzy PI state
+feedback controller is designed and its main objective is to
+force the longitudinal slip ratio to track the desired value
+which is the limit of the stable region. An H∞tracking perfor-
+mance, which is related to the tracking error, is formulated.
+The proposed control system design is represented in terms
+of LMI which can be efﬁciently solved by using the existing
+LMI solvers. Simulation results have been obtained using
+two driving tests in order to illustrate the effectiveness of
+the developed techniques.
+The paper is organized as follows: the description of
+the nonlinear vehicle model with the TS approximation is
+presented in Section II. The controller design procedure will
+be presented in Section III. In Section IV simulation results
+are given in order to show the effectiveness of the developed
+controller. Finally, some conclusions are given in section V.
+II. VEHICLE MODEL ANALYSIS
+The model used in this work describes the vehicle longi-
+tudinal dynamics and wheel dynamics during acceleration.
+The obtained nonlinear model has been approximated by a
+TS fuzzy representation in order to design the traction control
+system.
+A. Vehicle and wheel motion
+The equation of the vehicle longitudinal motion during
+acceleration in a plane road without considering the driving
+resistance and lateral dynamics is given as follows
+M ˙vx = Fx fl +Fx fr +Fxrl +Fxrr
+(1)
+
+where Fx fl, Fx fr, Fxrl and Fxrr are the longitudinal forces
+acting on the four wheels of the vehicle, M is the vehicle
+mass and vx is the longitudinal speed.
+Fig. 1.
+Wheel motion model
+The wheel motion is described by the following equation
+Jw ˙ωw = Tw −Tb −RFx
+(2)
+where Jw is wheel inertia moment, ωw is the wheel angular
+velocity, Tw is the torque transmitted from the motor to the
+wheel axe, Tb is the torque generated by the braking, R is
+the wheel radius and Fx is the wheel traction force.
+B. Drivetrain model
+The drivetrain is the complete powertrain that propels the
+car except the engine. The precise components of the drive-
+train vary according to the type of vehicle. We here consider
+a simple drivetrain including the clutch, the transmission, the
+driveshaft and the wheels [12][13].
+Fig. 2.
+Simple drivetrain model
+For simplicity, the transient characteristics and the damp-
+ing effects of clutch and transmission are ignored. Applying
+Newton’s second law on each component of the drivetrain
+the following equations are obtained:
+Je ˙ωe = Te −Tc
+(3)
+Jc ˙ωc = Tc −Tt
+(4)
+Jt ˙ωt = Tt −Tv
+rtrf
+(5)
+Jv ˙ωv = Tv −2Tb −2RFx
+(6)
+where, Je, we and Te are the engine inertia, angular speed
+and torque, respectively, Jc, wc, and Tc the clutch inertia,
+angular speed and torque, respectively, Jt , wt and Tt the
+transmission inertia, angular speed and torque, respectively.
+rt is the transmission gear ratio, r f the ﬁnal gear ratio, and
+Tv the driveshaft torque.
+The relation between the driveshaft and the wheel motion
+is given by
+ωv = ωw,
+Jv = 2Jw
+It is also assumed that the relation between the different
+angular speeds are given as follows
+ωe = ωc = ωt = rtrf ωv
+The equivalent model from the engine to the wheel is
+obtained by substituting (3), (4) and (5) into (6)
+Jeq ˙ωw = rtrf
+2 Te −Tb −RFx
+(7)
+where Jeq is the equivalent inertia given as follows
+Jeq = (Je +Jc +Jt)(rtrf )2
+2
++Jw
+(8)
+C. State space model
+In this work, only the front wheels are assumed to be
+drived. It is also assumed that the torque transmitted from
+the engine to each wheel is the same:
+Fx fl = Fx fr = Fx
+(9)
+The engine has been considered as a simple actuators repre-
+sented by a ﬁrst order transfer function given as follows:
+Te =
+k
+1+τsTd
+(10)
+where k and τ are the transfer function parameters which
+depend on the engine characteristics and Td is the desired
+torque given by the driver or the traction controller.
+Considering the longitudinal vehicle speed, the angular
+wheel speed and the engine torque as system states, the
+following state model can be obtained for the traction
+situation:
+
+
+
+M ˙vx = 2Fx
+Jeq ˙ωw = rtrf
+2 Te −RFx
+˙Te = −1
+τ Te + k
+τ Td
+(11)
+The longitudinal force Fx is proportional to the vertical force
+Fz and the adhesion coefﬁcient µ which is highly dependent
+on the road surface conditions [1]:
+Fx = µ(λ)Fz
+Consider the effects of longitudinal load transfer during
+acceleration, the vertical force on the front wheels can be
+expressed as follows:
+Fz = M
+2L(glr −˙vxh)
+where L is the distance between the front and rear axles, lr is
+the distance from the rear axle to the vehicle Gravity Center
+(GC) and h is the height of CG.
+The adhesion coefﬁcient can be deﬁned as a nonlinear
+function of the slip ratio between the two contact surfaces.
+
+By deﬁnition, slip ratio is the normalized difference between
+the wheel speed and vehicle speed
+λ = vω −vx
+vω
+,
+where
+vω = Rωw
+Several formulations have been developed in the literature
+to aproximate the longitudinal adhesion coefﬁcient (Pacejka,
+Kienke, Dugoff, etc.). Most of them are functions of the slip
+ratio using nonlinear relationships, however these models are
+hardly usable for model based control, since they leeds to
+very complex models. The adhesion coefﬁcient is assumed
+in some research works to be proportional to the slip ratio
+[14], but this assumption leads to a linear model which
+is only valid for small values of the slip ratio. Hence,
+for large slip ratio, a nonlinear model must be considered.
+To overcome this problem, we propose to approximate the
+nonlinear behavior of the adhesion coefﬁcient by a fuzzy TS
+model with two rules which describes all of the operating
+regions.
+D. TS model description
+In order to simplify the controller design, nonlinear model
+(11) is approximated in this paper by a TS fuzzy model.
+In the ﬁrst step, the nonlinearity of the adhesion coefﬁcient
+µ(λ) can be considered using the following rule based
+system:
+I f
+λ
+is
+M1
+then
+µ(λ) = Cλ1λ
+I f
+λ
+is
+M2
+then
+µ(λ) = Cλ2λ
+(12)
+where Cλi depend on the considered road conditions. M1(M2)
+is a fuzzy set for small (large) slip angles, which fuzzy
+meaning is given by hλ1(hλ2).
+Using the above described fuzzy rules, the Adhesion
+coefﬁcient µ(λ) is written as follows:
+µ(λ) = hλ1Cλ1λ +hλ2Cλ2λ
+(13)
+Where membership functions hλi, (i = 1,2) satisfy the fol-
+lowing properties:
+
+
+
+
+
+2
+∑
+i=1
+hλi(λ) = 1
+0 ≤hλi(λ) ≤1
+i = 1,2
+(14)
+and are given by the following expressions:
+hλi(λ) =
+fi(λ)
+2
+∑
+i=1
+fi(λ)
+,
+i = 1,2
+(15)
+where
+fi(λ) =
+1
+
+1+
+ λ−ci
+ai
+
+2bi
+(16)
+Parameters of membership functions (ai, bi and ci)
+are obtained using an identiﬁcation method based on the
+Levenberg-Marquardt algorithm combined with the least
+square method [15].
+Using the TS model of the adhesion coefﬁcient given in
+(13), vehicle model (11) can be represented by the following
+TS fuzzy model:
+˙x(t) =
+2
+∑
+i=1
+hλiAi(x)x(t)+Bu(t)
+(17)
+Ai =
+
+
+−2CλiFz
+Mvω
+2CλiFz
+Mvω
+0
+R2CλiFz
+Jeqvω
+−R2CλiFz
+Jeqvω
+rtrf
+2Jeq R
+0
+0
+−1
+τ
+
+
+, B =
+
+
+0
+0
+k
+τ
+
+
+,
+x =
+
+vx
+vω
+Te
+T, u = Td
+Let us now consider the other nonlinearity of model (17)
+given by z = Fz/vω such that:
+zmin < z < zmax
+where
+zmax = Fzmax
+vωmin
+,
+zmin = Fzmin
+vωmax
+Variable z can be written in the following form:
+z = hz1zmax +hz2zmin
+(18)
+with
+hz1 =
+z−zmin
+zmax −zmin
+,
+hz2 =
+zmax −z
+zmax −zmin
+Substituting (18) into (17) the TS fuzzy model is obtained
+in the following form
+˙x(t) =
+4
+∑
+i=1
+hi(λ,z)Aix(t)+Bu(t)
+(19)
+where
+hi(λ,z) =
+gi(λ,z)
+∑4
+i=1 gi(λ,z)
+gi(λ,z) = hλ jhzk
+for
+j = 1,2 and k = 1,2
+Membership functions hi(λ,z), (i = 1,..4) also satisfy the
+following properties:
+
+
+
+
+
+4
+∑
+i=1
+hi(λ,z) = 1,
+0 ≤hi(λ,z) ≤1
+for i = 1,..4
+(20)
+Matrices Ai are given as follows
+A1 =
+
+
+−2Cλ1
+M zmax
+2Cλ1
+M zmax
+0
+R2Cλ1
+Jeq zmax
+−R2Cλ1
+Jeq zmax
+rtr f
+2Jeq R
+0
+0
+−1
+τ
+
+
+,
+A2 =
+
+
+−2Cλ1
+M zmin
+2Cλ1
+M zmin
+0
+R2Cλ1
+Jeq zmin
+−R2Cλ1
+Jeq zmin
+rtrf
+2Jeq R
+0
+0
+−1
+τ
+
+
+,
+
+A3 =
+
+
+−2Cλ2
+M zmax
+2Cλ2
+M zmax
+0
+R2Cλ2
+Jeq zmax
+−R2Cλ2
+Jeq zmax
+rtr f
+2Jeq R
+0
+0
+−1
+τ
+
+
+,
+A4 =
+
+
+−2Cλ2
+M zmin
+2Cλ2
+M zmin
+0
+R2Cλ2
+Jeq zmin
+−R2Cλ2
+Jeq zmin
+rtrf
+2Jeq R
+0
+0
+−1
+τ
+
+
+III. CONTROL STRATEGY
+The main goal of the control strategy is to provide the
+tracking of a reference value given by the desired slip ratio.
+The engine torque is considered as control inputs when the
+slip ratio exceeds a ﬁxed threshold value (Fig. 3).
+Fig. 3.
+Global structure of the controller
+The idea is to force the wheel speed to track a desired
+value vωd which depends on the desired slip ratio λd and the
+vehicle speed:
+vωd =
+vx
+1−λd
+The measurement of the vehicle speed and the wheel speed
+are necessary for the controller design and the membership
+function computation. The structure of the proposed fuzzy
+controller is given as follows
+u(t) = −
+4
+∑
+i=1
+hi
+
+KPix+KIi
+Z t
+0
+ vω −vωd
+
+dt
+
+(21)
+Let us denote the tracking error dynamic:
+˙ec = vω −vωd
+Substituting (21) into (19) the following augmented system
+is obtained:
+
+
+˙x
+˙ec
+
+=
+4
+∑
+i=1
+hi
+
+
+Ai −BKPi
+−BKIi
+C
+0
+
+
+
+
+x
+ec
+
++
+
+
+O
+−1
+
+vωd
+(22)
+where O is the zero matrix of appropriate dimensions
+In order to simplify the stability conditions of the closed
+loop system, augmented system (22) can be rewritten as
+follows
+˙¯x(t) =
+4
+∑
+i=1
+hi
+
+( ¯Ai −¯BKi)¯x(t)+ ¯Bww(t)
+
+(23)
+where
+¯x =
+
+
+x
+ec
+
+, ¯Ai =
+
+
+Ai
+O
+C
+0
+
+,
+¯B =
+
+
+B
+0
+
+,
+¯Bw =
+
+
+O
+−1
+
+,
+C =
+
+0
+1
+0
+
+,
+Ki =
+
+KPi
+KIi
+
+,
+w(t) = vωd(t)
+In order to stabilize closed-loop system (23), H∞and
+Lyapunov approaches will be used to compute the controller
+gains.
+Let us consider the H∞performance related to the tracking
+error ec with null initial conditions as follows
+Z ∞
+0 ec(t)Tec(t)dt ≤ρ2
+Z ∞
+0 w(t)Tw(t)dt
+This H∞performance criterion can be rewritten in the fol-
+lowing form:
+Z ∞
+0
+¯xT(t)CT
+e Ce ¯x(t)dt ≤ρ2
+Z ∞
+0 w(t)Tw(t)dt
+(24)
+with Ce = [0 0 1].
+The objective is to design fuzzy controller (21) such that
+closed-loop system (23) satisﬁes the following speciﬁcations:
+1) Augmented system (23) is globally stable with the
+controller (21).
+2) H∞performance (24) for augmented system (23) is
+satisﬁed.
+The following lemma presents the stabilization conditions of
+fuzzy system (23) under H∞performance (24).
+Lemma 1: [16] If there exist a symmetric positive deﬁnite
+matrix P, a positive scalar ρ, solutions of the following
+inequalities:
+P( ¯Ai −¯BiKi)+( ¯Ai −¯BiKi)TP+ 1
+ρ2 P ¯Bw ¯BT
+wP+CT
+e Ce < 0
+i = 1,4
+(25)
+then fuzzy closed loop system (23) is globaly asymptotically
+stable and the H∞control performance in (24) is guaranteed
+for a prescribed attenuation level ρ2.
+Corollary 1: If there exist a common symmetric positive
+deﬁnite matrix X, matrices Vi, Ki and scalars ρ > 0, solution
+of the following inequalities:
+
+
+Γi
+¯Bw
+XCT
+e
+∗
+−ρ2I
+0
+∗
+∗
+−I
+
+< 0,
+i = 1,4
+(26)
+where I is the identity matrix of appropriate dimensions
+Γi = ¯AiX +X ¯AT
+i −¯BVi −V T
+i ¯BT
+Vi = KiX
+Then fuzzy closed loop system (23) is asymptotically stable
+and the H∞control performance in (24) is guaranteed for a
+prescribed attenuation level ρ2.
+Proof 1: Pre- and post-multiply by X where X = P−1 and
+using matrices Vi = KiX inequality (25) can be expressed in
+the following form:
+Ωi = ¯AiX −¯BiVi +X ¯AT
+i −V T
+i ¯BT
+i + 1
+ρ2 ¯Bw ¯BT
+w +XCT
+e CeX < 0
+Using Schur’s complement, LMI conditions (26) are ob-
+tained.
+
+Parameters X and Vi (thus Ki = ViX−1) can be easily
+obtained by solving (26).
+IV. SIMULATION RESULTS
+In order to illustrate the effectiveness of the designed
+controller, two tests have been conducted in Matlab/Simulink
+using nonlinear model (11) on a slippery road. Vehicle
+parameters are given in table (I).
+TABLE I
+PARAMETER VALUES OF THE VEHICLE IN SIMULATION
+M
+Jw
+Jc
+Je
+Jt
+rt
+r f
+R
+1370
+1.2
+0.015
+0.2
+0.04
+13.5
+3.5
+0.33
+[kg]
+[kgm2]
+[kgm2]
+[kgm2]
+[kgm2]
+[m]
+[m]
+[m]
+In the ﬁrst test the input depicted in Fig. 4 has been used as
+the desired engine torque given by the driver. In the second
+test, the engine torque has been computed by the controller
+so that the longitudinal slip ratio does not exceed desired
+value λd = 0.2.
+Simulation results in Fig. 4 show the vehicle response in
+the ﬁrst test; the wheel speed has increased up to 45m/s
+while the vehicle speed has not exceeded 22m/s. This implies
+that the wheel has slipped during this test. The ﬁgure also
+shows the longitudinal slip ratio in this test which exceeds
+0.2 at 4s. We can conclude that in this test the vehicle has lost
+its stability and the traction has not been at the optimal level.
+In the second test, the vehicle is equipped with the traction
+control which computes the optimal value of the engine
+torque. Simulation results of this test are depicted in Fig. 5.
+In this test, the wheel speed and the vehicle speed has been
+increased so that the slip ratio still stays at its desired value.
+This implies that the vehicle has accomplished the test with
+the maximum stability and optimal traction performance.
+In order to show the advantage of the traction control in
+optimizing energy consumption, the fuel consumption rate
+has been computed in this simulation in grams per second
+(g/s) as follows [17]:
+r f = SfcP
+(27)
+where P is the produced power in watt whith P = Teωe and
+Sfc is a constant of the speciﬁc fuel consumption which
+depends on the engine and fuel speciﬁcation. The quantity
+of the fuel consumption is given in grams and deduced from
+(27) as follows:
+qf =
+Z t
+0 SfcP(t)dt
+(28)
+Figure 6 shows that the control traction system can also be a
+good way to save energy consumption in slipping situations.
+V. CONCLUSION
+In this paper we have developed a robust control method
+for the traction control systems. The objective of the control
+system is to compute the optimal engine torque in order to
+improve the vehicle traction and to avoid wheel slipping
+in critical situations such slippery roads. To achieve this
+0
+5
+10
+15
+0
+20
+40
+60
+80
+100
+120
+140
+160
+Engine torque asked by the driver (Nm)
+time(s)
+0
+5
+10
+15
+−10
+0
+10
+20
+30
+40
+50
+Vehicle and wheel speed (m/s)
+time(s)
+ 
+ 
+Vehicle speed
+Wheel speed
+Desired wheel speed
+0
+5
+10
+15
+−0.1
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+Longitudinal Slip ratio
+time(s)
+ 
+ 
+Longitudinal slip without control
+Desired longitudinal slip
+Fig. 4.
+Vehicle response using engine torque given by the driver
+goal, we have proposed an approach to design a fuzzy state
+feedback controller with integral term. The controller has
+been based on the Takagi-Sugeno (TS) fuzzy representation
+of the the vehicle longitudinal dynamics, the drivetrain model
+and the wheel motion. The proposed constraints can globally
+asymptotically stabilize the closed loop TS fuzzy system with
+the minimization of an H∞performance criterion in order to
+satisfy the tracking performances for any desired value of the
+slip ratio. Simulation results have veriﬁed and conﬁrmed the
+effectiveness of the proposed approach to ensure the vehicle
+stability and the optimal traction.
+VI. ACKNOWLEDGMENT
+This work has been supported by the European Regional
+Development Fund within the framework of the ”CEREEV”
+project which is included in the European Union INTERREG
+IVA France-Manche-England program.
+
+0
+5
+10
+15
+−20
+0
+20
+40
+60
+80
+100
+120
+Engine torque using TCS (Nm)
+time(s)
+0
+5
+10
+15
+0
+5
+10
+15
+20
+25
+30
+Vehicle and wheel speed (m/s)
+time(s)
+ 
+ 
+Vehicle speed
+Wheel speed
+Desired wheel speed
+0
+5
+10
+15
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+Longitudinal Slip ratio
+time(s)
+ 
+ 
+longitudinal slip with control
+longitudinal slip without control
+Desired longitudinal slip
+Fig. 5.
+Vehicle response using engine torque computed by the controller
+REFERENCES
+[1] M. Kang, L. Li, H. Li, J. Song and Z. Han, ”Coordinated vehicle traction
+control based on engine torque and brake pressure under complicated
+road conditions”, Vehicle System Dynamics: International Journal of
+Vehicle Mechanics and Mobility, 2012 50:9, 1473-1494
+[2] J. H. Park and C. Y. Kim, ”Wheel Slip Control in Traction Control
+System for Vehicle Stability”, Vehicle System Dynamics: International
+Journal of Vehicle Mechanics and Mobility, (1999) 31:4, 263-278
+[3] H. S. Jung, B. Kwak and Y. Park, ”Development of traction control
+system”, In Seoul June 2000 FISITA World Automotive Congress.
+[4] M. Kabganian and R. Kazemi, ”A new strategy for traction control in
+turning via engine modeling”, Vehicular Technology, IEEE Transactions
+on , vol.50, no.6, pp.1540,1548, Nov 2001 doi: 10.1109/25.966584
+[5] D. Yin, S. Oh and Y. Hori, ”A Novel Traction Control for EV Based
+on Maximum Transmissible Torque Estimation”, Industrial Electronics,
+IEEE Transactions on , vol.56, no.6, pp.2086,2094, June 2009 doi:
+10.1109/TIE.2009.2016507
+[6] J. S. Hu and D. Y. Hori ”Fault-toleranttractioncontrolofelectricvehicles”,
+Control EngineeringPractice 19(2011)204213
+[7] G. Vasiljevic, K. Griparic and S. Bogdan, ”Experimental testing of
+a traction control system with on-line road condition estimation for
+electric vehicles”, Control and Automation (MED), 2013 Mediter-
+0
+5
+10
+15
+−20
+0
+20
+40
+60
+80
+100
+Power consumption (kw)
+time(s)
+ 
+ 
+with control
+without control
+0
+5
+10
+15
+0
+5
+10
+15
+20
+25
+30
+35
+40
+fuel consumption (g)
+time(s)
+ 
+ 
+with control
+without control
+Fig. 6.
+Power and fuel consumption in test 1 and test 2
+ranean Conference on , vol., no., pp.296,302, 25-28 June 2013 doi:
+10.1109/MED.2013.6608737
+[8] B. J. Olson, S. W. Shaw and G. Stpn, ”Nonlinear Dynamics of Vehicle
+Traction”, Vehicle System Dynamics: International Journal of Vehicle
+Mechanics and Mobility, (2003) 40:6, 377-399
+[9] J. Deur, D. Pavkovi, G. Burgio and D. Hrovat, ”A model-based traction
+control strategy non-reliant on wheel slip information”, Vehicle System
+Dynamics: International Journal of Vehicle Mechanics and Mobility,
+(2011) 49:8, 1245-1265, DOI: 10.1080/00423114.2010.511675
+[10] H. Lee and M. Tomizuka, ”Adaptive vehicle traction force control
+for intelligent vehicle highway systems (IVHSs)”, Industrial Electron-
+ics, IEEE Transactions on , vol.50, no.1, pp.37,47, Feb 2003 doi:
+10.1109/TIE.2002.807677
+[11] L. Chao, L. Chu, Y. Ou and W. Lu, ”Traction control algorithm
+based on fuzzy PID and PWM modulation”, Electronic and Mechan-
+ical Engineering and Information Technology (EMEIT), 2011 Interna-
+tional Conference on , vol.6, no., pp.3246,3249, 12-14 Aug. 2011 doi:
+10.1109/EMEIT.2011.6023039
+[12] K. Cho, J. Kim and S. Choi, ”The integrated vehicle longitudinal
+control system for ABS and TCS,” Control Applications (CCA), 2012
+IEEE International Conference on , vol., no., pp.1322,1327, 3-5 Oct.
+2012 doi: 10.1109/CCA.2012.6402651
+[13] J. Kim and S. Choi, ”Vehicle Driveline Modeling and Dynamic
+Simulation Method”, KSAE 2009 Annual Conference, pp 1457-1468.
+[14] C. Chapuis, E. Bideaux, X. Brun, N. Minoiu-Enache, ”Comparison
+of Feedback Linearization and Flatness Control for Anti-Slip Regulation
+(ASR) of an Hybrid Vehicle : From Theory to Experimental Results”,
+2013 European Control Conference (ECC) July 17-19, 2013, Zrich,
+Switzerland.
+[15] K. Levenberg. A Method for the Solution of Certain Non-linear Prob-
+lems in Least Squares. Quarterly of Applied Mathematics, 2(2):164168,
+Jul. 1944.
+[16] H. Dahmani, O. Pags, A. El Hajjaji and N. Daraoui, ”Observer-
+based tracking control of the vehicle lateral dynamics using four-wheel
+active steering”, Intelligent Transportation Systems - (ITSC), 2013 16th
+International IEEE Conference on , vol., no., pp.360,365, 6-9 Oct. 2013
+doi: 10.1109/ITSC.2013.6728258
+[17] K. Muta, M. Yamazaki and J. Tokieda ”Development of New-
+Generation Hybrid System THS II - Drastic Improvement of Power
+Performance and Fuel Economy,” SAE Technical Paper 2004-01-0064,
+2004, doi:10.4271/2004-01-0064.
+View publication stats

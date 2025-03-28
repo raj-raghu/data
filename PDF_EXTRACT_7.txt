@@ -1,0 +1,1057 @@
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4357 
+ 
+ 
+ 
+ABSTRACT 
+This paper evaluates a conceptualization of Vehicle Blind 
+Spot Monitoring System (VBMS), which performs a more 
+effective approach in eliminating blind spot of the driver. The 
+newly developed smart blind spot monitoring system simply 
+focusing on an advancement of the preceding work, along 
+with compromising user compatibility and cost-effectiveness. 
+Compact design, reliable and low-cost that contributes to a 
+highly affordable safety feature are the flagship of this new 
+system. Components selection is the main role in constructing 
+an inexpensive blind spot detection system in the present 
+work. Thus, Arduino UNO R3 model and HC-SR04 
+ultrasonic sensors were employed for the VBMS system due 
+to reasonable market price. Plus, the ultrasonic sensor has 
+demonstrated a remarkable performance in the past blind spot 
+detection system application. Concerning easy installation as 
+well as maintenance on any vehicle, the VBMS is designed as 
+a compact device which assembles the main control unit and 
+sensory parts in a single body to be located at the bottom of the 
+side mirror. Meanwhile, the hazard-warning signal is 
+separately located at the passenger compartment for easily 
+visible by the driver. The angle and sensing range of sensors 
+are both adjustable but vital as their projections define the 
+blind spot limit accurately by characterizing low to a high 
+potential hazard. At the end of this work, a complete VBMS 
+functional prototype of has been establish which effective for 
+real traffic on-road experimentation, with various conditions 
+specified (static, various speed, and overtaken). From the data 
+collected, all targets of the present work have been attained 
+regarding monitoring phenomenon shown by the new-built 
+system. Both pros and cons of VBMS are discussed for further 
+improvement ideas on product development. 
+ 
+ 
+ 
+Key words: Arduino, blind spot, monitoring sensor, 
+ultrasonic sensor 
+ 
+1. INTRODUCTION 
+ 
+Throughout driving course, the vital thing is for the driver to 
+obtain information about the changing position of other 
+vehicles on the road to ensure a safe condition from road 
+accidents and traffic jams. Nonetheless, with the help of side 
+mirrors either does not covers the entire area around the 
+vehicle to be seen straight by the driver, as the rear quarter 
+area on both sides of the vehicle are outside the side mirror’s 
+reflection view. This is referred to as blind spot of the vehicle 
+[1]. The blind spot is crucial at a certain condition whereby 
+driver fails to detect the presence of hazard as other vehicle 
+enters the blind spot area, due to the structural elements of the 
+vehicles that limits a full assessment of the road situation [2]. 
+This is the primary cause of vehicle crashes that mostly 
+happens towards motorcyclist, which also has been proven by 
+simulation analysis that blind spot happens to be a 
+contributing factor towards the rider visibility problem, other 
+than view obstruction and high speed [3]. Besides that, the 
+blind spot phenomenon may vary in effect of several factors 
+like driver’s height and vehicle’s size. Plus, large vehicles 
+come up with wider blind spot around the vehicle due to the 
+height difference with standard-sized vehicles. Regards to 
+this issues, special techniques which effectively tested in 
+India were expressed in term of assisting driver as a 
+decision-maker, by considering the parameter of rear view 
+mirror and potential impact to diminish the blind spot area of 
+heavy vehicles [4]. 
+ 
+Nowadays, considering the safety factor, numerous car 
+manufacturers in the worldwide have made a headway by 
+equipping this technology on their cars with various ways, 
+ 
+Vehicle Blind Spot Monitoring Phenomenon using  
+Ultrasonic Sensor 
+Adnan, Z.1, Hassan, M. Z.2, Ab Wahab N.3, Najib, S.M.4, Nasir, N.S5 
+1Fakulti Kejuruteraan Mekanikal, Universiti Teknikal Malaysia Melaka, Malaysia, 
+M041910036@student.utem.edu.my 
+2Fakulti Teknologi Kejuruteraan Mekanikal dan Pembuatan, Universiti Teknikal Malaysia Melaka, Malaysia, 
+zahir@utem.edu.my 
+3Fakulti Teknologi Kejuruteraan Mekanikal dan Pembuatan, Universiti Teknikal Malaysia Melaka, Malaysia, 
+norfariza@utem.edu.my 
+4Fakulti Teknologi Kejuruteraan Elektrik dan Elektronik, Universiti Teknikal Malaysia Melaka, Malaysia 
+suhaila.najib@utem.edu.my 
+5Fakulti Teknologi Kejuruteraan Mekanikal dan Pembuatan, Universiti Teknikal Malaysia Melaka, Malaysia, 
+nsyuhada_mn@yahoo.com 
+ 
+        ISSN  2347 - 3983 
+Volume 8. No. 8, August 2020 
+International Journal of Emerging Trends in Engineering Research 
+Available Online at http://www.warse.org/IJETER/static/pdf/file/ijeter50882020.pdf 
+https://doi.org/10.30534/ijeter/2020/50882020 
+ 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4358 
+ 
+ 
+initiated by Blind Spot Information System (BLIS) for Volvo, 
+Audi Side Assist (ASA) for Audi and Blind Spot Monitoring 
+(BSM) used by Mitsubishi, Toyota and Mazda as well. In an 
+advanced automotive application, Vehicle Anti-Lock Braking 
+System (ABS) is possibly taken in control accordingly by the 
+incorporation of an ultrasonic sensor and Control Area 
+Network (CAN) Bus protocol to prevent collision [5]. 
+Unfortunately, it is estimated that until 2016, only 3% of 
+vehicle sales in Malaysia are manufactured with this 
+technology feature, which is technically little to none [6]. 
+While back in two years ago, the first test for blind spot 
+technology has been commenced by the New Car Assessment 
+Programme for South East Asian Countries (ASEAN NCAP), 
+conducted on ten ASEAN popular car models but none 
+among them are of Malaysia’s product [7]. This shows that 
+the demand for Malaysian vehicle manufacturers to include 
+this safety equipment on our local products is at a crucial 
+state.  
+Many approaches have been attempted to tackle the blind spot 
+phenomenon such as a camera-based system that used several 
+stages for image processing but encounters a big issue 
+regarding insufficient images for extraction, that contributes 
+to false and missing detections issue [8]. The panoramic view 
+that provides extra safety information also may be useful if the 
+distortion issue and slower performance regarding this work 
+can be solved [9]. Thus, a simple processing approach via 
+optical flow has been demonstrated in compromising a 
+real-time safety alarm, without database usage [10, 11, 12], 
+even a different technique through detection of shadows in 
+daytime and headlamps in night-time had been attempted for 
+faster detection but requires two different algorithms [13]. 
+Another project proposed a hybrid algorithm detection 
+system, designed to bring both efficiency and accuracy, which 
+consumes a fish-eye camera for a wide-angle view and 
+software combination to defines the incoming hazard, but not 
+experimentally proved [14]. A different complex deep 
+learning approach need to be employed in achieving a vision 
+detection that is powerful towards environmental light 
+intensity and shadow factor, which demonstrated up to 
+97.56% system’s accuracy [15]. 
+ 
+In short, the most favourable challenges that keep playing 
+around in a vision-depending blind spot system are image 
+distortion that resulting in false alarm and complex system 
+configuration. This convinced the use of electromagnetic or 
+ultrasonic radar detectors, whereby the operation does not 
+restrict in the day or night time. Hence, this work aims to 
+develop a functional prototype of a smart blind spot 
+monitoring system for all types of vehicles. The Vehicle Blind 
+Spot Monitoring System (VBMS) targeted to provide a simple 
+configuration but with zero warning failure since this safety 
+feature may be attributed to lives and severe damage matters. 
+The prototype was tested in real road traffic with engagement 
+of the Perodua Axia 1.0 model as a testing vehicle. 
+2. RELATED WORKS  
+ 
+2.1 Ultrasonic sensor applications 
+ 
+The ultrasonic sensor had been used for wide applications due 
+to easy implementation, ultimately reduces the cost matter at 
+the same time offers fast operation. The ultrasound wave used 
+is categorized as a frequency wave beyond 20 kHz up to 
+Gigahertz, which is too high to be audible by the human’s ear 
+[16]. A work regarding ultrasonic sensor application on 
+remotely controlled robots had observed excellent distance 
+measuring accuracy for avoiding single solid and 
+uniform-shaped obstacles [17], plus the ability to control the 
+movement 
+of 
+autonomous 
+robots 
+effectively 
+[18]. 
+Furthermore, this sensor in combination with a potentiometer 
+may help in searching for available parking slots in shopping 
+malls for instance, via an online server system [19]. A great 
+project 
+regarding 
+automatically 
+operated 
+sewerage 
+management had demonstrated efficient river blockage 
+removal by determining the height of accumulated waste 
+using sensors inside a designed platform [20]. These studies 
+show that short distance measurement can be performed well 
+by the ultrasonic sensor in various ways from the small to 
+bigger applications. 
+ 
+2.2 Arduino-based sensor for blind spot detection 
+ 
+A Vehicle Blind Spot System (VBSS) prototype device 
+proposed by [21] is an example of which blind spot detection 
+that employs the Arduino control unit and the ultrasonic 
+sensors 
+which 
+are 
+ultimately 
+cheaper 
+than 
+the 
+electromagnetic radar. The system has been effectively tested 
+on the real road condition and successfully detected vehicle 
+that entering the blind spot zone. Nevertheless, as similar to 
+currently used BSM radar technology in the automotive 
+industry, the VBSS distributed components installation 
+around the car body still upholds a complexity issue. Wiring, 
+parts assembly and warning behaviour need to be critically 
+compromised 
+for 
+an 
+additional 
+equipment 
+that is 
+user-friendly. Hence, the contributions of this work will be 
+attributed to a compact-designed system for easy installation 
+as well as maintenance purpose, low cost and high 
+effectiveness not only for hazard detection but to monitor the 
+risk levels as a driver’s co-pilot. 
+ 
+3.  METHODOLOGY 
+ 
+3.1 Establishment of Design Concept 
+ 
+The new product design concept for the overall system’s 
+structure acquires compact and flexible as the main criteria. 
+The compact or simpler design associated with optimum use 
+of component device and body assembly, make it easier to be 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4359 
+ 
+ 
+installed or ‘add-on’ to the current vehicle as well as 
+maintenance purposes. Meanwhile, the flexibility concept 
+drives a highly compatible blind spot coverage so that any 
+mid-sized vehicle type may be equipped with this technology. 
+The system’s internal measure is a key role in the 
+performance of these properties. Figure 1 presents an 
+overview of VBMS’s flow process.  
+ 
+ 
+Figure 1: VBMS workflow 
+ 
+The system begins with object detection in the blind spot limit 
+which depending on distance of sensor propagation, in this 
+case, the ultrasonic sensors. At this instant, the data signal is 
+sent to the control unit to be processed. The Arduino 
+controller takes over the process of identifying the hazard and 
+make a decision. If the hazard is confirmed, a warning signal 
+will be blinked to alert the driver about the incoming object. 
+During final stage, the extra information provided to the 
+driver regarding the hazard risk level via object monitoring 
+based on the distance measured by a sensor within the blind 
+spot zone, until it disappears. This monitoring technique used 
+is similar to numerous Arduino-ultrasonic projects as the 
+distance measurement determines different output behaviour, 
+including sensing operation for liquid levelling [22, 23].  
+ 
+3.2 Characterization of Internal Measures 
+ 
+3.2.1 Sensing range set up and program sketching 
+ 
+Beginning the setting up process, blind spot zone limit of the 
+testing vehicle was specified first as the main part in 
+developing the warning system which involves variables like 
+viewing angles and vehicle model sizes [24], which is why the 
+real-condition measurement on vehicle is important as 
+demonstrated in Figure 2 (a). Meanwhile, an illustration in 
+Figure 2 (b) expresses the right side of the vehicle with 
+specific sensing range values, which being pre-determined in 
+the coding program. These values may vary in accordance 
+with vehicle size.  
+ 
+(a) 
+ 
+(b) 
+Figure 2: (a) Measuring the vehicle parameter, (b) VBMS 
+sensing range on Perodua Axia model. 
+At first, 2.5 m sensing range for Sensor 2 was set according to 
+the minimum width of standard road. By obtaining the Sensor 
+2 sensing distance and the measured value from side mirror to 
+the back end of the car, Sensor 1 sensing range and 
+propagation angle can be calculated accordingly, which acts 
+precisely within the set-up parameter. 
+ 
+An Arduino Integrated Development Environment (IDE) that 
+compatible with Arduino Uno R3 was used for the 
+construction of programming code, enabling the serial input 
+from sensors and LEDs to be transferred to the Arduino board 
+instantly via Universal Serial Bus (USB) cable. C++ language 
+was used for programming code, where it measures the 
+parameters and functions to be controlled while monitoring 
+hazard, including the sensing range that determines the 
+VBMS warning behaviour’s. The coding sketch uses ‘step ()’ 
+and ‘loop ()’ as the preparation and execution orders, 
+respectively. The loop function that makes the following 
+codes continuously repeated after every one complete 
+execution [25], which is important to provide real-time 
+monitoring. This part is responsible for the data processing 
+stage and to activate the alarm behaviour, based on the 
+sensing range. 
+ 
+3.2.2 Design modelling and simulation for system 
+functional validation 
+ 
+Figure 3 describing a complete wiring diagram of the new 
+VBMS on TinkerCad, the online-free Arduino simulator, 
+allows the simulation to be run on the completed circuitry for 
+functional-checked purposes. The written program code from 
+the IDE software is used in the simulation test whether all the 
+components involved could work with the coding program in 
+order to pass the test before uploaded to Arduino controller 
+set. This theoretical test is taken as a base standard for the 
+overall connection and coding synchronization, and detects 
+even a single misconnection and locates the source of error 
+specifically. It is simple to use and very practical for system 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4360 
+ 
+ 
+validation to be applied in the real application. This process 
+also provides the overall design that enhances the 
+researcher’s view for creating simplified system connectivity. 
+ 
+ 
+Figure 3: Schematic circuit of VBMS simulation 
+Here, once the system connects with power supply, both 
+ultrasonic sensors emit the ultrasound wave within a specific 
+range and sense for the distance of the presence obstacle to be 
+transferred to the processing unit. In the meantime, the LEDs 
+blink with different behaviour when the obstacle moved 
+within the sensing range, as controlled by the processor based 
+on distance value calculated. These processes are repeated 
+continuously until the system is powered off. Four pins are 
+equipped on HC-SR04 sensor, namely ‘Voltage at the 
+Common Collector (VCC)’ for power supply, ‘Trig’ for 
+impulse trigger, ‘Echo’ for impulse receiver, and ‘Ground 
+(GND)’ for ground connector. The pin connection for 
+program code to the control unit system is summarized in 
+Table 1. All sensors and LEDs serial input and output which 
+are the positive terminals are connected to the Arduino digital 
+pins according to their associated PIN, while the negative 
+terminal referred to as the ground connection. As one 
+misleading is enough to cause total fatality, these connections 
+are arranged in a sequence of the number of pins for easy 
+reference thus preventing system malfunction in the VBMS 
+performance test. 
+ 
+Table 1: Pin connection to Arduino board 
+Pin/Terminal 
+Sensor 
+1 
+Sensor 
+2 
+LED 
+1 
+LED 
+2 
+LED 
+3 
+VCC 
+5V 
+5V 
+- 
+- 
+- 
+TRIG 
+12 
+9 
+- 
+- 
+- 
+ECHO 
+11 
+8 
+- 
+- 
+- 
+GND 
+GND 
+GND 
+- 
+- 
+- 
+POSITIVE 
+- 
+- 
+6 
+5 
+4 
+NEGATIVE 
+- 
+- 
+GND 
+ 
+ 
+ 
+ 
+3.3 Development of Device Prototype 
+ 
+3.3.1 
+Sensing 
+unit 
+operation, 
+compatibility, 
+and 
+limitations 
+ 
+Firstly, the sensory part of the system was chosen which is an 
+ultrasonic sensor HCSR-04 module as shown in Figure 4, to 
+be correlated with the Arduino set. Utilizing 5V Direct 
+Current (DC) to emit a 40 kHz sonar wave, this sensor 
+performs a non-contact, high accuracy range of distance 
+detection between 2 cm to 500 cm range [26]. To operate, it 
+emits an ultrasound that referred to as trigger wave which 
+bounces back upon hitting an obstacle, called an echo wave. 
+Due to Doppler effect, the reflected echo may be distorted 
+from 40 kHz depending on the movement of the reflecting 
+object but as long as the vibration does not being smaller than 
+echo frequency, the effect is negligible [27]. In the new 
+VBMS system, the coupling ultrasonic sensors work together 
+in characterizing the incoming obstacles. These sensors plays 
+different roles based on direction of projection for each to 
+eliminate the blind spot but assembled in a single body. 
+ 
+ 
+Figure 4: HC-SR04 Ultrasonic Sensor 
+ 
+Upon one complete cycle of wave travel, the time taken 
+gained is a twofold of the distance between sensor and 
+obstacle resulting from triggered sound wave that travel 
+forward and bounce backward to the receiver. The distance 
+calculation are as prescribed by (1) and (2). 
+ 
+                         
+             (1) 
+ 
+           (2) 
+where, 
+ is speed of sound (m/s)
+ is temperature of 
+air (ºC), 
+ is distance from sensor to obstacle (m), while 
+ is sound wave time travel (s). Considering 20°C as the 
+normal ambient temperature (
+), the calculated value of 
+ is equivalent to 340 m/s. Finally, the distance is 
+obtained accordingly by (3). 
+ 
+         (3) 
+where 
+ is the actual sensor-to-obstacle distance (m). 
+Through the division of the distance calculated by 2, the 
+correct distance value between sensor and detected object is 
+finally obtained. In general, the temperature of air within 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4361 
+ 
+ 
+detected range affects the accuracy of measurement, since the 
+sound speed is strongly dependable on both temperature and 
+humidity conditions [28]. The VBMS system has been 
+programmed for a sustained normal environment. Note that 
+the speed of sound is directly proportional to the temperature 
+as much as 0.6 m/s per 1°C [29]. Consequently, the detected 
+entity will be measured nearer in elevated temperature and 
+vice versa. Plus, the RH changes also may vary the 
+measurement by 0.036% for every 10% RH change although 
+it is not very significant under normal weather condition. To 
+ensure a highly dependable measurement, both sensor body 
+and ambient temperatures should be equivalent. Hence, the 
+installing location of this new device was set under the vehicle 
+side mirrors, to protect the sensors from sunray since it is an 
+outside installation, thus preventing the body from heat 
+exposure. The warning signal was separately placed in the 
+passenger compartment, at which easily visible by the driver 
+during hazard monitoring. 
+ 
+3.3.2 Correlation of main processing unit with alarm 
+signal 
+ 
+Of the various electronics controller unit from the market 
+survey, Arduino UNO model R3 shown in Figure 5 is selected 
+due to small size, cheap, but offers sufficient processing 
+memory as well as digital input and output pins for the VBMS 
+system. In terms of functionality, this device has been 
+effectively employed in measuring, controlling, and 
+displaying data using appropriate components and systems 
+for particular purposes [30]. Arduino is an open-source 
+computer 
+device 
+equipped 
+with 
+an 
+ATmega328 
+microcontroller with 20 MHz generating speed and 16-bit 
+enumeration specification [31], as a distance measuring 
+meter for VBMS. This easy-to-use platform also provides the 
+most basic functional digital device development for 
+interaction with the environment by sensors and actuators 
+[32]. 
+ 
+Figure 5: Arduino UNO R3 
+ 
+The Arduino Uno R3 receives the data signals sent from 
+ultrasonic sensor, runs the uploaded program codes, and 
+controls the output signal during the whole monitoring 
+activity. Prior to most conventional radar detectors, a visual 
+alarm is an effective way in monitoring both static and 
+dynamic objects but requires additional parts such as servo 
+motor and Liquid Crystal Display (LCD) [33], which also 
+lengthen the coding task and running elapse if being applied 
+to the present work. Thus, the researcher proposed a 
+multi-LED approach designed for visual signal, interfacing 
+with Arduino processor and providing information from low 
+to high potential hazards as in a metering level which is called 
+‘hazard meter’, that will be explained in Section 4.2. 
+ 
+3.4 Design Finalization and Installation for Testing 
+ 
+In the end stage, a complete and functional prototype of 
+VBMS has been established throughout all involving 
+methods, as shown in Figure 6 (a) which is readily available 
+for on-road experimentation. In term of component assembly, 
+past researcher demonstrated the use of a Bluetooth module 
+for an efficient wireless data transportation between 
+separately placed sensor and control unit to avoid complexity 
+and plenty of wiring [23]. In light of this problem, a simpler 
+approach has been taken into account whereby the main 
+circuit of smart VBMS assembles both control unit and 
+sensors into one body, thus cutting costs from an additional 
+component and promotes ease of production. 
+ 
+The VBMS device was mounted on the side mirror of Perodua 
+Axia as shown in Figure 6 (b). As illustrated in Figure 2 
+earlier, Sensor 1 is directed to area limit where the incoming 
+vehicle begins to enter the designated hazard zone, while 
+Sensor 2 that directed perpendicular to the side mirror 
+observes the other end of the blind spot limit. It deactivates all 
+warning signals upon detection to ensure the LEDs stop 
+blinking as soon as the detected vehicles getting out of the 
+monitored area, which can be seen by the driver. Also, the 
+false alarm can be distinguished in certain cases of static 
+object detection. The LED warning signal located inside the 
+vehicles will provide information regarding the hazard 
+condition to the driver. Dual-sensor system in an ultrasonic 
+distance measurement also has been applied by [21] for the 
+blind spot detection and [34] for characterizing the type, 
+speed, and amount of vehicle, whereby both agreed that such 
+way does improve the capability of the sensor compared to 
+intrinsic usage. In this case, the VBMS can differentiate 
+between static objects, i.e., wall, building, with the function of 
+cancelling sensor (Sensor 2), and moving object, i.e., vehicle, 
+pedestrian, via triggering sensor (Sensor 1), thus removing 
+the false signal occurrence. 
+ 
+(a) 
+ 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4362 
+ 
+ 
+ 
+(b) 
+Figure 6: (a) Prototype of VBMS, (b) Installation for on-road 
+testing 
+ 
+4. RESULT AND DISCUSSION 
+ 
+4.1 Static Test 
+ 
+This test aims to observe the ability of VBMS device in 
+differentiating between static or moving entity, which allows 
+removing false alarm occurrence that causes distraction and 
+confusion to the driver about surrounding vehicles condition. 
+Sensor 1 works by triggering LEDs warning signal if there are 
+potential risk objects such as vehicles enters the blind zone, 
+not the static objects such as divider and building which is 
+detected by Sensor 2. Figure 7 shows that all LEDs at the 
+hazard meter were deactivated during the test. All the LEDs 
+were turned off when the system detects a building although it 
+is in the blind spot range. 
+ 
+This condition is attributed with the function of Sensor 2 as a 
+‘cancelling sensor’, which also may be considered as 
+controlling the Sensor 1. Thus, as long as the detected object 
+is in the Sensor 2 sensing range which directed perpendicular 
+to the car’s forward direction, Sensor 1 will be deactivated. 
+This function also provides the benefit of preventing the 
+alarm from triggering unnecessarily, in case of the detected 
+vehicle is approaching forward to overtake and moving out of 
+the hazard zone, which has been inside the driver’s view.  
+ 
+ 
+Figure 7: Static Test 
+ 
+ 
+4.2 Speed Test 
+ 
+The speed test was conducted as the vehicle driven in varied 
+speed condition, which at 60 km/h, 80 km/h and 110 km/h. 
+This is because there is a huge difference regarding the real 
+situation although the prototype has succeeded in lab testing. 
+For a reliability factor, it is crucial for the system provide a 
+good performance in operating at various speed levels such as 
+60 km/h and 80 km/h, which are standard speed levels in 
+rural as well as city areas, while 110 km/h is the maximum 
+speed limit for highways route. A motorcycle was set as a 
+controlled variable, with varying the position inside the 
+hazard zone during the data observation. By considering the 
+worst-case scenario, the performance of this prototype device 
+towards larger vehicles is more convincing if it succeeded in 
+this test. The examples of warning signal behaviour during 
+the speed test were as shown in Figure 8, for day and night 
+time. 
+ 
+The VBMS hazard meter defines the potential risk from low 
+to high risk to help the driver on decision-making before 
+taking action, where the warning indications are such as 
+follows: 
+i. First LED is HIGH: Hazard is presence but at low risk 
+due to safe distance from a collision, and certain parts of 
+the hazard may be seen through the side mirrors. 
+(“Watch your side mirror.”) 
+ii. First and second LEDs are HIGH: Hazard is presence at 
+a moderate risk, which is usually completely unseen 
+through the side mirrors. (“Do not change your car 
+position.”) 
+iii. All three LEDs are HIGH: Hazard is presence at the 
+highest risk, which is too close to collision and still 
+unseen through the side mirrors. (“Slow down. Let the 
+hazard be gone first.”) 
+ 
+(a) 
+ 
+(b) 
+Figure 8: Speed test during; (a) day-time; (b) night-time 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4363 
+ 
+ 
+As observed from Figure 8 (a), the hazard meter activated all 
+three LEDs, indicating a very high risk for an accident to 
+occur if the drivers decide to take actions such as changing 
+lanes or overtaking. While in Figure 8 (b), the first LED on 
+the hazard meter is HIGH, telling that a vehicle just entered 
+the blind spot, which is invisible through the side mirror. 
+Sometimes in this condition, half part of the approaching 
+vehicles is still visible to the driver. The outcome from this 
+test shows a good performance of the ultrasonic sensor in 
+determining the distance of detected obstacles. In another 
+distance measuring test conducted within 4 m range, the 
+HC-SR04 sensor performance is described as having 98% 
+accuracy and 100% precision [35]. 
+ 
+4.3 Overtake Test 
+ 
+The vital element during on-road driving is to ensure an 
+effective inter-vehicular communication especially in 
+multiple lanes driving, for the drivers to be well-informed 
+upon another vehicle’s change in position and speed as 
+proven by simulation in the previous study [36]. This test 
+narrows the VBMS performance test on the different 
+behaviour of approaching vehicles on the highways, where 
+the multiple lanes of road condition promotes more 
+overtaking action between vehicles. 
+ 
+As shown in Figure 9 (a) and (b), no false alarm detected for 
+both overtaking conditions. As a hazard alarm signal, the 
+sensors must be able to distinguish either the monitored 
+vehicle is overtaking which is less hazard potential, or it 
+really staying inside the blind spot area. As observed, the 
+VBMS warning signal were not activating false alarm when 
+another vehicle enters the blinds spot at high speed due to a 
+delay set up in the program code. 
+ 
+ 
+(a) 
+ 
+(b) 
+Figure 9: Test for overtaken by (a) Car and (b) Bus. 
+4.4 Performance Analysis 
+ 
+As all tests have been finished, the data accomplished were 
+tabulated for further analysis. The result of VBMS 
+performance in each conditions and times are presented in 
+Table 2. 
+Table 2: Overall Test Result 
+Test 
+Condition 
+Day 
+Night 
+1 
+Static 
+Pass 
+Pass 
+2 
+Speed – 60 km/h 
+Pass 
+Pass 
+3 
+Speed – 80 km/h 
+Pass 
+Pass 
+4 
+Speed – 110 km/h 
+Pass 
+Pass 
+5 
+Overtake 
+Pass 
+Pass 
+All criteria that are required in every testing condition have 
+been fulfilled by the prototype device, with zero false signal 
+occurrence. Furthermore, this safety sensor can differ 
+between buildings and approaching vehicle, performs well at 
+various speed ranges and the behaviour of approaching 
+vehicles was effectively monitored. The newly designed blind 
+spot detection system has successfully eliminates the blind 
+spot area around the Perodua Axia. However, it is found that 
+during the whole test was conducted, the LEDs were not 
+blinking constantly while monitoring the motorcycle as 
+shown in Figure 10, which indicated that the ultrasonic 
+sensors were having difficulty in detecting irregular surfaces.  
+ 
+The angle of wave incidence is one of several factors that 
+responsible for the preciseness of ultrasonic sensor [29], in 
+which this reflected echo may have deteriorated away from 
+the spectacular wave due to smooth reflecting material that 
+either having sound absorption ability or with shape that in 
+such way could deteroriates the sound waves reflection away 
+from the receiver [14]. This may be attributed to the detection 
+of motorcycle and rider’s body during the warning signal. For 
+instance, the utilization of a high-spec ultrasonic sensor 
+ranging up to 10 m in the Adaptive Cruise Control (ACC) 
+system has performed well in an attempt on a fully 
+autonomous mode car during testing in a busy traffic area. 
+However, the irregularities of road and pedestrian behaviour 
+resulting to false pulse during the first finding, but after 
+setting up a moderate threshold distance, the problem was 
+solved [37]. For the VBMS device, the LEDs must keep 
+blinking as long as the hazard stays within fix range of blind 
+spot area. Therefore, this could be overcome by using a 
+high-quality sensor to offer a chance of improvement on the 
+system’s overall performance. 
+ 
+Figure 10: Discontinuous warning signal 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4364 
+ 
+ 
+5. CONCLUSION AND RECOMMENDATION 
+ 
+The smart Vehicle Blind Spot Monitoring System (VBMS) 
+system has demonstrated the ability to eliminate the blind spot 
+phenomenon. This newly developed device has good potential 
+as a vehicle safety feature in order to improve the awareness 
+among drivers regarding the presence of hazard around their 
+vehicle. VBMS had been made in simple component system 
+configuration, consisting a single control unit that combines 
+two other component functions collaborating with each other. 
+The procedure of device development was done carefully 
+according to sequence for software to hardware components. 
+Hence, no flaw or skipped step happened until the final stage 
+of production. The software system performed real-time 
+processing without lagging due to fewer components 
+involved, plus the sensing distance adjustment was very 
+practical via IDE software to be equipped on different vehicle 
+sizes.  
+ 
+The best suitable sensor chosen had provided true information 
+for the driver in various speed and vehicle conditions tested 
+during the day and night time. The complete VBMS prototype 
+has been considered achieving great cost-effectiveness in 
+terms of components, installation, and the functionality 
+offered towards a vehicle road-driving safety. Looking 
+towards the future, the new designed VBMS system could be 
+improvised in term of sensor quality, as the ultrasonic sensor 
+cannot measure through walls, vacuum, high pressure or 
+temperature, a high repetition rate, and unable to measure 
+accurately in vapour environment. Applying a higher quality 
+sensor to this system will provide the reliability in various 
+conditions including off-road as well as four weather seasons 
+in the overseas. 
+ 
+ACKNOWLEDGMENT 
+ 
+The authors would like to thank the support and guidance 
+given by Faculty of Mechanical and Manufacturing 
+Engineering Technology, Faculty of Electrical and Electronic 
+Engineering Technology, Universiti Teknikal Malaysia 
+Melaka (UTeM), Malaysian Institute of Road Safety Research 
+(MIROS) and ASEAN NCAP secretariat through ASEAN 
+NCAP Collaborative Holistic Research (ANCHOR II) 
+programme. This work had been carried out through the grant 
+of FRGS/2018/FTKMP-AMC/F00387. 
+REFERENCES 
+[1] 
+B. Maitra, M. F. Cheranchery, and P. Prasad, Rules 
+for safe driving, in Training Manual for Drivers, 
+2017, ch. 4, pp. 69–109. 
+[2] 
+P. O. Bresnev, A. V. Tumasov, D. V. Zeziulin, D. M. 
+Porubov, and L. N. Orlov, Development of a 
+detection road users system in vehicle A- pillar 
+blind spots, in Proc. IOP Conf. Ser.: Mater. Sci. 
+Eng., 2018, pp. 1–8. 
+[3] 
+D. Farooq and J. Juhasz, Simulation analysis of 
+contributing factors to rider visibility issues for 
+car-motorcycle accidents, Period. Polytech. Transp. 
+Eng., pp. 1–7, April 2019. 
+[4] 
+P. Pitchipoo, D. S. Vincent, N. Rajini, and N. S. 
+Rajakarunakaran, COPRAS decision model to 
+optimize blind spot in heavy vehicles : A 
+comparative perspective, Procedia Eng., vol. 97, 
+pp. 1049–1059, Dec. 2014. 
+[5] 
+N. K. A and K. Venkatasubramanian, Intelligent 
+collision avoidance system at blind spots or sharp 
+turns, School of Electronics Engineering, VIT 
+University, Chennai, India, 2015. 
+[6] 
+M. H. M. Isa, Blind spot technology must be seen, 
+The Sun, pp. 1–2, April 2016. 
+[7] 
+J. Lee, ASEAN NCAP organises first blind spot 
+monitor test, Paul Tan, 2018. [Online]. Available: 
+https://paultan.org/2018/03/07/asean-ncap-organises
+-first-blind-spot-monitor-test/. 
+[8] 
+D. Kwon, R. Malaiya, G. Yoon, J. Ryu, and S. Pi, A 
+study on development of the camera-based blind 
+spot detection system using the deep learning 
+methodology, Appl. Sci., vol. 9, pp. 1–20, July 2019. 
+[9] 
+M. W. Park, K. H. Jang, and S. K. Jung, Panoramic 
+vision system to eliminate driver’s blind spots 
+using a laser sensor and cameras, Int. J. Intellgent 
+Transp. Syst. Res., vol. 6, pp. 1–14, March 2012. 
+[10] 
+J. Saboune, M. Arezoomand, L. Martel, and R. 
+Laganiere, A visual blindspot monitoring system 
+for safe lane changes a visual blindspot monitoring 
+system 
+for 
+safe 
+lane 
+changes,” 
+in 
+Proc. 
+International Conference on Image Analysis and 
+Processing (ICIAP), 2014, pp. 1–10. 
+[11] 
+C. Fernandez, D. F. Llorca, M. A. Sotelo, I. G. Daza, 
+A. 
+M. 
+Hellin, 
+and 
+S. 
+Alvarez, 
+Real-time 
+vision-based 
+blind 
+spot 
+warning 
+system : 
+experiments 
+with 
+motorcycles 
+in 
+daytime/nighttime conditions, Int. J. Automot. 
+Technol., vol. 14, no. 1, pp. 113–122, Feb. 2013. 
+[12] 
+C. Tsuchiya, S. Tanaka, and H. Furusho, Real-time 
+vehicle detection using a single rear camera for a 
+blind spot warning system, SAE Int. J. Passeng. 
+Cars - Electron. Electr. Syst., vol. 5, no. 1, pp. 
+146–153, May 2012. 
+[13] 
+B. Wu, C. Kao, Y. Li, and M. Tsai, A real-time 
+embedded blind spot safety assistance system, Int. 
+J. Veh. Technol., pp. 1–15, April 2012. 
+[14] 
+L. G. C. Iii and A. A. Hernandez, Hybrid detection 
+for vehicle blind spot using fisheye camera : A 
+Framework, in Proc. 4th International Conference 
+on Computing and Applied Informatics (ICCAI), 
+2019, pp. 250–253. 
+[15] 
+A. S. Alon, J. L. Dioses Jr., A machine vision 
+detection of unauthorized on-street roadside 
+parking in restricted zone: an experimental 
+simulated barangay-environment, International 
+
+Adnan, Z et al., International Journal of Emerging Trends in Engineering Research, 8(8), August 2020, 4357 - 4365 
+4365 
+ 
+ 
+Journal of Emerging Trends in Engineering Research 
+(IJETER), Vol. 8, No. 4, pp. 1056-1061, April 2020. 
+[16] 
+N. Seckel and A. Singh, Physics of 3D ultrasonic 
+sensors, Toposens GmbH, pp. 1-11, July 2019. 
+[17] 
+J. Azeta, C. Bolu, D. Hinvi, and A. A. Abioye, 
+Obstacle detection using ultrasonic sensor for a 
+mobile robot, in Prof. IOP Conf. Series: Materials 
+Science and Engineering, 2019, pp. 1–5. 
+[18] 
+S. Lee, J. Lim, G. Tewolde, and J. Kwon, 
+Autonomous tour guide robot by using ultrasonic 
+range sensors and QR code recognition in indoor 
+environment, 
+in 
+Proc. 
+IEEE 
+International 
+Conference on Electro/Information Technology, 
+2014, pp. 410–415. 
+[19] 
+D. N. Bagenda and C. Parulian, Online information 
+of parking area using ultrasonic sensor through 
+wifi data acquisition, in Proc. IOP Conference 
+Series: Earth and Environmental Science, 2018, pp. 
+1–7. 
+[20] 
+S. Talukder, M. I. I. Sakib, Z. R. Talukder, U. Das, A. 
+Saha, and N. S. N. Bayev, USenSewer : ultrasonic 
+sensor and GSM-Arduino based automated 
+sewerage 
+management, 
+in 
+Proc. 
+CTCEEC 
+Conference Proceedings, 2017, pp. 1–6. 
+ 
+[21] 
+M. Z. Hassan and H. I. Zainal Ariffin, Development 
+of vehicle blind spot system for passenger car, 
+Appl. Mech. Mater., vol. 393, pp. 350–353, Sep. 
+2013. 
+[22] 
+V. Raikar, A. Ranjan, P. Poddar, and K. J. Chaitanya, 
+Arduino based smart water level monitoring and 
+controlling for domestic application, Int. J. Res. 
+Eng. Sci. Manag., vol. 2, no. 2, pp. 138–141, Feb. 
+2019. 
+[23] 
+M. Husni, D. O. Siahaan, H. T. Ciptaningtyas, H. 
+Studiawan, and Y. P. Aliarham, Liquid volume 
+monitoring based on ultrasonic sensor and 
+Arduino microcontroller, in Proc. IOP Conf. 
+Series: Materials Science and Engineering, 2016, 
+vol. 128, pp. 1–10. 
+https://doi.org/10.1088/1757-899X/128/1/012026 
+[24] 
+M. S. M. Hashim, A. H. Ismail, S. Abu Bakar, M. S. 
+Muhamad Azmi, Z. Mohamad Razlan, A. Harun, N. 
+S. Kamarrudin, I. Ibrahim, M. K. Faizi, M. A. M. 
+Saad, M. F. H. Rani, A. R. Mahayadin, M. A. Rojan, 
+M. S. Azizizol and M. H. Md Isa, Identifying blind 
+spot zone for passenger cars using grid-based 
+technique, J. Soc. Automot. Eng. Malaysia, vol. 2, 
+no. 3, pp. 245–251, Sep. 2018. 
+[25] 
+E. Z. Orji, C. V. Oleka, and U. I. Nduanya, Arduino 
+based door automation system using ultrasonic 
+sensor and servo motor, J. Sci. Eng. Res., vol. 5, no. 
+4, pp. 341–349, April 2018. 
+[26] 
+H. R. Hatem, A. I. Abdalla, and Z. N. A. Al-rawi, 
+Design and implementation of ultrasonic radar 
+system for distance measurements using Arduino, 
+Int. J. Eng. Technol., vol. 7, no. 4, pp. 3115–3118, 
+Jan. 2018. 
+[27] 
+A. 
+Buachoom, 
+A. 
+Thedsakhulwong, and S. 
+Wuttiprom, An Arduino board with ultrasonic 
+sensor investigation of simple harmonic motion, in 
+Proc. Siam Physics Congress (SPC2019): Physics 
+beyond disruption society, 2019, pp. 1–4. 
+[28] 
+K. G. Panda, D. Agrawal, A. Nshimiyimana, and A. 
+Hossain, Effects of environment on accuracy of 
+ultrasonic sensor operates in millimeter range, 
+Perspect. Sci., vol. 8, pp. 574–576, July 2016. 
+[29] 
+V. A. Zhmud, N. O. Kondratiev, K. A. Kuznetsov, V. 
+G. Trubin, and L. V. Dimitrov, Application of 
+ultrasonic sensor for measuring distances in 
+robotics, 
+in 
+Proc. 
+International 
+Conference 
+Information Technologies in Business and Industry, 
+2018, pp. 1–9. 
+[30] 
+F. Hidayanti, K. R. Lestari, and R. Anwar, Arduino 
+based 
+conductive 
+silver 
+lamination 
+device, 
+International Journal of Emerging Trends in 
+Engineering Research (IJETER), Vol. 8, No. 2, pp. 
+265-270, Feb. 2020. 
+[31] 
+F. Baskoro and B. R. Reynaldo, Detection of lock on 
+radar system based on ultrasonic US 100 sensor 
+and Arduino UNO R3 with image processing GUI, 
+in Prof. IOP Conf. Ser.: Mater. Sci. Eng., 2018, pp. 
+1–7. 
+[32] 
+D. Asemota, Ultrasonic servo motor control with 
+arduino micro-controller, Vellore Institute of 
+Technology (VIT) University, Vellore, India, 2018. 
+[33] 
+H. K. Ali, J. S. Abdaljabar, and S. M. Abdullah, 
+Design of ultrasonic radar, Int. J. Emerg. Sci. Eng., 
+vol. 3, no. 7, pp. 6–10, May 2015. 
+[34] 
+R. Stiawan, A. Kusumadjati, N. S. Aminah, M. 
+Djamal, and S. Viridi, An ultrasonic sensor system 
+for vehicle detection application, in Proc. 7th Asian 
+Physics Symposium, IOP Conf. Series: Journal of 
+Physics: Conf. Series, 2019, pp. 1–6. 
+[35] 
+R. R. S. Bongolan, J. G. M. Eden, E. T. DT. 
+Mendoza, J. K. A. Pancho, and E. C. M. Telan, 
+Ultrasonic distance measuring study, Faculty of Al 
+Taj International School, Senior High School 
+Department, Riyadh, Kingdom of Saudi Arabia, 
+2019. 
+[36] 
+G. Bulumulle and L. Bölöni, Reducing side-sweep 
+accidents with vehicle-to-vehicle communication, 
+J. Sens. Actual Networks, vol. 5, no. 19, pp. 1–16, 
+Dec. 2016. 
+[37] 
+L. Alonso, V. Milanes, C. Torre-ferrero, J. Godoy, J. 
+P. Oria, and T. de Pedro, Ultrasonic sensors in 
+urban traffic driving-aid systems, Sensors, vol. 11, 
+pp. 661–673, Jan. 2011. 
+https://doi.org/10.3390/s110100661 
+ 

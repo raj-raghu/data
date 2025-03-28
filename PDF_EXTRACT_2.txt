@@ -1,0 +1,757 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/327253343
+Advanced Driver-Assistance Systems: A Path Toward Autonomous
+Vehicles
+Article  in  IEEE Consumer Electronics Magazine · August 2018
+DOI: 10.1109/MCE.2018.2828440
+CITATIONS
+300
+READS
+26,942
+4 authors, including:
+Vipin Kumar Kukkala
+NVIDIA
+23 PUBLICATIONS   551 CITATIONS   
+SEE PROFILE
+Sudeep Pasricha
+Colorado State University
+375 PUBLICATIONS   5,274 CITATIONS   
+SEE PROFILE
+Thomas H Bradley
+Colorado State University
+147 PUBLICATIONS   5,152 CITATIONS   
+SEE PROFILE
+All content following this page was uploaded by Vipin Kumar Kukkala on 14 March 2019.
+The user has requested enhancement of the downloaded file.
+
+2162-2248/18©2018IEEE
+18
+IEEE Consumer Electronics Magazine  ^  september 2018
+dvanced driver-assistance systems (ADASs) 
+have become a salient feature for safety in modern 
+vehicles. They are also a key underlying technolo-
+gy in emerging autonomous 
+vehicles. State-of-the-art 
+ADASs are primarily vision based, 
+but light detection and ranging (lidar), 
+radio detection and ranging (radar), 
+and other advanced-sensing technolo-
+gies are also becoming popular. In this 
+article, we present a survey of differ-
+ent hardware and software ADAS 
+technologies and their capabilities and 
+limitations. We discuss approaches 
+used for vision-based recognition and 
+sensor fusion in ADAS solutions. We 
+also highlight challenges for the next 
+generation of ADASs.
+OVERVIEW OF AUTOMOTIVE 
+SYSTEM SAFETY
+Safety in automotive systems has been 
+a major concern since the early days 
+of on-road vehicles. Several original 
+equipment manufacturers (OEMs) 
+have attempted to address this issue 
+by developing various safety systems 
+to protect occupants within a vehicle 
+as well as prevent injuries to people 
+outside the vehicle. These systems are 
+mainly classified into two types: 1) 
+passive (or reactive) and 2) active (or 
+proactive). Passive safety systems pro-
+tect vehicle occupants from injuries 
+after a crash, e.g., seat belts, air bags, 
+and padded dashboards. Due to a con-
+sistent consumer demand for safer 
+vehicles, passive safety systems that have been under contin-
+uous development for many decades have been augmented by 
+active safety systems, which seek to prevent a crash from 
+Digital Object Identifier 10.1109/MCE.2018.2828440
+Date of publication: 9 August 2018
+Advanced  
+Driver-Assistance Systems
+A path toward autonomous vehicles.
+By Vipin Kumar Kukkala, Jordan Tunnell, Sudeep Pasricha, and Thomas Bradley
+A
+
+september 2018  ^  IEEE Consumer Electronics Magazine
+19
+happening altogether. Active systems are one of the main 
+areas of interest and have seen major growth in today’s vehi-
+cles. Examples of such systems include lane keeping, auto-
+matic braking, and adaptive cruise control. These systems are 
+commonly known as ADASs and are becoming increasingly 
+popular as a way for automotive manufacturers to differenti-
+ate their offerings while promoting consumer safety.
+Recent studies from the World Health Organization indicate 
+that 1.25 million deaths occur every year due to road traffic 
+accidents [1]. Moreover, such accidents in recent years have an 
+annual global cost of US$518 billion, which takes away 
+approximately 1–2% of gross domestic product from all of the 
+countries in the world [2]. These high fatality rates, monetary 
+losses, and increasing customer demand for intelligent safety 
+systems are some of the key reasons for OEMs to develop 
+ADASs. Moreover, with the increasing number of electronic 
+control units and integration of various types of sensors, there 
+are now sufficient computing capabilities in vehicles to support 
+ADAS deployments. The different types of sensors, such as 
+cameras, lidar, radar, and ultrasonic sensors, enable a variety of 
+different ADAS solutions. Among them, the vision-based 
+ADAS, which primarily uses cameras as vision sensors, is pop-
+ular in most modern-day vehicles. Figure 1 shows some of the 
+state-of-the art ADAS features and the sensors used to imple-
+ment them.
+Modern-day ADASs are also key technologies to realize 
+autonomous vehicles [3]. But several challenges with the 
+design, implementation, and operation of ADASs remain to be 
+overcome. Some of these challenges include minimizing energy 
+consumption, reducing response latency, adapting to changing 
+weather conditions, and security. In this article, we provide a 
+synopsis of the landscape of ADAS research and development 
+to address these challenges.
+ADAS TAXONOMY
+We propose a taxonomy of ADASs based on the type of sen-
+sors they use (Figure 2), as discussed next.
+VISION SENSORS
+Cameras are the most commonly used vision sensors in vehi-
+cles. Vision-based ADAS uses one or more cameras to cap-
+ture images and an embedded system to detect, analyze, and 
+track different objects in them. In high-end ADAS, cameras 
+are used to monitor both the inside and outside of the vehicle. 
+Camera integration in modern vehicles is becoming more 
+common because of its low cost and easy installation. At the 
+2018 Consumer Electronics Show, Mobileye stated that it is 
+introducing smart cameras in millions of cars hitting the 
+streets in 2018. In addition, laws such as [4] (that mandate all 
+vehicles manufactured from 1 May 2018 onward use vision-
+based ADAS) will further aid in camera integration. Cameras 
+capture information such as color, contrast, and texture, 
+which gives them a unique advantage over other sensors. Two 
+types of cameras are often used in vision-based ADAS: 1) 
+monocular and 2) stereo.
+MONOCULAR CAMERAS
+These camera systems have only one lens. As these systems 
+have only one image output at any point of time, they have 
+low image-processing requirements compared to those of 
+other camera types. These cameras can be used for multiple 
+applications, such as the detection of obstacles, pedestrians, 
+lanes, and traffic signs [5]. They can also be used for moni-
+toring the driver inside a vehicle, e.g., for face- and eye-
+detection and head-pose analysis [23]. But monocular camera 
+images lack depth information and are, therefore, not reliable 
+sensors for distance estimation. Some techniques [5] allow 
+approximating distance by identifying key features in the 
+captured image frame and tracking their position when the 
+camera is in motion.
+STEREO CAMERAS 
+These systems consist of two or more lenses, each with image 
+sensors, separated by a certain distance (known as stereo 
+base). Stereo cameras are useful in extracting three-dimensional 
+©iStockphoto.com/metamorworks
+
+20
+IEEE Consumer Electronics Magazine  ^  september 2018
+(3-D) information from two or more two-dimensional images 
+by matching stereo pairs (images from left and right sensors) 
+and using a disparity map to estimate the relative depth of a 
+scene. These cameras can be used for a variety of applications, 
+such as traffic sign recognition, lane, pedestrian, and obstacle 
+detection as well as distance estimation, with much greater 
+accuracy compared to monocular cameras.
+Stereo systems can be relied upon for accurate distance 
+(depth) estimation over short distances, up to 30 m. In most 
+production vehicles with stereo cameras, the cameras are locat-
+ed inside the vehicle, behind the rear-view mirror, angled slight-
+ly downward, and facing the road. 
+IR CAMERAS
+There are two main types of IR cameras. Active IR cameras 
+use a near-IR light source (with wavelengths from 750 to 1,400 nm) 
+built in the vehicle to illuminate the scene (which cannot be 
+seen by the human eye) and a standard digital camera sensor to 
+capture the reflected light. Passive IR cameras use an IR sen-
+sor, where every pixel on the IR sensor can be considered as a 
+temperature sensor that can capture the thermal radiation emit-
+ted by any material. Unlike active IR cameras, passive IR cam-
+eras do not require any special illumination of the scene. Still, 
+popular night-vision solutions mainly use active IR cameras to 
+assist the driver by displaying video data on a screen during 
+low light conditions.
+LIDAR
+Lidar works by firing a laser beam at an object and then mea-
+suring the time taken for the light to bounce back to the sen-
+sor, to calculate the distance of an object. These systems can 
+achieve high-resolution 3-D images and operate at longer 
+ranges than camera systems. Some of the lidar scanners sup-
+port surround-view sensors (that fire laser beams continuously 
+in all directions), which can generate a 360° 3-D image of the 
+surroundings with extremely accurate depth information (as 
+Adaptive
+Cruise
+Control
+Automatic Braking
+Pedestrian Detection
+Collision Avoidance
+Surround
+View
+Surround View
+Surround View
+Blind-Spot
+Detection
+Blind-Spot
+Detection
+Traffic Sign
+Recognition
+Lane-
+Keeping
+System
+Cross-Traffic Alert
+Rear Collision Warning
+Park Assist
+Park Assist
+Long-Range Radar
+Lidar
+Camera
+Short-/Medium-Range Radar
+Ultrasonic
+FIGURE 1. The state-of-the-art ADAS sensors used.
+ADAS
+Vision
+Lidar
+Radar
+Ultrasonic
+Others
+Monocular
+Camera
+Stereo
+Camera
+Infrared
+Camera
+Short-/
+Medium-Range
+Radar
+Long-Range
+Radar
+PMD
+IMUs
+GPSs
+FIGURE 2. The taxonomy of an ADAS. PMD: photonic mixer device; IMUs: inertial measurement units; GPSs: global positioning systems.
+
+september 2018  ^  IEEE Consumer Electronics Magazine
+21
+shown in Figure 3). Lidar is becoming very popular in autono-
+mous vehicles. Several prototype vehicles [8], [9] have dem-
+onstrated the advantages of using lidar in autonomous driving. 
+Lidar is useful for systems implementing automatic braking, 
+object detection, collision avoidance, and more. Depending on 
+the type of sensor, lidars for cars can have a range of up to 
+60 m. Despite the aforementioned advantages, lidars are 
+heavy, bulky in size, and expensive. Moreover, atmospheric 
+conditions such as rain or fog can impact the coverage and 
+accuracy of these systems. Emerging solid-state lidars [10] 
+have opened the possibility of powerful lidars that are signifi-
+cantly smaller and relatively inexpensive.
+RADAR
+Radar systems emit microwaves and estimate the speed and 
+distance of an object by measuring the change in the frequen-
+cy of the reflected wave as per the Doppler effect. Due to the 
+longer wavelength of microwaves, they can travel much far-
+ther than optical light (e.g., with lidar) and can detect objects 
+at a longer distance. Unlike lidar, radar is not affected by 
+foggy or rainy weather conditions and is relatively inexpen-
+sive. Depending on their operating distance range, radar sys-
+tems can be classified as short range (0.2–30 m), medium 
+range (30–80 m), or long range (80–200 m) [11]. Cross-traffic 
+alerts and blind-spot detection are some of the applications of 
+short-/medium-range radars. These systems are often located 
+at the corners of a vehicle. Adaptive cruise control is a long-
+range radar application, with the system located behind the 
+front grill or under the bumper. Researchers have been devel-
+oping algorithms to improve the performance of radar and 
+reliability all while attempting to reduce the cost and power of 
+the system [6].
+ULTRASONIC SENSORS
+Ultrasonic sensors use sound waves to measure the distance 
+to an object. These sensors are mainly used for detecting 
+objects very close to the vehicle. Some example applications 
+include automatic parking and parallel parking assist. These 
+sensors are mainly located under the front and rear bumper of 
+the vehicle.
+OTHERS
+A few other sensors are used to complement and improve the 
+functionalities of those discussed earlier. For instance, pho-
+tonic mixer device (PMD) cameras consist of an array of 
+smart sensors that enable fast optical sensing and demodula-
+tion of incoherent light signals simultaneously [12]. PMDs 
+can support parallel target pixel-wise distance measurement 
+without scanning, thus resulting in faster imaging, high later-
+al resolution, and depth information. IMUs and GPSs are 
+examples of systems that help improve the distance measure-
+ments with lidar and radar.
+VISION-BASED ADASs
+Vision-based ADASs rely on images from cameras and use 
+computer vision principles to extract useful information. 
+COMPUTER VISION DATA FLOW FOR ADASs
+Figure 4 shows the steps involved in a vision-based system, 
+each of which is discussed.
+IMAGE ACQUISITION
+This refers to the process of capturing a frame from a video. 
+The frame is often represented as a matrix of pixel data where 
+each frame contains three channels of information, e.g., red, 
+green, and blue (RGB) sets of pixels. Typical frame rates in 
+ADASs range from five frames per second (fps) to 60 fps 
+depending on the application. Applications that involve detec-
+tion of vehicle proximity need a higher frame rate due to the 
+rapid change in distance for cars on the road. In contrast, traf-
+fic sign detection does not demand a higher frame rate 
+because only one frame of the sign needs to be captured for 
+the sign to be detected.
+PREPROCESSING
+There are several common preprocessing steps needed to pre-
+pare an image for various computer vision algorithms, e.g., 
+denoising, color enhancement, color space conversion, and 
+image stabilization. A typical example of color space conver-
+sion is to convert the RGB color space to hue, saturation, and 
+value to separate color from the intensity. Moreover, the hue 
+channel is often used to separate out adverse effects (e.g., 
+shadows, uneven lighting, and over- and underexposure) in the 
+image to make tracking and detection easier.
+SEGMENTATION
+This is the process of separating features from a frame. In 
+analyzing an image, it is helpful to partition it into recogniz-
+able objects, e.g., identifying the road and sky in a frame as 
+FIGURE 3. The Google self-driving-car-generated 3-D image of its 
+surroundings using lidar [9].
+Image
+Acquisition
+Preprocessing
+Segmentation
+Object Detection
+and Tracking
+Depth
+Estimation
+System Control
+FIGURE 4. The vision data flow for the ADAS used.
+
+22
+IEEE Consumer Electronics Magazine  ^  september 2018
+two different features. Various thresholding techniques are 
+used to filter one class of pixels (e.g., the road) from another 
+(e.g., the sky). One of the methods, e.g., exploits color infor-
+mation to detect a stop sign, where an algorithm may look for 
+red in the image (typical for stop signs in the United States). 
+Any pixels in that red range will be turned white, and any-
+thing that is not will be turned black, as shown in Figure 5(a). 
+This results in a binary image that is often used as a mask for 
+finding the area of interest on the original image.
+OBJECT DETECTION AND TRACKING
+This is the process of classifying an object in an image (e.g., 
+determining if an object ahead is a vehicle, sign, or pedestrian) 
+and predicting its movement. It is often accomplished with var-
+ious machine-learning (ML) algorithms. ML algorithms are 
+provided large training data sets (thousands of images) to learn 
+and differentiate between vehicles and common objects found 
+around them. An example of an object detection method is 
+called the cascade classifier, which was first presented in [13] 
+for face detection, on low-performance hardware systems.
+Another common technique to train and classify images is 
+using a convolutional neural network (CNN), which  typically 
+consists of an input layer, multiple hidden layers, and an output 
+layer. The hidden layers consist of convolution and pooling 
+layers that are used for feature extraction and a fully connected 
+layer for classification. Examples of CNN frameworks used for 
+vision applications include Caffe, Darknet, and MATLAB. An 
+application of a CNN for object tracking is discussed in [14]. 
+Kalman-filter-based object tracking is proposed in [15], where 
+the filter tracks the object’s velocity.
+DEPTH ESTIMATION
+This step involves estimating the distance of an object in the 
+image frame relative to the camera. There are two common 
+methods for depth estimation: 1) the use of a stereo camera to 
+create a stereo pair and develop them to make a depth map 
+and 3-D point cloud that allow a real-world reconstruction of 
+the scene [16]; and 2) the use of a monocular camera and sev-
+eral state-of-the art techniques that use a subset of optical 
+flow, calibration, and least squares techniques [17].
+System control
+This is the last step in the vision data flow, which involves 
+interpretation of the outputs from previous layers, as shown 
+in the vision data flow diagram in Figure 4. This step requires 
+a weighing of each layer in the vision pipeline to come up 
+with a confidence value that can be used to make decisions. A 
+major challenge at this step is a false detection with high con-
+fidence that would take priority over other information 
+obtained from the previous layers. Thus, training with data 
+that is correct and contains many orientations of the object to 
+be classified is crucial to achieve high accuracy.
+OUTDOOR MONITORING
+In this section, we will discuss the classification of objects that 
+are outside a vehicle, e.g., pedestrians, vehicles, and roads.
+PEDESTRIAN DETECTION
+Detecting pedestrians is done using various classifiers, e.g., 
+[18]. Often more than one classifier is used for detecting peo-
+ple because of the varying orientation 
+and configuration in which pedestrians 
+may appear. Deep-learning networks 
+such as CNNs have been helpful to not 
+only identify pedestrians but also clas-
+sify their actions. 
+VEHICLE DETECTION
+Vehicle detection is a major focus of 
+object detection in ADASs. The fact 
+that many vehicles share common fea-
+tures, such as having tires, brake lights, 
+and license plates, allows the detection 
+of these objects to indicate the pres-
+ence of a car. These features are all 
+used to distinguish the vehicle from 
+other objects, such as signs, roads, and 
+other miscellaneous objects. In Figure 6, 
+an example of vehicle detection is shown, 
+using a CNN framework (Darknet) 
+and a real-time detection system, You 
+Only Look Once [19]. The orientation 
+Confidence = 0.921278 String = STOP
+Confidence = 0.907121 String = STOP
+Confidence = 0.889147 String = STOP
+(a)
+(b)
+FIGURE 5. The stop sign detection: (a) a binary stop sign and (b) stop sign classification 
+using optical character recognition.
+IMUs and GPSs are examples of  
+systems that help improve the  
+distance measurements with  
+lidar and radar.
+
+september 2018  ^  IEEE Consumer Electronics Magazine
+23
+of vehicles can cause some issues with their identification. A 
+vehicle being viewed from the front contains a different set of 
+features than a vehicle from the side or back. Often vehicle 
+classifiers consider various classes of vehicles, such as cars, 
+trucks, and semis that are trained with many orientations. 
+SIGN DETECTION
+Many ADASs are beginning to support traffic sign detection. 
+The most common use case is determining the speed limit on 
+the road by reading a speed sign (an ADAS would alert the 
+driver if the vehicle speed is over the limit). For instance, 
+color thresholds can be used to find the location of a sign and 
+optical character recognition to determine what that sign dis-
+plays [as shown in Figure 5(b)]. Other methods include using 
+CNNs and hybrid techniques, such as [20].
+LANE DETECTION
+Another ADAS feature used in a few production vehicles is 
+the ability to keep the vehicle within the lane lines on the 
+road (illustrated in Figure 6). However, lane lines are one of 
+the hardest road features to detect because of their inconsis-
+tencies, such as being different colors, faded, and sometimes 
+not even present. Current methods to detect lane lines often 
+use a Canny transform to find the edges in the image. Once 
+the edges are found, a Hough transform is used to compare 
+the lines to a single slope to determine if they are indeed lane 
+lines [21]. The use of CNNs is also becoming popular for lane 
+line detection.
+COLLISION AVOIDANCE
+ADASs are beginning to incorporate automatic braking and 
+collision avoidance. This is done by combining many features 
+discussed earlier, such as object tracking, vehicle detection, 
+and distance estimation [14]. With this combination of data, a 
+vehicle can predict a collision and stop it from happening by 
+braking or even steering out of the way.
+INDOOR MONITORING
+In a study conducted by the National Highway Traffic 
+Security Administration [22], it was observed that driver 
+fatigue, drowsiness, or distraction are the causes of 80% 
+of vehicle accidents. As ADAS becomes prevalent in pro-
+duction vehicles, there has been an increase in focus on 
+monitoring the driver using a camera pointed at him or 
+her. If the driver accesses a phone or does not look at the 
+road for a specific time duration, an alert or attempt to get 
+off the road will be made [23]. Drowsiness-fatigue-detec-
+tion systems have also included the ability to detect if the 
+driver has fallen asleep and can attempt to alert the driver 
+though a sequence of seatbelt vibrations and speaker 
+alerts [24].
+NEXT-GENERATION ADASs
+Next-generation ADAS solutions are beginning to use sensor 
+fusion and other advanced communication systems, such as 
+vehicle-to-everything (V2X). 
+SENSOR FUSION
+Sensor fusion refers to combining information from multiple 
+homogenous or heterogeneous sensors to find a single best 
+estimation of the state of the environment. Fusion helps sen-
+sors complement each other’s limitations and offers greater 
+leverage to the system compared to a system with individual 
+sensors. Sensor fusion offers high precision, reliability, 
+robustness to uncertainty, extended spatial and temporal cov-
+erage, and improved resolution, which are crucial in safety-
+critical systems, such as vehicles. Although this comes at a 
+higher computation cost, the computation power available in 
+modern-day cars and the reducing cost of the sensors are 
+facilitating the widespread integration of these systems.
+The classification of different levels of sensor fusion along 
+with the most commonly used techniques for fusing data are 
+discussed in [25]. The growing interest in deep learning and 
+other ML methods in recent years has driven researchers 
+toward exploring more efficient and intelligent techniques 
+that enhance ADASs with sensor fusion capabilities. 
+V2X COMMUNICATION
+V2X communication represents a class of communication 
+systems that provides the vehicle with an ability to exchange 
+information with other systems in the environment. Examples 
+include vehicle-to-vehicle (V2V) for collision avoidance, 
+vehicle-to-infrastructure (V2I) for traffic signal timing, vehicle-
+to-network for real-time traffic updates, and vehicle-to-
+pedestrian for pedestrian signaling. State-of-the-art V2X 
+communication is based on either dedicated short-range com-
+munications (DSRC) or cellular networks [26]. The IEEE 
+1609 family of standards for Wireless Access in Vehicular 
+Environment (WAVE), which is developed based on the IEEE 
+802.11p standard, defines an architecture and a set of services 
+and interfaces to enable DSRC-based secure V2V and V2I 
+communication [27]. 
+FIGURE 6. The object (lane, vehicle, and sign) detection. 
+One of the major problems  
+with today’s ADASs is that the  
+performance of the system  
+is significantly impacted by  
+changing environmental  
+and weather conditions.
+
+24
+IEEE Consumer Electronics Magazine  ^  september 2018
+AUTONOMOUS VEHICLES
+Next-generation ADASs using sensor fusion and V2X commu-
+nication are paving the way for autonomous driving. The Soci-
+ety of Automotive Engineers (SAE) J3016 standard [28] defines 
+six different levels of driving automation for on-road vehicles 
+(see Table 1). A vehicle is categorized as level zero if there are 
+no ADASs assisting the driver in handling steering and acceler-
+ation/deceleration and everything is handled manually by the 
+driver. Level one vehicles consist of ADASs assisting the driver 
+in handling either steering or acceleration/deceleration under 
+certain cases with human driver input. ADASs in level two 
+vehicles handle both steering and acceleration/deceleration 
+under certain environments with human driver input. In general, 
+in lower-level vehicles (levels zero to two), the driver monitors 
+the driving environment. In contrast, ADAS monitors the driv-
+ing environment in higher-level (levels three to five) vehicles. 
+Modern vehicles with the top-of-the-line ADASs, such as the 
+2016 Tesla model S, are level three, where multiple safety sys-
+tems are handled by the system, but the driver intervenes when 
+needed. Level four vehicles handle multiple safety systems and 
+operate in a wider range of environments. Level five automation 
+is the end goal of autonomous driving, where all of the systems 
+in the car are operated by the ADAS, under all driving condi-
+tions (such as snow-covered roads and unmarked dirt roads) 
+and would not require any human intervention. This, however, 
+still requires significant advances in multiple areas, such as sen-
+sor technology, computing systems, and automotive networks.
+CHALLENGES WITH ADASs
+Despite significant advances in the field of ADASs, several 
+important challenges remain to be overcome.
+CHANGING ENVIRONMENTAL CONDITIONS
+One of the major problems with today’s ADASs is that the per-
+formance of the system is significantly impacted by changing 
+environmental and weather conditions. For example, vision-
+based ADASs have issues with sensing during rainy and 
+extreme lighting conditions (too dark and/or too bright) [30]. 
+One of the possible solutions to this problem includes sensor 
+fusion, by relying on other sensor data depending on the 
+weather conditions, e.g., relying on the camera and radar dur-
+ing low light conditions while using the camera and lidar dur-
+ing other times for accurate distance estimation. The inclusion 
+of V2I and developing cost-effective smart roads could help 
+mitigate this issue.
+RESOURCE-CONSTRAINED SYSTEM
+Embedded systems used in ADASs have a requirement for 
+low power consumption. This is because ADASs involve run-
+ning several complex algorithms that result in high power 
+consumption and thermal dissipation. Due to the limited av­­
+ailability of energy in vehicles, it is essential to minimize the 
+power consumption of the embedded system used in ADASs. 
+Using more energy-efficient hardware than conventional gen-
+eral-purpose central processing units is important, which is 
+why emerging ADAS hardware must rely on graphics pro-
+cessing units, digital signal processors, image signal proces-
+sors, etc., that are customized to reduce power consumption 
+for ADAS applications. Moreover, as the embedded systems 
+for ADAS operate in real time, they have strict timing con-
+straints, which establishes a latency minimization require-
+ment. Hence, optimized hardware and software that results in 
+minimal power consumption and greater performance (lower 
+latency) predictability are highly desired in an ADAS.
+SECURITY
+Modern vehicles are becoming increasingly connected with a 
+lot of different systems, such as Wi-Fi, near-field communica-
+tion, and V2X. This enables the vehicle to sense and receive a 
+variety of information but also makes it more vulnerable to 
+attacks. Many vehicle hacks have been demonstrated, e.g., 
+researchers in [7] used onboard diagnostics (OBD-II) to hack a 
+GM vehicle. In [29], the telematics system in a Jeep Cherokee 
+was hacked to accelerate, brake, and kill the engine. This prob-
+lem is aggravated in ADASs and autonomous driving. Prevent-
+ing hackers from gaining access to connected vehicles is 
+becoming increasingly important. This involves securing both 
+in-vehicle networks and external communication.
+GEOSPATIAL CONSTRAINTS
+Many of the modern ADAS solutions being developed are 
+tested within a geographic location or a group of locations 
+where they are sold. This limits the ADAS to one or a certain 
+group of geographical locations. This is because not all coun-
+tries (or some states in a country) adhere to the same sign and 
+road conventions uniformly, which makes ADAS algorithms 
+that are often trained under one location hard to work 
+efficiently in other locations. There is a need to improve 
+Modern vehicles are becoming 
+increasingly connected with  
+a lot of different systems,  
+such as Wi-Fi, near-field  
+communication, and V2X.
+Table 1. SAE J3016 levels of driving  
+automation [28].
+SAE Level
+Definition
+Monitoring of  
+Driving Environment
+Zero
+No automation
+Human driver
+One
+Driver assistance
+Two
+Partial automation
+Three
+Conditional automation
+System
+Four
+High automation
+Five
+Full automation
+
+september 2018  ^  IEEE Consumer Electronics Magazine
+25
+­algorithms, e.g., by exploiting V2X technology deployments 
+to overcome variations in road sign conventions.
+CONCLUSION
+In this article, we presented a detailed survey of different types of 
+ADAS variants and an overview of the sensors used in these vari-
+ants. We described a classification of ADASs based on the different 
+types of sensors used and discussed outdoor and indoor monitoring 
+with vision-based ADASs. The importance of sensor fusion tech-
+niques and advanced communication systems, such as V2X, and 
+their importance for emerging autonomous vehicles was also dis-
+cussed. Finally, we presented some important unresolved challeng-
+es with ADASs that must be addressed going forward.
+ABOUT THE AUTHORS
+Vipin Kumar Kukkala (vipin.kukkala@colostate.edu) is a 
+Ph.D. student in the Electrical and Computer Engineering 
+Department at Colorado State University, Fort Collins. 
+Jordan Tunnell (Jordantunnell@gmail.com) is pursuing 
+his M.S. degree in the Electrical and Computer Engineering 
+Department at Colorado State University, Fort Collins.
+Sudeep Pasricha (sudeep@colostate.edu) is a Monfort 
+and Rockwell-Anderson professor in the Electrical and Com-
+puter Engineering Department at Colorado State University, 
+Fort Collins.
+Thomas Bradley (thomas.bradley@colostate.edu) is an 
+associate professor of mechanical engineering at Colorado 
+State University, Fort Collins.
+REFERENCES
+[1] World Health Organization. (2015). Global status report on road safe-
+ty. WHO. Geneva, Switzerland. [Online]. Available: http://www.who.int/
+violence_injury_prevention/road_safety_status/2015/en/
+[2] Association for Safe International Road Travel. (2018). Annual global 
+road crash statistics. ASIRT. Potomac, Maryland. [Online]. Available: 
+http://asirt.org/initiatives/in-forming-road-users/road-safety-facts/road-
+crash-statistics 
+[3] B. Markwalter, “The path to driverless cars,” IEEE Consum. Electron. 
+Mag., vol. 6, no. 2, pp. 125–126, 2017.
+[4] W. Cunningham. (2014, May 31). US requiring back-up cameras in 
+cars by 2018. Roadshow. [Online]. Available: www.cnet.com/news/u-s- 
+requiring-back-up-cameras-in-cars-by-2018/
+[5] I. Gat, M. Benady, and A. Shashua, “A monocular vision advance 
+warning system for the automotive aftermarket,” SAE, Warrendale, PA, 
+Tech. Rep. 2005-01-1470, 2005.
+[6] S. Saponara. (2016). Hardware accelerator IP cores for real time radar 
+and camera-based ADAS. J. Real-Time Image Processing. [Online]. pp. 
+1–18. Available: https://doi.org/10.1007/s11554-016-0657-0 
+[7] K. Koscher, A. Czeskis, F. Roesner, S. Patel, T. Kohno, S. Checko-
+way, D. McCoy, B. Kantor, D. Anderson, H. Shacham, and S. Savage, 
+“Experimental security analysis of a modern automobile,” in Proc. IEEE 
+Security Privacy, 2010, pp. 447–462.
+[8] S. Thrun, M. Montemerlo, H. Dahlkamp, D. Stavens, A. Aron, J. 
+Diebel, P. Fong, J. Gale, M. Halpenny, G. Hoffmann, and K. Lau, “Stan-
+ley: The robot that won the DARPA grand challenge,” J. Field Robotics, 
+vol. 23, no. 9, pp. 661–692, Sept. 2006.
+[9] E. Guizzo, “How Google’s self-driving car works,” IEEE Spectr., vol. 
+18, no. 7, pp. 1132–1141, 2011.
+[10] Velodyne. (2017). Velodyne LiDAR announces new velarray LiDAR 
+sensor. Business Wire. [Online]. Available: http://www.businesswire 
+.com/news/home/20170419005516/en/
+[11] NXP. (2017, May 24). RADAR, camera, LiDAR and V2X for 
+autonomous cars. [Online]. Available: https://blog.nxp.com/automotive/
+radar-camera-and-lidar-for-autonomous-cars
+[12] D. I. B Hagebeuker. (2007). A 3D time of flight camera for object 
+detection. PMD Technologies GmbH. Siegen, Germany. [Online]. Avail-
+able: https://www.ifm.com/obj/O1D_Paper-PMD.pdf
+[13] P. Viola and M. J. Jones, “Robust real-time face detection,” Int. J. 
+Comput. Vision, vol. 57, no. 2, pp. 137–154, 2004. 
+[14] J. Pyo, J. Bang, and Y. Jeong, “Front collision warning based on 
+vehicle detection using CNN,” in Proc. IEEE SoC Design Conf. (ISOCC), 
+2016, pp. 163–64. 
+[15] Y. Huang, Y. Zhang, Z. Wu, N. Li, and J. Chambers, “A novel adap-
+tive Kalman filter with inaccurate process and measurement noise covari-
+ance matrices,” IEEE Trans. Autom. Control, vol. 63, no. 2, pp. 
+594–601, 2018.
+[16] S. Nedevschi, R. Danescu, D. Frentiu, T. Marita, F. Oniga, C. Pocol, 
+R. Schmidt, and T. Graf, “High accuracy stereo vision system for far dis-
+tance obstacle detection,” in Proc. IEEE Intelligent Vehicles Symp., pp. 
+292–297, 2004. 
+[17] S. Diamantas, S. Astaras, and A. Pnevmatikakis, “Depth estimation in 
+still images and videos using a motionless monocular camera,” in Proc. 
+IEEE Int. Conf. Imaging Systems Techniques (IST), 2016, pp. 129–134. 
+[18] D. Geronimo, A. M. Lopez, A. D. Sappa, and T. Graf, “Survey of 
+pedestrian detection for advanced driver assistance systems,” IEEE 
+Trans. Pattern Anal. Mach. Intell., vol. 32, no. 7, pp. 1239–1258, 2010.
+[19] J. Redmon and A. Farhadi, “YOLO9000: Better, faster, stronger,” in 
+Proc. IEEE Conf. Computer Vision Pattern Recognition (CVPR), 2017, 
+pp. 6517–6525. 
+[20] F. Parada-Loira and J. L. Alba-Castro, “Local contour patterns for 
+fast traffic sign detection,” in Proc. IEEE Intelligent Vehicles Symp. (IV), 
+2010, pp. 1–6. 
+[21] Y. Li, L. Chen, H. Huang, X. Li, W. Xu, L. Zheng, and J. Huang, 
+“Nighttime lane markings recognition based on canny detection and 
+Hough transform,” in Proc. IEEE Int. Conf. Real-Time Computing Robot-
+ics (RCAR), 2016, pp. 411–415. 
+[22] S. G. Klauer, T. A. Dingus, V. L. Neale, J. D. Sudweeks, and J. D. 
+Ramsey. (2004, Jan.). The impact of driver inattention on near-crash/
+crash risk: An analysis using the 100-car naturalistic driving study data. 
+U.S. Nat. Highway Traffic Safety Admin. Washington, D.C. [Online]. 
+Available: https://www.nhtsa.gov/DOT/NHTSA/NRD/Articles/HF/
+Reducing%20Unsafe%20behaviors/810594/810594.htm
+[23] P. Morignot, J. P. Rastelli, and F. Nashashibi, “Arbitration for bal-
+ancing control between the driver and ADAS systems in an automated 
+vehicle: Survey and approach,” in Proc. IEEE Intelligent Vehicles Symp., 
+2014, pp. 575–580.
+[24] M. I. Chacon-Murguia and C. Prieto-Resendiz, “Detecting driver 
+drowsiness: A survey of system designs and technology,” IEEE Consum. 
+Electron. Mag., vol. 4, no. 4, pp. 107–119, 2015.
+[25] F. Castanedo. (2013). A review of data fusion techniques. Sci. World 
+J. [Online]. Available: http://dx.doi.org/10.1155/2013/704504
+[26] K. Abboud, H. A. Omar, and W. Zhuang, “Interworking of DSRC 
+and cellular network technologies for V2X communications: A survey,” 
+IEEE Trans. Veh. Technol., vol. 65, no. 12, 2016, pp. 9457–9470.
+[27] N. Vivek, S. V. Srikanth, P. Saurabh, T. P. Vamsi, and K. Raju, “On 
+field performance analysis of IEEE 802.11 P and WAVE protocol stack 
+for V2V & V2I communication,” in Proc. IEEE Int. Conf. Information 
+Communication Embedded Systems (ICICES), 2014, pp. 1–6. 
+[28] SAE International. [Online]. Available: http://www.sae.org/misc/
+pdfs/automated_driving.pdf
+[29] C. Valasek and C. Miller. (2015). Remote exploitation of an unal-
+tered passenger vehicle. IOActive. Seattle, WA. White Paper. [Online]. 
+Available: https://ioactive.com/pdfs/IOActive_Remote_Car_Hacking.pdf
+[30] C. Schwarzlmuller, F. Al Machot, A. Fasih, and K. Kyamakya, “Adap-
+tive contrast enhancement involving CNN-based processing for foggy 
+weather conditions & non-uniform lighting conditions,” in Proc. IEEE Int. 
+Symp. Theoretical Electrical Engineering (ISTET), 2011, pp. 1–10.
+
+View publication stats

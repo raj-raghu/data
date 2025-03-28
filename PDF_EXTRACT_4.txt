@@ -1,0 +1,302 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/357569615
+AUTOMATIC EMERGENCY BRAKING SYSTEM (A SYSTEM FOR DECREASED
+HUMAN EFFORT)
+Conference Paper · January 2022
+CITATION
+1
+READS
+11,463
+4 authors, including:
+Ashwani Gulati
+Technische Hochschule Nürnberg Georg Simon Ohm
+1 PUBLICATION   1 CITATION   
+SEE PROFILE
+Kashish Goyal
+O.P. Jindal Global University
+2 PUBLICATIONS   2 CITATIONS   
+SEE PROFILE
+All content following this page was uploaded by Ashwani Gulati on 04 January 2022.
+The user has requested enhancement of the downloaded file.
+
+1 
+ 
+AUTOMATIC EMERGENCY BRAKING SYSTEM 
+(A SYSTEM FOR DECREASED HUMAN EFFORT) 
+Sumeet Bhardwaj1*, Ashwani Gulati1, Kashish Goyal1, Vivek Vij1 
+1Mechanical Engineering Department, DAVIET Jalandhar 
+                                      *sumeet.ckt10@gmail.com 
+I. 
+ABSTRACT 
+Automatic Emergency Braking (AEB) is a braking system 
+which helps to apply brakes automatically under the condition 
+of emergency and helps to mitigate the severity of a crash.  
+This paper deals with the study of designing and working of  
+automatic emergency braking system using the various 
+fundamentals of mechanical and electronics engineering 
+popularly known as ‘Mechatronics’.  In this system Ultrasonic 
+Sensors with the combined use of Stereo Cameras will detect 
+an obstacle in front of the vehicle and it will tell us the relative 
+distance between the obstacle and the vehicle. The ECU will 
+then judge if an accident is likely to happen or not and the 
+brakes will be applied automatically under this system. 
+II. 
+INTRODUCTION 
+An advanced emergency braking system (AEBS) is a system 
+which handles the vehicle automatically in case of emergency. 
+The road vehicle safety system comprises sensors which 
+monitor the proximity of vehicles which are in front of it and 
+detects the conditions where the relative speed and distance 
+between the vehicle and the obstacle suggests that a collision 
+is likely to happen, as shown in figure 1.  In these situations, 
+emergency braking can be automatically applied to avoid or 
+reduce the chances of collision. AEB system has the capability 
+to reduce the impact of speed or mitigate the effects of head 
+on crashes, rear end crashes, right turn crashes and pedestrian 
+crashes.    Automatic Emergency Braking (AEB) is an 
+emerging form of Advanced Driver Assisted Systems (ADAS) 
+which works on the principle of electronically controlled 
+Ultrasonic Sensors which analyze and sense the speed of the 
+Vehicle coming, and thus helps to apply AEB system into 
+working [1]. The major factors responsible for the accident 
+includes poor visibility of other vehicles or obstacles, ignoring 
+traffic signals and not maintaining a specific and safe distance 
+from other vehicle.    AEB is based on vehicle to vehicle 
+communications (V2V) which helps to mitigate the effect of 
+high speed collision to a low speed impact collision.  
+ 
+Fig. 1.  Working Principle of AEB System 
+
+2 
+ 
+These systems initially alert the driver to take feasible action 
+to avoid the collision. The alert may be an audio signal to the 
+driver, Alert on the Display screen or tightening of the seat 
+belts. If the driver’s steering and braking intervention is not 
+adequate to avoid a collision, the automatic emergency 
+braking system will be helpful in automatically applying the 
+brake [2]. 
+III. 
+TECHNOLOGY USED 
+ULTRASONIC SENSORS WITH THE USE OF STEREO 
+CAMERAS 
+The normal audible frequency range for humans is 20 to 
+20,000 Hz. Ultrasonic waves are those waves which are above 
+this frequency level of hearing, so these waves have frequency 
+above 20,000 Hz. Ultrasonic Sensors make use of high 
+frequency waves to detect the presence of an object and 
+determine its range. These sensors emit ultrasonic waves and 
+estimate the echo which is obtained by the sensor which helps 
+in calculating the time interval and thus calculating the 
+distance between vehicle and the obstacle. The Echo 
+reflections of moving objects will exhibit a Doppler Shift, 
+which determines the speed of the other object.  The ultrasonic 
+sensors consist of two basic components: Transmitter and 
+Receiver.  An ultrasonic wave generator generates an 
+ultrasonic wave and after the wave is produced, the ultrasonic 
+transmitter transmits the ultrasonic waves to detect an 
+obstacle. Then, when the ultrasonic wave detects the obstacle, 
+it will produce a reflected wave as shown in figure 2.  An 
+ultrasonic receiver receives the ultrasonic waves reflected 
+from the road surface to generate a received signal [3].  As 
+ultrasonic sensors are not vision-based they can be used very 
+effectively under the conditions of poor lighting and objects 
+which are transparent in nature. Also we have used Stereo 
+Cameras along with the ultrasonic sensors which can detect up 
+to 500m range. Low cost components are only installed in this 
+sensor. This sensor is adaptable for any conditions [4]. 
+ 
+Fig. 2.  Working of Ultrasonic Sensor 
+IV. 
+CONVENTIONAL SYSTEM 
+ 
+Fig. 3.   Conventional Braking System 
+Figure 3 shows the conventional arrangement comprising of 
+antilock braking system (ABS) which is used to apply the 
+brakes with the help of discrete locking of disc and was known 
+to be a very efficient method of applying brakes by pushing 
+brake pedal downwards. This method helped to mitigate the 
+skidding effect in the vehicle and was very helpful for the 
+stability of the vehicle while at higher speeds. It reduced the 
+danger of accidents to some extent. 
+V. 
+PROPOSED SYSTEM 
+The basic aim of this work is to develop a safer braking 
+system so as to have less human attention to the driving. 
+Previously cars with sensors have been made which just sense 
+
+3 
+ 
+the obstacles and gives an alert to the driver. In this system we 
+are exploring the recent work in an innovative way.  This 
+system has an ultrasonic sensor with the combination of Stereo 
+cameras which has a spatial intelligence of 50 meters and is 
+having an environmental recognition of 500 meters.  The basic 
+epitome of this system is to apply the brakes automatically if 
+no action is taken by the driver in case of an emergency. 
+National Highway Traffic Safety Administration claims that 
+the use of Automatic Emergency Braking System would 
+reduce the accidents up to 27% [5]. 
+ 
+Fig. 4.   Proposed System 
+In this system Ultrasonic sensors and the Stereo Cameras are 
+attached to the ECU which records all the information of the 
+signal given by them. A proximity sensor is attached to the 
+lower side of the Brake pedal to sense if the pushing action is 
+provided on the brake pedal by the driver or not and is 
+attached to the ECU for simultaneously working of all the 
+sensors so that the system should work effectively. The idea 
+was further moved to actuate the piston of master cylinder 
+with the help of solenoidal coils which are wrapped around the 
+master cylinder as shown in figure 4. The solenoidal wires will 
+get actuated with the help of a signal provided by ECU, thus 
+making the master cylinder work and application of brakes 
+will take place automatically [2]. Different Manufacturers call 
+the AEB system with their own proposed names. Audi calls it 
+Adaptive Cruise Control with Pre Sense Front, BMW call it 
+Driving Assistant Plus, Honda names it as Collision 
+Mitigation 
+Braking 
+System, 
+Mercedes 
+has 
+Collision 
+Prevention Assist 3.0 and Volvo names it as City Safety etc. 
+[6]. 
+VI. 
+WORKING OF THE PROPOSED 
+SYSTEM 
+This system will engage the brakes automatically only when 
+there is no assistance by the driver for an action to take place 
+under the condition of an emergency. There will be two 
+working regions of the system. In the first region, the 
+ultrasonic transmitters will transmit the ultrasonic waves to 
+find the distance of an obstacle towards the road surface. If the 
+sensor detects any kind of physical obstacle, it will produce a 
+reflected wave. The Ultrasonic receiver will then receive the 
+reflected signals to measure the accurate distance of the 
+obstacle. The use of Stereo Cameras is basically for the 
+detection of vehicles, pedestrian and objects. This camera 
+helps to identify the moving objects and it reduces the effect 
+of false recognitions of objects from a far distance [7]. This 
+system will then detect the relative distance of the obstacle 
+and also the relative speed of that obstacle. If the system 
+judges that an accident is likely to happen, it will first warn the 
+driver with help of audio signals, alert messages on the 
+display, tightening of the seat belt or even using red lights 
+inside the vehicle. In the second region the use of piezoelectric 
+sensors will come into play.  After the alert signals, if the 
+brake pedal is pushed to avoid the collision then AEB system 
+will get disengaged, if pedal is not pushed, the AEB system 
+will be engaged. Piezoelectric Sensors will sense if the brake 
+pedal was pushed or not and will send the information to the 
+ECU. Consequently, ECU will send the signal to actuate the 
+Master cylinder with the help of solenoidal wires and thus in 
+the second region Automatic Emergency Braking system will 
+apply brakes automatically to avoid any collision which was 
+meant to happen without this system [2]. 
+
+4 
+ 
+VII. 
+CALCULATIONS 
+Stopping distance D = 0.5 ( V )2/a             ………. ( 1 ) 
+Where ‘V’ is initial velocity and ‘a’ is acceleration. Every car 
+has its own braking efficiency which depends upon the force 
+exerted by the tires on the surface given by    
+F= µN            ……….. ( 2 ) 
+  Where ‘µ’ is the frictional coefficient between the tire and 
+surface and N is the weight of the car. 
+If we increase the value of µ the efficiency of car would 
+decrease and if we increase the weight of the car we will have 
+to counteract higher momentum. Therefore an efficient 
+method of having greater downward force is achieved by 
+using spoilers or by using  sticky tires. 
+     If we consider 1g decelerating force which tires exert on 
+the surface then the relation between total stopping distance 
+and the alert area in Automatic Emergency Braking System is 
+depicted 
+by 
+the 
+graph 
+shown 
+in 
+the 
+figure 
+5. 
+ 
+Fig. 5.  Graph showing characteristics between Alert Area and Total  
+Stopping Distance 
+ 
+VIII. 
+ADVANTAGES 
+1. With the use of an automatic steering system, a driverless 
+car can be conceived and materialized. 
+2. In the proposed system, the uses of Ultrasonic sensors are 
+reliable in rainy weather as well and this gives an advantage of 
+using the sensors outside the body of an automobile. Stereo 
+cameras are used for eliminating any noisy signals taken up by 
+ultrasonic waves and once the distance of the object is sensed 
+by US sensors it further provides depth of instructions about 
+the shape and size of the obstacle. The combination of US 
+sensors and the stereo cameras make the system cost effective 
+as they are cheap and reliable. 
+3. A recent study in US revealed that an overall 38 percent 
+reduction for vehicles having low speed AEB as compared to  
+vehicles with no AEB and approximately 70,000 U.S. police 
+reported rear-end crashes in 2013 and 30,000 injuries in such 
+crashes could have been prevented if all vehicles were 
+equipped with Forward Collision Warning with AEB [8]. 
+4. With AEB installed in the cars, the car insurance premiums 
+are reduced. The manufacturer sees a reduced possibility of 
+accidents thus they provide insurance at cheaper rates. A study 
+by IIHS in the US presented that people owning Volvo 
+vehicles having AEB technology were given insurance at 25 
+percent lesser proportions [9]. 
+IX. 
+CONCLUSIONS 
+Automatic Emergency Braking system eliminates or mitigates 
+the severity of various types of crashes like head on collision, 
+pedestrian crashes. In the present work, the use of ultrasonic 
+sensors with the use of stereo cameras helps to determine the 
+distance between the vehicle and the obstacle. These sensors 
+are quite cheaper than other types of sensors available in the 
+market. 
+An Ultrasonic sensor can detect any kind of obstacle thus it 
+also prevents collision of vehicle with pedestrians or it can at 
+least mitigate the effect of the crash. It is emerging as the 
+safest technology presently for the prevention of accidents.  
+ 
+ 
+
+5 
+ 
+REFERENCES 
+[1]www.trw.com/integrated_systems/active_passive_systems/automatic_e
+mergency_braking (accessed on 18th March 2016). 
+[2] S. Kumar and V. Kumar “Automatic emergency braking system” 
+International Journal of Research in Science & Engineering Volume: 1 Issue: 
+3. 
+[3] G.V. Sai Ram, B. Suresh, CH. Sai Hemant and K. Krishna Sai “Intelligent 
+Mechatronic Braking System” International Journal of Emerging Technology 
+and Advanced Engineering Volume 3, Issue 4, April 2013. 
+[4] P.R. Niveditha  and S.Gowri  “Collision Warning System using Ultrasonic 
+Sensors and Automatic Brake System”  Proc. of Int. Conf. on  Recent Trends in 
+Information, Telecommunication and Computing, ITC. 
+[5] www.autoblog.com/2012/06/15/euro-ncap-will-soon-require-auto-
+braking-for-five-star-safety-ra/ (accessed on 20th March 2016). 
+[6] www.thatcham.org/car-safety//wp-content/uploads/2016/02/The-
+different-names-for-AEB.pdf (accessed on 21st March 2016). 
+[7] Wei Zhang “Vehicle Pedestrian Detection using Stereo Vision Technology” 
+3rd International Conference on Road Safety and Simulation, September 14-
+16, 2011, Indianapolis, USA. 
+[8] www.euroncap.com/en/press-media/press-releases/study-confirms-high-
+effectiveness-of-low-speed-autonomous-emergency-braking-aeb (accessed 
+on 22nd March 2016). 
+[9] http://www.telegraph.co.uk/motoring/road-safety/9630767/Cheaper-
+insurance-for-cars-with-auto-braking.html (accessed on 16th March 2016). 
+ 
+ 
+ 
+ 
+ 
+View publication stats

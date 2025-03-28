@@ -1,0 +1,406 @@
+Intelligent Approach Expands 
+Possibilities for Parking Automation
+Parking assistance features like proximity warnings and driver-monitored hands-free 
+parking have become common conveniences across most vehicle classes.
+But as consumers increasingly demand more advanced parking features, it is becoming 
+clear that autonomous parking systems must be designed as safety-critical technologies, 
+not just as mere conveniences. A vehicle that is parking itself must be fully aware of 
+nearby pedestrians, cognizant of all the available space around it and intelligent enough 
+to use that information to execute the maneuver safely and efficiently.
+That means that technologies used in advanced driver assistance systems (ADAS) for 
+driving on local streets are critical to ensuring higher performance and safety when it 
+comes to parking assistance. The same sensors and machine learning intelligence that 
+power ADAS in complex urban driving scenarios and in difficult lighting and weather 
+conditions will play key roles in automated parking as it evolves.
+WHITE PAPER
+1
+
+THE UNIVERSAL CHALLENGE 
+Parking is the expected conclusion of every 
+vehicle trip, but the conditions under which this 
+occurs can be as varied as an empty, well-lit 
+parking garage, a driveway at night or a crowded 
+parking lot in a rainstorm. Whether nosed in, 
+backed in or parallel parked, every vehicle is 
+expected to safely come to rest.
+Automating that function across all conditions 
+starts with robust sensing and perception 
+capabilities. While many parking automation 
+features rely primarily on ultrasonic sensors and 
+cameras, state-of-the-art radar enhanced with 
+artificial intelligence and machine learning (AI/
+ML) has significant advantages over other forms 
+of sensing. Using radar to interpret a parking 
+environment transforms the way in which a vehicle 
+can plan and carry out parking tasks. 
+Enhanced radar data, fused with inputs from 
+cameras and ultrasonic sensors, enables safe, 
+reliable parking features with increasing levels 
+of vehicle automation. For example, vehicles 
+can use radar to identify an open parking space 
+from a sufficient distance to pull into it directly, 
+without going so slowly as to frustrate nearby 
+drivers. Other sensing modalities often require 
+the vehicle to first drive past the space when 
+traveling at typical parking lot speeds. Intelligent 
+systems can also map a parking area and be 
+trained to navigate it later, and radar will let Level 
+4 autonomous cars safely drive away to park 
+themselves in a garage and return on demand.
+EFFICIENT, ROBUST PERCEPTION
+Radar has significant advantages over both vision 
+and ultrasonic sensors, creating more robust 
+360-degree sensing under a wider range of 
+conditions. Because of these advantages, radar 
+is increasingly becoming foundational for a wide 
+range of ADAS features, but radar’s advantages 
+also enable OEMs to create parking features with 
+greater capabilities over a broader operational 
+design domain. 
+Compared with ultrasonic sensors — core 
+components of many parking assistance systems 
+— radar offers much longer range: potentially 
+five to 10 times farther. This extended range 
+significantly improves collision avoidance and 
+enables new parking actions. For example, 
+ultrasonic sensors can measure the size of a 
+parking space only when directly in front of 
+it, forcing the vehicle to drive past the space, 
+back up, and return to enter it. Radar detects a 
+suitable space between two parked vehicles from 
+a farther distance, allowing the vehicle to directly 
+maneuver into it.
+In addition, recent advances in radar have 
+expanded its field of view vertically so it can 
+detect overhanging obstacles, such as tractor-
+trailer rigs or objects extending from the bed of a 
+pickup truck.
+Radar has key advantages over vision systems for 
+accurately perceiving distance and distinguishing 
+among objects. Radar detection inherently 
+provides the distance to an object, while vision 
+systems are limited by cameras’ 2D perception. 
+Vision systems have to rely on triangulation 
+techniques while moving past objects to 
+determine the distance to a given object in 
+its field of view, such as a parked car, and the 
+perception of distance with these systems 
+declines at longer ranges. Radar is also better 
+at distinguishing between one or two partially 
+overlapping objects, such as pedestrians. 
+High availability
+In addition, radar works in certain conditions, 
+such as rain, fog and darkness, that make other 
+sensors less reliable. Front-facing cameras rely on 
+windshield wipers or headlights to keep their view 
+clear, but cameras elsewhere around the vehicle 
+lack those features. A buildup of salt, dust and 
+grime, which may be a constant presence during 
+severe weather, can degrade the performance of 
+cameras and ultrasonic sensors, even triggering 
+proximity alarms when ultrasonic signals bounce 
+back from a heavy buildup of material on the 
+surface of a sensor. 
+ADVANCED PARKING
+2
+
+These conditions have much less effect on the 
+transmission of radar waves, so radar units 
+mounted around a vehicle can provide reliable 
+360-degree sensing in the widest possible range 
+of driving scenarios. 
+INTELLIGENT PERCEPTION
+Innovations in radar hardware and signal 
+processing are building on the technology’s 
+inherent strengths, thus enabling new 
+applications across the full range of vehicle 
+automation, from parking to high-speed ADAS 
+and autonomous driving. 
+Sensing gains precision
+Emerging 3D air-waveguide technologies for 
+radar antennas allow for the use of special 
+radar beams tailored to specific applications. 
+These technologies efficiently illuminate the 
+environment with radar signals and receive the 
+faint echoes that return with low loss, enabling 
+higher precision while keeping costs down and 
+sensor size the same. With 3D air waveguides, 
+radar sensors receive more of the data needed  
+to identify where objects are, how fast they  
+are moving and even what they are, by feeding  
+the data to machine learning systems to  
+classify objects. 
+The latest generation of radar also adds a fourth 
+dimension, sensing elevation. This allows the 
+system to create a radar point cloud to model the 
+surrounding environment in high definition, with 
+important details such as low curbs, overhead 
+signs and parking garage gates.
+AI/ML: A force multiplier
+Artificial intelligence and machine learning are 
+doing the most to transform the capabilities of 
+radar. The growing power of flexible, centralized 
+onboard computing platforms and the rapid 
+development of pattern-recognition algorithms 
+are helping to make this possible. 
+Radar has been used primarily to detect the 
+location, direction and speed of vehicles and 
+other highly reflective objects, especially for 
+high-speed ADAS applications such as adaptive 
+cruise control. Now, machine learning techniques 
+like those used to train in-vehicle vision systems 
+to distinguish among vehicles, pedestrians and 
+roadside infrastructure are being applied to  
+radar signals. 
+Better at Spotting Parking Spots
+Several different sensing technologies 
+can detect open parking spaces, but 
+radar excels at detecting those spaces 
+sooner at conventional parking-lot driving 
+speeds.
+A few meters away
+Cameras
+1
+2
+3
+4
+Radar
+15 meters away
+1
+2
+Detection only possible after 
+passing the open spot
+Ultrasonic
+1
+2
+3
+4
+ADVANCED PARKING
+3
+
+Enhanced resolution, trained neural networks 
+and more powerful radar reception algorithms 
+give these intelligent systems greater ability to 
+correctly identify stationary and less-reflective 
+objects. In parking applications, the combination 
+allows vehicles to analyze all potential obstacles 
+in the environment, including partially occluded 
+objects such as pedestrians walking behind cars. 
+Sensor fusion adds value
+Vision remains essential to many parking 
+applications for uses such as reading signs and 
+identifying lane markings, and such data can 
+be merged with radar inputs through sensor 
+fusion. Readings from ultrasonic sensors, which 
+provide low-cost short-range sensing, can also 
+be merged with this data. Sensor fusion helps to 
+build the best possible picture of the surrounding 
+environment. 
+Radar is especially well suited to AI/ML processing 
+compared with other sensing technologies. 
+Unlike ultrasonic sensors, radar captures enough 
+detail to be used for object classification. But it 
+generates less overall data than vision systems, 
+which take in unnecessary details such as 
+vehicle color, so identifying hazards requires less 
+computing power in the vehicle’s core computing 
+platform. In-vehicle preprocessing of data from 
+radar sensors can further reduce computing 
+requirements.
+ADVANCED PARKING 
+BREAKTHROUGHS
+Several next-generation parking assistance 
+features benefit from advances in sensing and 
+perception including AI/ML signal processing, 
+for increased automation, availability and safety. 
+Aptiv has developed four such applications. 
+Auto Parking Assist
+Auto Parking Assist allows a vehicle to 
+automatically find, enter and exit a parking 
+spot. It controls the steering, speed, brakes and 
+gearbox while the driver monitors the process 
+from inside or outside the vehicle. Radar sensors 
+scan a parking lot and identify a suitable space. 
+The vehicle can then go directly to it and 
+maneuver into it — and later leave the space — 
+with no driver input. A neural network processes 
+radar data using AI/ML to detect, track and 
+identify all types of hazards while integrating 
+vision to read signs and road markings. 
+As an SAE Level 2 automation feature, Auto 
+Parking Assist can operate only when the driver is 
+paying attention and ready to take control, either 
+in the vehicle or at a distance with a key fob or 
+smartphone app that can stop the vehicle. This 
+allows owners to park in spaces that are exposed 
+to weather or too tight for the doors to open.
+Memory Parking 
+This feature, first demonstrated by Aptiv at CES 
+2023, allows a vehicle to record the process of 
+parking in a given location and later repeat it 
+automatically with the driver present.
+The first time a driver parks in a given location 
+and instructs the system to record, Memory 
+Parking detects and classifies all stationary 
+objects in the environment, exclusively with radar 
+enhanced with AI/ML. It uses this data to build a 
+virtual map that remains in the vehicle, and the 
+data recorded on subsequent trips is aggregated 
+to keep the map current. If there is a major, 
+permanent change in the area, Memory Parking 
+will instruct the driver to retrain it.
+Memory Parking models the scene using an 
+occupancy grid, in which a radar reception 
+algorithm classifies any stationary object in a 
+given quadrant, such as a garage pillar, to a high 
+degree of certainty. The virtual map, along with 
+real-time sensor inputs, enables the vehicle to 
+situate itself within the learned environment 
+through simultaneous location and mapping. 
+Memory Parking self-maps the area without 
+referring to any existing map, but it can also be 
+aligned to a commercial map of the surrounding 
+area when one is available. This feature — also 
+known as home zone parking — is designed 
+ADVANCED PARKING
+4
+
+for navigating to a space or garage on private 
+property, such as a home driveway. A Level 2 
+“summon” feature is possible using the same 
+technologies without any further training.
+Though designed initially as an SAE Level 2+ 
+feature that requires driver monitoring from 
+either inside or outside the vehicle, Memory 
+Parking could be implemented as Level 4 — 
+allowing vehicle autonomy within a limited domain 
+— with enough redundant sensing and computing 
+systems to ensure safety.
+Auto Park Valet
+This Level 4 parking feature on the Aptiv road 
+map will enable a vehicle to drop off passengers, 
+find a suitable parking space and return when 
+summoned, all without driver monitoring or 
+control. It will provide full autonomy within an 
+operational design domain limited to parking.
+Auto Park Valet will use high-definition digital 
+maps from outside sources for localization and 
+navigation within parking areas. In real time, it will 
+use combined radar and vision to find suitable 
+parking spaces from a distance and enter them 
+directly. Auto Park Valet is designed for parking 
+in public lots and garages without training and 
+will rely on high-definition large-area maps that 
+are expected to become commercially available in 
+parallel with the on-vehicle capabilities. 
+Surround View
+This feature uses sensor fusion to combine data 
+from radar, vision and ultrasonic sensors in a 
+view of the vehicle’s surroundings shown on the 
+in-cabin display. It stitches together images from 
+multiple surround-view cameras and can provide 
+multiple viewing angles. Other information, 
+such as the current steering path and distance 
+warnings, can be overlayed onto the video image.
+Advanced Parking Options
+Advances in sensing and perception 
+enable several parking applications.
+This feature combines data from 
+radar, vision and ultrasonic sensors to 
+build a view on the in-cabin display.
+Auto Parking Assist: Operates with human oversight
+The vehicle parks 
+itself, but with 
+constant monitoring 
+by a human driver.
+Auto Park Valet: Performs fully autonomous parking
+The vehicle uses maps and 
+sensing data to ﬁnd an 
+open space and park.
+Surround View: Creates comprehensive view
+Memory Parking: Learns frequent parking patterns
+After enough 
+repetition, the 
+vehicle is able 
+to complete 
+the maneuver 
+on its own.
+Every time a human 
+driver parks in the same 
+place, the system learns.
+ADVANCED PARKING
+5
+
+A SYSTEM APPROACH
+Parking assistance is increasingly not just a 
+convenience feature but a part of the continuum 
+of vehicle automation, subject to all the real-world 
+safety demands imposed on this technology. As 
+parking assistance features evolve from Level 2 to 
+Level 4 and beyond, unlocking increasing degrees 
+of autonomy, the most capable and cost-efficient 
+parking automation solutions will be those that 
+combine ADAS cruising innovations with the 
+power of AI-enabled radar. 
+An end-to-end ADAS platform provides a 
+complete safety package, including features 
+such as forward collision warning and automatic 
+emergency braking, that can be extended 
+into parking automation features with proven 
+effectiveness and reliability. In addition, 
+comprehensive ADAS development and testing 
+generates a wealth of knowledge on nearly 
+all types of driving scenarios, adding to the 
+robustness of parking capabilities. 
+Parking assistance is a critical component of 
+Aptiv’s Gen 6 ADAS platform. The next-generation 
+parking features described above, which were 
+introduced with the platform, build on Aptiv’s 
+deep experience developing and manufacturing 
+industry-leading automotive radar systems. 
+Together with our Satellite Architecture, this 
+platform allows OEMs to implement scalable, 
+integrated ADAS capabilities in a modular, flexible 
+and cost-effective way for increasingly intelligent 
+real-time sensing and decision-making. 
+Aptiv’s system approach to vehicle automation, 
+which spans parking, ADAS cruising and 
+ultimately autonomous driving, brings together 
+a full safety package, a comprehensive sensor 
+fusion platform, and access to extensive driving 
+data. With a detailed road map and proven 
+solutions on the market, we are able to partner 
+with OEMs for parking automation and beyond.
+Parking assistance is increasingly not just a convenience feature but a part 
+of the continuum of vehicle automation, subject to all the real-world safety 
+demands imposed on this technology.
+ADVANCED PARKING
+6
+
+ABOUT THE AUTHORS
+Walter K. Kosiak
+Engineering Manager, Advanced Safety Global Products
+Walt Kosiak has spent his career at Aptiv innovating in the fields of integrated circuit design, passive 
+safety systems, active safety and driver assistance, and automated vehicles. His areas of expertise 
+include ADAS/AD feature/function algorithms, threat assessment and warning algorithms, radar and 
+radar-vision fusion, adaptive cruise control systems, vehicle-to-everything communication, map-based 
+electronic horizon technology, and rapid prototyping systems for automotive systems development. 
+Walt is an inventor on 24 U.S. Patents and was a member of the team that completed the first U.S. 
+coast-to-coast automated drive in 2015.
+Gürhan Gümüssu
+Parking Core Systems Lead Architect
+Gürhan Gümüssu is responsible for leading and coordinating systems activities of Aptiv’s parking 
+feature development in the Global Product Organization. He has been with Aptiv for four years, 
+contributing to system teams on various projects and supporting business pursuits. Before joining 
+Aptiv, he worked at a global automotive manufacturer as systems engineer.
+Kamil Ostrowski
+Technical Program Manager, Active Safety Algorithm Development
+Dr. Kamil Ostrowski leads the software development activities for parking at Aptiv. In his seven years 
+at the company, he has helped successfully launch products related to radar, vision and features for 
+multiple customers. Previously, he worked for a U.K. OEM and in the railway industry. Kamil holds a 
+doctoral degree from the University of Liverpool, U.K., with a research focus on advanced control 
+algorithms for the powertrain domain. He is currently pursuing an executive MBA at Poznan University 
+of Economics and Business.
+LEARN MORE AT APTIV.COM/PARKING  →
+ADVANCED PARKING
+7

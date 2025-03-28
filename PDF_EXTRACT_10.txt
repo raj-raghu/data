@@ -1,0 +1,683 @@
+A Personalized Highway Driving Assistance System *
+Saina Ramyar1, Abdollah Homaifar1, Syed Moshfeq Salaken2, Saeid Nahavandi2, and Arda Kurt3
+Abstract— A control approach for automated highway driv-
+ing is proposed in this study, which can learn from human
+driving data, and is applied to the longitudinal trajectory
+of an autonomous car. Naturalistic driving data are used
+as samples to train the model ofﬂine. Then, the model is
+used online to emulate what a human driver would do by
+computing acceleration. This reference acceleration is tracked
+by a predictive controller, which enforces a set of comfort
+and safety constraints before applying the ﬁnal acceleration.
+The controller is designed to balance between maintaining
+vehicle safety and following the model’s commands. Thus, the
+proposed controller can handle dynamic trafﬁc situations while
+performing like a human driver. This approach is validated on
+two different scenarios using MATLAB simulations.
+I. INTRODUCTION
+The ﬁeld of autonomous driving has made signiﬁcant
+progress over the last decades. Advanced driving assistance
+systems (ADAS) have been introduced and improved from
+simple cruise control and emergency braking systems to
+sophisticated partially or fully automated vehicles such as
+Google or Tesla self-driving cars.
+The majority of the ADASs currently available are focused
+on safety, and they generate default maneuvers independent
+of the driver or passengers. However, different drivers have
+different driving styles and a pre-planned maneuver may
+not satisfy everyone. Thus, in this study it is proposed
+that drivers’ styles be incorporated into the ADAS without
+compromising vehicle safety, in order to increase the drivers’
+satisfaction and comfort in autonomous vehicles. In this
+work, a highway driving assistance system is developed
+which performs according to the driver’s preference. This
+system operates in three modes: path following, car following
+and lane change, which are the most common maneuvers in
+highway scenarios. The operation modes are chosen based
+on their compatibility with the driver’s preference at the
+given trafﬁc condition. The driver’s preference is captured
+by analysis of each individual’s driving data.
+*This work is partially supported by the US Department of Trans-
+portation (USDOT), Research and Innovative Technology Administration
+(RITA) under University Transportation Center (UTC) Program (DTRT13-
+G-UTC47. The second author would also like to acknowledge the support
+from Air Force Research Laboratory and OSD for sponsoring this research
+under agreement number FA8750-15-2-0116.).
+1Saina Ramyar and Abdollah Homaifar are with the department of
+Electrical and Computer Engineering, North Carolina A&T State Univer-
+sity, Greensboro, NC 27403, USA sramyar@aggies.ncat.edu,
+homaifar@ncat.edu
+2Syed
+Moshfeq
+Salaken
+and
+Saeid
+Nahavandi
+are
+with
+the
+Institute
+of
+Intelligent
+Systems
+Research
+and
+Innova-
+tion,
+Deakin
+University,
+Victoria,
+Australia
+{ssalaken,
+saeid.nahavandi}@deakin.edu.au
+3Arda Kurt is Electrical and Computer Engineering Department, The
+Ohio State University, Columbus, OH, USA kurt.12@osu.edu
+The remainder of this paper is organized as follows. In
+section II the relevant work in the literature is discussed. In
+section III the driver modeling approach is described. The
+decision and control system is proposed in section IV, and
+simulation results are presented in section V. Finally, the
+conclusion and discussion are given in section VI.
+II. RELATED WORK
+While there are several studies on driver behavior mod-
+eling and autonomous driving, studies combining these sub-
+jects are less common in the literature. In this section the
+existing approaches are investigated in order to determine
+their advantages and disadvantages.
+A. Personalized Driver Models
+Driver models are developed for various purposes. One
+application of driver models is to deﬁne general frameworks
+for prediction of human drivers’ actions in different scenar-
+ios. For example in [1] and [2], drivers’ intentions of lane
+change and intersection crossing are predicted.
+In other cases, driver models are integrated with con-
+trollers in order to replicate human drivers’ styles in au-
+tonomous vehicles. A model for predicting drivers’ steering
+input is developed in [3] using a compensatory transfer
+function and an anticipatory transfer function based on road
+geometry with parameters obtained from simulator experi-
+ments. In [4] and [5] lane change assistance systems are
+proposed. Relevance vector machine (RVM) is used in [4]
+to predict a driver’s lane change intent in advance. In [5] a
+Gaussian mixture model (GMM) driver model is trained with
+real-world data, and it recommends a lane change maneuver.
+However, in both of these methods the system only offers
+suggestions and the driver performs the maneuver. In this
+case, the drivers may not follow the trajectory as well as
+expected and put themselves or other road users at risk.
+The study on current personalized driving models reveals
+that there are several shortcomings to this type of driver
+modeling. The existing models simplify the behavior (e.g.
+constant speed assumption) or the environment (e.g. ignoring
+the trafﬁc) which results in inaccurate and unrealistic models.
+Moreover, although the models are trained with real data, in
+most cases the data is used to optimize the model parameters.
+Therefore, the model may not perform well in an unseen
+scenario.
+B. Maneuver Decision Making and Control
+Lane changes have been one of the most investigated
+maneuvers in the literature, which is due to their frequency in
+2017 IEEE Intelligent Vehicles Symposium (IV)
+June 11-14, 2017, Redondo Beach, CA, USA
+978-1-5090-4804-5/17/$31.00 ©2017 IEEE
+1596
+
+both urban and highway driving, as well as their signiﬁcant
+role in trafﬁc accidents (73.5% of accidents [6]).
+A survey in [7] has investigated lane change/merge control
+methods, in addition to some of the supporting tools includ-
+ing positioning, communication and simulation technologies.
+Lane change control can be categorized into two groups:
+decision making and trajectory planning. Trajectory planning
+has already been investigated extensively in the literature
+with approaches such as [8], [9] and [10]. Here, lane change
+decision studies are reviewed.
+Optimal lane change decision controllers based on mixed
+integer programming (MIP) are proposed in [11] and [12].
+In these approaches model predictive control is utilized
+to determine the required acceleration/deceleration as well
+as the optimal destination lane. However, formulating the
+problem with mixed logical dynamics could result in a non-
+convex problem, which MPC is not able to solve.
+The lane change decision and trajectory controllers intro-
+duced here are either focused on maximizing vehicle safety
+or are based on drivers’ data. Although vehicle safety is the
+most important factor, different driving preferences must also
+be considered in vehicle control.
+III. PROPOSED HIGHWAY DRIVING ASSISTANCE SYSTEM
+The objective of the proposed system is to execute the
+highway driving maneuvers according to the driver’s prefer-
+ences while maintaining safety and road regulations. For this
+purpose, a driver model is integrated with the controller.
+The model is developed according to an individual driver’s
+driving data using Random Forest regression, and it generates
+a reference acceleration for the controller to follow. The
+controller utilized here is a model predictive control (MPC)
+system for tracking arbitrary references. MPC is chosen
+because of its low complexity and ability to handle state
+and input constraints over a horizon. The learning-based
+framework is adopted from [13] and extended to other
+highway maneuvers
+The proposed system has three modes of operation, which
+are activated depending on the driver’s preference and the
+surrounding environment condition. It should be noted that
+these modes can be overridden for a mandatory maneuver
+such as lane change for exit or merging. The main contribu-
+tions of this study are a) developing a driver model using the
+random forest algorithm, b) employing an MPC controller for
+tracking dynamic references which will control the vehicle
+according to the driver’s preference, and c) introducing a
+novel algorithm for alternating between different driving
+modes for maximum safety and comfort.
+For simplicity, only the longitudinal motion control is
+investigated in this study. However, this approach can easily
+be extended to lateral motion as well. In this study, it is
+assumed that the subject vehicle is aware of its surrounding
+environment through correct and accurate vehicle to vehicle
+(V2V) and vehicle to infrastructure (V2I) communications,
+as well as the sensors and other equipment available to the
+vehicle.
+Fig. 1: Block diagram of the proposed algorithm
+A. Decision Maker
+This component decides which one of the three operation
+modes must be activated at each moment. The overall block
+diagram of the proposed algorithm is given in Fig. 1. The
+following conditions determine the operation mode:
+I If there is no or very distant trafﬁc, the system operates
+in the path following mode. The model predictive con-
+troller tracks the reference acceleration signal provided
+by the driver model as closely as possible.
+II If there are other vehicles in the close vicinity of the
+subject vehicle, additional constraints are introduced to
+ensure the safety of the vehicle. As a result, the tracked
+acceleration may not be similar to its reference signal.
+In such cases, in order to follow the driver’s preferences,
+the system explores the possibility of lane change. To
+accomplish this, multiple optimization problems are
+solved, one for remaining in the current lane and the
+others for moving to the adjacent lane(s). If moving to an
+adjacent lane results in lower cost, the system activates
+the lane change mode.
+III If there are surrounding vehicles on the road and the
+lane change option is ruled out, the vehicle remains in
+its current lane. In this condition, the control system is
+more focused on vehicle safety by maintaining a safe
+gap between the front and rear vehicles.
+B. Driver Model
+Random forest regression model is used for modeling
+the driver’s behavior. This model receives input data of the
+vehicle states and generates a reference acceleration for the
+controller to track. In this study, the input features are vehicle
+position and velocity. Before the actual training takes place,
+all the input variables are scaled so that their values remain
+in the range of [0, 1] and the target variable (i.e. vehicle
+acceleration in x-axis) is transformed in exponential space.
+1597
+
+Afterwards, the inputs are passed through a feature generator
+which produces features of the following form:
+F = [d
+d2
+d3
+v
+v ∗d
+d2 ∗v
+v2
+d ∗v2
+v3] (1)
+where d and v represent vehicle position and velocity of the
+vehicle, respectively.
+1) Random Forest Regression: Random Forest is an en-
+semble tree learning framework built upon bagging [15]
+method where many trees are grown based on bootstrap input
+samples.
+C. Control System
+In this part, the vehicle modeling and model predictive
+control employed in the study are presented.
+1) Vehicle Dynamic Model: The longitudinal dynamic of
+the vehicle is modeled with a double integrator system, which
+is presented below:
+dk+1 = dk + vkδt + ak
+δt2
+2
+k = 0, ..., N
+(2a)
+vk+1 = vk + akδt
+k = 0, ..., N
+(2b)
+where dk, vk, and ak represent position, velocity and ac-
+celeration at time k, and δt represents the sampling time.
+The double integrator is used in this study for simplicity.
+However, the proposed highway driving assistance system
+can be implemented with more complex models.
+2) MPC Controller: Due to the variations in the reference
+acceleration generated by the driver model, the controller
+must be able to follow the changes. Therefore, a novel
+model predictive controller for tracking periodic references
+is utilized in this study. This was ﬁrst proposed in [16] and
+[17].
+The cost function is deﬁned as:
+VN(x, rx, ru; xr, ur, uN) = Vt(x; xr, ur, uN)
++Vp(rx, ru; xr, ur)
+(3)
+where
+Vp(rx, ru; xr, ur) =
+T −1
+
+i=0
+∥xr(i) −r(i)∥2
+S+∥ur(i) −ru(i)∥2
+V
+(4)
+and
+Vt(x; xr, ur, uN) =
+N−1
+
+i=0
+∥x(i) −xr(i)∥2
+Q+∥u(i) −ur(i)∥2
+R
+(5)
+In this formulation, the parameters (x, rx, ru) are the state,
+the state reference and the input reference, and (xr, ur)
+are the planned reachable state and inputs respectively. In
+order for the cost function to be optimized, both terms
+are considered. The term Vp(rx, ru; xr, ur) penalizes the
+deviation of the planned reachable trajectory from the desired
+reference signal over the period of T time steps. If the
+desired reference is unreachable, the controller’s goal is to
+come up with an optimal reachable trajectory. The term
+Vt(x; xr, ur, UN) is the tracking error which deﬁnes the
+transient behavior of the controller. It minimizes the error
+between open loop trajectory and the planned reachable
+references over the prediction horizon N. In this study, for
+simplicity N = T.
+Below, the MPC optimization problem for tracking a
+periodic reference signal is presented:
+min
+xr,ur,uN
+VN(x, rx, ru; xr, ur, uN)
+(6a)
+x(0) = x0
+(6b)
+x(i + 1) = Ax(i) + Bu(i)
+i ∈I[0,N−1]
+(6c)
+y(i) = Cx(i) + Du(i)
+i ∈I[0,N−1]
+(6d)
+(x(i), u(i)) ∈Z
+i ∈I[0,N−1]
+(6e)
+xr(0) = xr
+(6f)
+xr(i + 1) = Axr(i) + Bur(i) i ∈I[0,T −1]
+(6g)
+yr(i) = Cxr(i) + Dur(i)
+i ∈I[0,T −1]
+(6h)
+(xr(i), ur(i)) ∈Zc
+i ∈I[0,N−1]
+(6i)
+x(N) = xr(N)
+(6j)
+This optimization problem will result in the solution
+(xr∗, ur∗, u∗
+N), where x∗
+N(x, r) and y∗
+N(x, r) are the opti-
+mal predicted trajectories and xr∗
+N (x, r) and yr∗
+N (x, r) are
+the optimal planned trajectories for the states and outputs
+respectively.
+In the above MPC problem, the predicted trajectory of the
+system from the current state is denoted by constraints (6b) to
+(6d) and the planned reachable trajectories from the initial
+state xr are deﬁned by constraints (6f) to (6h). The states
+and input constraints for predicted and planned reachable
+trajectories are given in constraints (6e) and (6i) respectively.
+Also, constraint (6j) ensures that the predicted trajectory
+reaches the planned reachable trajectory which guarantees
+closed loop convergence.
+3) Optimization Constraints: Since the proposed system
+performs multiple maneuvers, different constraints are intro-
+duced for different scenarios based on the environment and
+the subject vehicle’s condition.
+Basic Constraints
+The basic constraints are valid at any condition and are
+mainly related to road regulations and vehicle limitations.
+These limitations include:
+• Velocity: The vehicle velocity should never be less than
+zero which is full stop, and should not exceed the road
+speed limit.
+vmin ≤vk ≤vmax
+k = 0..N
+(7)
+• Acceleration: The acceleration range deﬁned for the
+controller is determined from the vehicle’s physical
+condition.
+amin ≤ak ≤amax
+k = 0..N
+(8)
+• Acceleration Rate: In order to ensure the passengers’
+comfort, the the variations of acceleration (jerking)
+should remain in a small range.
+Δamin ≤Δak ≤Δamax
+k = 0..N
+(9)
+1598
+
+Car-following Constraints
+If the vehicle will stay in its current lane, the constraints
+on the position only include maintaining a safety distance
+with the front and rear vehicles in the lane.
+dmaxk = min(dfronti −gap)
+t = 0..N
+(10a)
+dmink = max(dreari −gap)
+t = 0..N
+(10b)
+Where dfront and drear denote the position of front and
+rear vehicles, and gap is the the minimum safety distance
+between subject vehicle and the surrounding vehicles.
+If the surrounding vehicles are relatively close, a position
+reference signal is generated to fully utilize the gap by
+keeping the vehicle in the middle of the space between the
+vehicles (eq. 11).
+dref k = dmink + dmaxk
+2
+(11)
+If a position reference is available, the weight distribution
+will change in favor of the position tracking, since safety
+has more priority than the driver’s preference. The proposed
+weight distribution is given below:
+R =
+1
+(Nv + 1)2
+(12a)
+Q = 1 −R
+(12b)
+Where Nv is the number of surrounding vehicles, R is the
+reference tracking weight in the cost function, and Q is
+the position tracking term in the cost function. Different
+weight distribution curves were considered, and the selected
+one gave satisfactory results. With this formulation, as the
+road gets more crowded, the driving assistance system will
+increase the priority of maintaining a safe distance with the
+surrounding vehicles.
+Lane Change Mode Constraints
+If the vehicle changes lane, the position constraints include
+the combined safety gap of both the current and target lanes.
+In the beginning of the lane change maneuver, while the
+vehicle is still in transition between lanes, the position con-
+straints include the minimum and maximum safe positions
+mutual between current and target lanes.
+dmaxk = min(dcl
+fronti −gap, dtl
+fronti −gap)
+t = 0..ttrans
+(13a)
+dmaxk = min(dtl
+fronti −gap)
+t = ttrans..N
+(13b)
+dmink = max(dcl
+reari −gap, dtl
+reari −gap)
+t = 0..ttrans
+(13c)
+dmaxk = min(dtl
+reari −gap)
+t = ttrans..N
+(13d)
+where, ttrans is the duration of time that the vehicle requires
+to move from one lane to the other, and dcl and dtl denote
+the position in current lane and target lane respectively.
+IV. SIMULATION AND RESULTS
+In this section, performance of the system is evaluated.
+First the driver model estimation accuracy is tested, and then
+the behavior of the proposed highway assistance system is
+TABLE I: Scenario vehicles’ parameters
+Current Lane
+Adjacent Lane
+Scenario 1
+Subject: [d, v] = [0, 25]
+No surrounding vehicles
+No vehicles
+Scenario 2
+Subject: [d, v] = [0, 26]
+V1: [dv1, vv1] = [−15, 22]
+V2: [dv2, vv2] = [16, 28]
+V3: [dv3, vv3] = [−20, 28]
+TABLE II: Design parameters for the longitudinal control
+vx ∈{0, 35}[m/s2]
+Δax ∈{−0.5, 0.5}
+N = 15
+ax ∈{−2, 2}[m/s]
+gap = 5[m]
+δt = 0.4
+examined in different scenarios. Simulation of MPC con-
+troller is done with CVXGEN convex optimization solver
+[18] in MATLAB.
+A. Driver Model
+1) Naturalistic Driving Data: The dataset used for train-
+ing and testing the driver model is the 2nd Strategic Highway
+Research Program (SHRP 2) data samples [19].
+2) Model Training: Due to the large quantity of missing
+data, imputation is used to increase the number of observa-
+tions. Since acceleration is the target variable, no imputation
+is done for these missing values and corresponding obser-
+vations are discarded from further use. Next, all available
+values of acceleration are used to create a model for the
+position. In this stage of the experiment, a random forest
+model is used with 500 trees using 10 fold cross validation,
+repeated 3 times. This is put in place to avoid overﬁtting in
+the training phase. Once the random forest model is trained,
+it is used to predict the missing values of position. In the
+subsequent stage of imputation, these newly imputed values
+for position and acceleration are used to predict the missing
+values of velocity following the same procedure described
+above. As a result of this imputation process, the number of
+observations increased from 397 to 4231.
+Once the feature generation is done, 75% of available
+observations are used for training while the remaining 25%
+are used for testing purposes. The training samples are used
+to train a random forest model with 10-fold cross-validation,
+and a different number of random variables sample are tried
+in order to achieve the best possible training. Once the
+training is complete, the trained model is used to predict the
+vehicle acceleration of test samples and transformed back to
+original scale using a natural log transformation. Fig. 2 and
+3 demonstrate the performance of the trained model on test
+(i.e. out-of-bag (OOB)) samples.
+B. Driving Scenarios
+The performance of the proposed approach is evaluated
+in two different trafﬁc scenarios. In Scenario 1, there are
+no vehicles in the vicinity of the subject vehicle, which is
+considered as the subject vehicle being alone on the road
+(Figure 4). In Scenario 2, the subject vehicle is surrounded
+by three other vehicles. The vehicles V 1 and V 2 are moving
+in the same lane at the front and back of the subject vehicle,
+and V 3 is moving in the adjacent lane as shown in Figure
+5. The scenario vehicles parameters and controller design
+parameters are given in Tables I and II respectively.
+1599
+
+−0.05
+0.00
+0.05
+0
+250
+500
+750
+1000
+Test Set Index
+Acceleration
+Prediction
+Truth
+Fig. 2: Raw acceleration predictions using the trained model
+from one randomly chosen validation step in 10-fold CV, tested
+on OOB samples
+r2
+rms
+0.05
+0.1
+0.25
+0.5
+0.6
+R Squared, RMSE
+Fig. 3: Performance of model as tested on OOB samples in
+10-fold CV from 10 iterations. Very low RMSE indicates good
+prediction on OOB samples and R-squared value greater than
+0.55 indicates good explaining ability.
+Fig. 4: Illustration of scenario 1
+The simulation results for scenario 1 are given in Fig. 6. It
+shows that the controller is tracking the driver model’s output
+with very small error. This accurate tracking is due to the
+absence of surrounding vehicles which led to the reference
+acceleration tracking being the single control objective. As
+a result, the lane change decision maker does not make a
+command for moving to the adjacent lane and the vehicle
+remains in its current lane.
+In simulation of scenario 2, the presence of V 1, V 2 and
+V 3 close to the subject vehicle results in more conservative
+position constraints for maintaining vehicle safety, which
+leads to poor tracking of acceleration compared to scenario
+1. In the current lane, a position reference is generated to
+Fig. 5: Illustration of scenario 2
+Fig. 6: Planned trajectory for subject vehicle in scenario 1
+TABLE III: RMSE for different vehicle trajectories in scenario 2
+Root Mean Squared Error
+Current Lane
+4.8613
+Target Lane
+6.089 × 10−11
+keep the vehicle at a safe distance from both front and
+rear vehicles. The addition of position reference leads to
+a new distribution of weights in the controller cost func-
+tion. As previously mentioned, the importance of position
+tracking term in the controller increases with the number
+of surrounding vehicles. As a result, the controller focuses
+more on tracking the reference position rather than tracking
+the reference acceleration, which is what happened in Fig.
+7. In addition, it is observed that in the beginning of the
+car following mode the vehicle decelerates to increase its
+distance with V 2, but after a while the distance is increased
+due to V 2’s high velocity, so the subject accelerates again
+to maintain its position in the middle and avoid a collision
+with V 1.
+Since the controller is not performing according to the
+driver’s preference, the controller considers moving to the
+next lane. In the adjacent lane, there is only a minimum
+position constraint is deﬁned, which means more weight is on
+the acceleration tracking term again. The results are shown
+in Fig. 8. It can be seen that the acceleration is tracked
+more accurately. The RMSE of acceleration tracking for the
+two modes is given in Table III. Therefore, the vehicle goes
+into the lane change mode in order to be able to perform
+according to the driver’s preference.
+V. CONCLUSION AND FUTURE WORK
+In this study a highway driving assistance system is pre-
+sented which performs according to the driver’s preference.
+This system consists of a data driven driver model integrated
+with a model predictive controller, and operates in three
+modes: path following, car following and lane change. The
+driver model is trained using naturalistic driving data and
+can emulate different driving styles. The MPC ensures safety
+by enforcing a set of constraints on the vehicle state. The
+1600
+
+Fig. 7: Planned trajectory for subject vehicle in scenario 2 (in
+current lane)
+Fig. 8: Planned trajectory for subject vehicle in scenario 2 (in target
+lane)
+system can detect and handle driving situations where vehicle
+safety is the priority speciﬁcally in the presence of multiple
+surrounding vehicles. In addition, the system is able to make
+a lane change decision if it will satisfy the drivers’ prefer-
+ence. The proposed method is simulated for the longitudinal
+control of an autonomous car in two different scenarios.
+The results demonstrated that the proposed approach is able
+to handle both light and congested trafﬁc situations. These
+results demonstrate that the proposed approach performs well
+on the task it was designed for, that is, to learn from driving
+data and emulate driving styles while ensuring safety.
+In the future, the driver model will be extended to include
+different driving models and be able to detect and adapt to a
+new driver’s style as soon as possible. Also, an additional
+ﬁltering component will be added to ensure that a lane
+change is compatible with the driver’s preference given a
+different environmental conditions. Moreover, considering
+the proposed system’s dependency on V2X communications,
+an approach should be developed to ensure maneuver safety
+in case of receiving incorrect or inaccurate information about
+the surrounding trafﬁc.
+REFERENCES
+[1] P. Kumar, M. Perrollaz, S. Lefevre, and C. Laugier, “Learning-based
+approach for online lane change intention prediction,” in Intelligent
+Vehicles Symposium (IV), 2013 IEEE.
+IEEE, 2013, pp. 797–802.
+[2] S. Ramyar, A. Homaifar, A. Anzagira, A. Karimoddini, S. Amsalu,
+and A. Kurt, “Fuzzy modeling of drivers’ actions at intersections,” in
+World Automation Congress (WAC), 2016.
+IEEE, 2016, pp. 1–6.
+[3] S. Schnelle, J. Wang, H. Su, and R. Jagacinski, “A driver steering
+model with personalized desired path generation.”
+[4] B. Morris, A. Doshi, and M. Trivedi, “Lane change intent prediction
+for driver assistance: On-road design and evaluation,” in Intelligent
+Vehicles Symposium (IV), 2011 IEEE.
+IEEE, 2011, pp. 895–901.
+[5] V. A. Butakov and P. Ioannou, “Personalized driver/vehicle lane
+change models for adas,” IEEE Transactions on Vehicular Technology,
+vol. 64, no. 10, pp. 4422–4431, 2015.
+[6] B. Sen, J. D. Smith, and W. G. Najm, “Analysis of lane change
+crashes,” Tech. Rep., 2003.
+[7] D. Bevly, X. Cao, M. Gordon, G. Ozbilgin, D. Kari, B. Nelson,
+J. Woodruff, M. Barth, C. Murray, A. Kurt, et al., “Lane change and
+merge maneuvers for connected and automated vehicles: A survey,”
+IEEE Transactions on Intelligent Vehicles, vol. 1, no. 1, pp. 105–120,
+2016.
+[8] G. Schildbach and F. Borrelli, “Scenario model predictive control for
+lane change assistance on highways,” in 2015 IEEE Intelligent Vehicles
+Symposium (IV).
+IEEE, 2015, pp. 611–616.
+[9] J. Nilsson, M. Br¨annstr¨om, J. Fredriksson, and E. Coelingh, “Longi-
+tudinal and lateral control for automated yielding maneuvers,” IEEE
+Transactions on Intelligent Transportation Systems, vol. 17, no. 5, pp.
+1404–1414, 2016.
+[10] D. Desiraju, T. Chantem, and K. Heaslip, “Minimizing the disruption
+of trafﬁc ﬂow of automated vehicles during lane changes,” IEEE
+Transactions on Intelligent Transportation Systems, vol. 16, no. 3, pp.
+1249–1258, 2015.
+[11] J. Nilsson and J. Sj¨oberg, “Strategic decision making for automated
+driving on two-lane, one way roads using model predictive control,”
+in Intelligent Vehicles Symposium (IV), 2013 IEEE.
+IEEE, 2013, pp.
+1253–1258.
+[12] Y. Du, Y. Wang, and C.-Y. Chan, “Autonomous lane-change controller
+via mixed logical dynamical,” in 17th International IEEE Conference
+on Intelligent Transportation Systems (ITSC). IEEE, 2014, pp. 1154–
+1159.
+[13] S. Lef`evre, A. Carvalho, and F. Borrelli, “Autonomous car following:
+A learning-based approach,” in Intelligent Vehicles Symposium (IV),
+2015 IEEE.
+IEEE, 2015, pp. 920–926.
+[14] L. Breiman, “Bagging predictors,” Machine learning, vol. 24, no. 2,
+pp. 123–140, 1996.
+[15] ——, “Random forests,” Machine learning, vol. 45, no. 1, pp. 5–32,
+2001.
+[16] D. Limon, M. Pereira, D. M. de la Pe˜na, T. Alamo, C. N. Jones,
+and M. N. Zeilinger, “Mpc for tracking periodic references,” IEEE
+Transactions on Automatic Control, vol. 61, no. 4, pp. 1123–1128,
+2016.
+[17] M. Pereira, D. M. de la Pe˜na, D. Limon, I. Alvarado, and T. Alamo,
+“Application to a drinking water network of robust periodic mpc,”
+Control Engineering Practice, vol. 57, pp. 50–60, 2016.
+[18] J. Mattingley and S. Boyd, “Cvxgen: A code generator for embedded
+convex optimization,” Optimization and Engineering, vol. 13, no. 1,
+pp. 1–27, 2012.
+[19] L. N. Boyle, S. Hallmark, J. D. Lee, D. V. McGehee, D. M. Neyens,
+and N. J. Ward, “Integration of analysis methods and development of
+analysis plan,” Tech. Rep., 2012.
+1601

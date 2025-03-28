@@ -1,0 +1,809 @@
+Accident Analysis and Prevention 40 (2008) 167–173
+Effects of electronic stability control (ESC) on accidents:
+A review of empirical evidence
+Alena Erke ∗
+Institute of Transport Economics, Department of passenger transport, Grensesvingen 7, 0602 Oslo, Norway
+Received 7 October 2006; received in revised form 22 March 2007; accepted 5 May 2007
+Abstract
+This study summarizes evidence from empirical studies on the effects of electronic stability control (ESC) on accidents in a meta-analysis.
+Large reductions of single vehicle accidents have been found (−49%; 95% conﬁdence interval: [−55%; −42%]), and smaller but still signiﬁcant
+reductions of head-on collisions (−13%; 95% conﬁdence interval: [−17%; −8%]). Multi-vehicle fatal accidents are also signiﬁcantly reduced
+(−32%; 95% conﬁdence interval: [−43%; −20%]). The effects can be explained with the potential of ESC to improve driving dynamics and
+to reduce the probability of loss of control. However, there are signiﬁcant amounts of heterogeneity in the results, especially for single vehicle
+accidents, and a sensitivity analysis shows that the results for single vehicle accidents are likely to be affected by publication bias. The results for
+single vehicle accidents are in excess of what might be expected based on studies that have estimated the total amount of accidents that may be
+affected by ESC. Consequently, the proportions of accidents that can be avoided by ESC is assumed to be somewhat smaller than suggested by
+most empirical studies. Properties of the vehicles, time trends, and driver behaviour may have contributed to the large empirical effects.
+© 2007 Elsevier Ltd. All rights reserved.
+Keywords: Electronic stability control; ESC; Accident; Meta-analysis; Single vehicle accident; Head-on collision
+1. Introduction
+The objective of this study is to summarize empirical evi-
+dence of the effects of electronic stability control (ESC) on
+accidents by reviewing studies that have estimated proportions
+of different types of accidents that may be affected by ESC, and
+by calculating summary effects from studies that have inves-
+tigated empirical effects of ESC on accidents by means of
+meta-analysis. The results are compared in order to assess the
+size of the effects and to provide an indication of the presence
+of factors that may affect the size of the effects.
+Electronicstabilitycontrolisanactivesafetydeviceformotor
+vehicles which aims at improving driving dynamics and at pre-
+venting accidents which result from loss of control. There exists
+a large variety of ESC systems. They have in common that
+they enhance the controllability of vehicles and that they can
+prevent skidding and loss of control in cases of oversteering
+or understeering. These are movements of the vehicle which
+go beyond the steering input by the driver (oversteering) or
+∗Tel.: +47 22573863.
+E-mail address: Alena.Erke@toi.no.
+where the vehicle does not wholly follow the drivers steering
+input (understeering). Both may be caused by too high speed in
+curves, collision avoidance manoeuvres, low friction conditions,
+or combinations of these (Sferco et al., 2001). ESC systems dif-
+fer with respect to how they regulate driving parameters (yaw
+characteristics, and sideslip), how they counteract deviations
+(e.g. by braking individual wheels and reducing engine power),
+and in what way drivers take notice of the activities of the
+systems (Alliance of Automobile Manufacturers, 2005). ESC
+cannot overrun physics, and may not always prevent the vehi-
+cle from sliding or spinning (Insurance Institute for Highway
+Safety, 2005).
+ESC was ﬁrst introduced as optional safety equipment in
+passenger cars on the European market in 1995. Its public-
+ity increased in 1997 after an event with a rollover of a new
+vehicle model in a double lane change manoeuvre on a driv-
+ing course (“moose-test”). The proportion of new cars that are
+equipped with ESC increased steadily. In 1995, the proportion
+of new cars equipped with ESC was only 5% (in Germany);
+in 2004, the proportion was 36% in Europe, and much higher
+in some European countries, e.g. 67% in Germany (Deutscher
+Verkehrssicherheitsrat, 2006), and 70% in Sweden (according
+to lists published by the Swedish insurance company Folksam).
+0001-4575/$ – see front matter © 2007 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.aap.2007.05.002
+
+168
+A. Erke / Accident Analysis and Prevention 40 (2008) 167–173
+The proportion of all vehicles that are equipped with ESC in
+Europe has been estimated by the European Commission (2005)
+to be 9% in 2005, and is predicted to reach 50% by 2025 (if no
+legal requirements for ESC are introduced).
+In recent years, the increase in the number of vehicles for
+which ESC is available seems to have slowed down, but the
+proportion of vehicles for which ESC is standard equipment
+(instead of optional equipment) is still increasing according to
+lists published by the US-government (www.safercar.dot.gov).
+The proportion of new sport utility vehicles (SUVs) with
+ESC is increasing faster than the proportion of cars (Farmer,
+2006). In 2004, nearly 70% of all new SUVs on the US-
+market have been equipped with ESC (Motor and Equipment
+Manufacturers Association, 2006). The proportion of smaller
+cars that are equipped with ESC is much lower, and ESC
+is mostly only optional, not standard equipment (Deutscher
+Verkehrssicherheitsrat, 2006). The costs for the installation of
+ESC depend on the standard of the technical equipment of a
+car (e.g. antilock brakes, antislip regulation, brake assistant).
+Estimations of costs for the installation of ESC as standard
+equipment vary therefore widely, between ca. $100 and $800 per
+vehicle (Insurance Institute for Highway Safety, 2006; NHTSA,
+2006), or between D 150 and D 500 per vehicle (European
+Commission, 2005). ESC is not mandatory in any European
+country, but recommended by the European new car assessment
+programme (EuroNCAP). In the US there are plans to make ESC
+mandatory from 2011.
+2. Potential effects of ESC on accidents
+ESC aims at reducing the probability of loss of control. Loss
+of control often results in accidents with severe consequences
+(Langwieder et al., 2003; Unselt et al., 2004): road departure,
+collisions with objects or vehicles, or turnover. These collisions
+are relatively likely to be side collisions, and/or collisions with
+oncoming trafﬁc. Side collisions usually have severe conse-
+quences because vehicles provide only little protection. Head-on
+collisions often involve high (relative) speed. Accidents may not
+always be avoided, but the severity may be reduced, e.g. when
+a side collision is replaced by a front collision, when a colli-
+sion with oncoming trafﬁc is replaced by road departure, and
+when impact speed is reduced. Collisions in junctions, over-
+taking accidents, and rear-end collisions are less likely to be
+prevented by ESC. Accidents which involve loss of control, but
+in which the driver was driving extremely fast, very sleepy, or
+driving under the inﬂuence of alcohol or drugs, are also less
+likely to be affected by ESC.Proportions of different types of
+accidents that might be affected by ESC have been estimated in
+several studies based on accident reports and in-depth accident
+analyses. These studies are summarized in Table 1 in order to
+provide a basis of comparison for results from empirical acci-
+dent studies that are presented in the next section. The summary
+of the results in Table 1 gives a rough estimate of the magnitude
+of the potential effects. Accidents are usually not classiﬁed in
+ofﬁcial accident statistics according to whether or not skidding
+or loss of control has been a contributing factor. The study of
+Campbell et al. (2003) is based on a total of ca. 73,000 acci-
+dents from two US databases. Accidents of all severities are
+included in their analysis. In about half of all single vehicle off-
+road accidents, skidding has been a major contributing factor,
+and in about half of these accidents speeding (driving above
+the speed limit) has been an additional contributing factor. The
+study of the Insurance Institute for Highway Safety (2005) has
+estimated the proportions of different types of accidents that
+may be prevented by ESC. Langwieder et al. (2003) have ana-
+lyzed reports of ca. 1500 injury accidents in Germany in order
+to estimate the proportions of accidents which involved skid-
+ding. Sferco et al. (2001) have investigated ca. 2700 accidents
+in the European accident causation survey (EACS, based on data
+from ﬁve European countries). They have estimated quite large
+amounts of accidents which involve loss of control and which
+may be affected by ESC. The proportion of accidents which
+actually may be avoided by ESC is assumed to be much smaller.
+The proportion of accidents which would deﬁnitely have been
+avoided is estimated to be 2% for injury accidents, and 3% for
+fatal accidents. The proportion of accidents which would proba-
+bly have been avoided is estimated to be 9% for injury accidents,
+and 18% for fatal accidents. Unselt et al. (2004) have analysed
+data from a representative sample of over two million accidents
+in Germany in 2002 and estimated how many accidents involved
+Table 1
+Proportions of accidents in which contributing factors may be affected by ESC
+Proportion of accidents involving contributing factor (%)
+Study
+Accident contributing factor
+Single vehicle
+Multi-vehicle
+All
+Campbell et al. (2003)
+Skidding
+50 (single vehicle off-road)
+1 (rear-end)
+8 (lane change)
+Insurance Institute for
+Highway Safety (2005)
+ESC-relevant
+56
+17
+34
+Langwieder et al. (2003)
+Skidding
+39
+12
+Sferco et al. (2001)
+Loss of control, ESC-relevant
+42 (injury accident)
+67 (fatal accident)
+Unselt et al. (2004)
+Loss of control
+21 (injury accident)
+43 (fatal accident)
+Zobel et al. (2000)
+Skidding
+44 (very severe injury accident)
+Summary
+ESC-relevant
+40–50
+10
+20–40
+
+A. Erke / Accident Analysis and Prevention 40 (2008) 167–173
+169
+loss of control. Zobel et al. (2000) have analyzed 10,000 acci-
+dents in the database of the Hannover Medical School (MHH).
+They have estimated the proportions of accidents with at least
+one very severely injured (MAIS 5+) that involved skidding.
+According to Zobel et al. (2000), the probability of at least one
+very severely injured (MAIS 5+) in accidents, which without
+ESC would be side collisions, would be reduced by 50% if all
+vehicles were equipped with ESC. The proportion is larger in
+curves (53%) that in straight sections (40%).
+The results show quite consistently large proportions of sin-
+gle vehicle accidents which involve contributing factors that may
+be affected by ESC, and smaller proportions for multi-vehicle
+accidents. The proportions are consistently larger for fatal acci-
+dents than for injury accidents. These results do not take into
+account potential effects on driver behaviour.
+3. Meta-analysis
+3.1. Studies included in the meta-analysis
+The proportions of different types of accidents that are pre-
+vented by ESC are examined in a meta-analysis. It includes
+studies of accident involvement of vehicles with and without
+ESC. In order to identify studies, a computer search was made of
+the Silverplatter TRANSPORT literature database which com-
+bines different international transport related databases. Studies
+were also searched on the Internet. Studies were retrieved when
+they were, based on title and abstract, likely to be empirical stud-
+ies and to have investigated effects on accidents. Studies were
+included in the meta-analysis if they gave sufﬁcient information
+to compute estimates of effect, based on numbers of accidents.
+Studies that have estimated how likely certain types of accidents
+are to be avoided or affected by ESC were not included in the
+meta-analysis.
+Eight studies were included in the meta-analysis. They
+are listed alphabetically in Table 2. Three of the studies are
+before-and-after studies, ﬁve of them are case-control studies.
+Before-and-after studies have investigated accident involvement
+of one or more types of cars before and after ESC became stan-
+dard equipment in these cars. In two of these studies (Aga and
+Okada, 2003; Farmer, 2006) involvement in different types of
+accidents has been compared between vehicles with and without
+ESC. Bahouth (2005) has additionally included involvement in
+accidents that are not assumed to be affected by ESC as a con-
+trol. Case-control studies have compared accident involvement
+between different types of vehicles with and without ESC. All
+of these studies have included involvement in accidents that are
+not assumed to be affected by ESC as a control. The types of
+accidents that have been used as controls are shown in Table 2.
+There are large differences between the studies as regards the
+types of accidents that are assumed not to be affected by ESC.
+The range is from all multi-vehicle accidents (Dang, 2004) to
+selected types of accidents in the other case-control studies
+and in the study of Bahouth (2005). The accidents that are not
+assumed to be sensitive to ESC in the study of Kreiss et al. (2006)
+are mainly accidents involving turning or crossing roads and
+accidents involving stationary vehicles. Page and Cuny (2006)
+include all accidents not involving loss of control or guidance
+problems in the group of non-ESC sensitive accidents.
+3.2. Statistical analysis in meta-analysis
+The results of the studies listed in Table 2 are combined by
+means of the log-odds method of meta-analysis (Christensen,
+2003; Elvik, 2005; Fleiss, 1981). Estimates of effect were com-
+puted as odds ratios, based on the numbers of accidents reported
+in the studies (Formula (1)).
+Estimate of effect =
+Study acc. with ESC/Study acc. without ESC
+Control acc. with ESC/Control acc. without ESC
+(1)
+Study accidents are accidents for which the effect of ESC is
+estimated, e.g. single vehicle accidents. In most studies, types
+of accidents that are not assumed to be affected by ESC were
+used as control.
+The study of Aga and Okada (2003) has used the number of
+cars as a denominator. The study of Farmer (2006) has used the
+accident involvement of different types of vehicles as a control
+group.
+For combining estimates of effects from different studies,
+each estimate is assigned a statistical weight and the weighted
+mean of the estimates is computed. The statistical weight
+assigned to each estimate of the effect is inversely proportional to
+Table 2
+Evaluation studies included in the meta-analysis
+Authors (year)
+Country
+Number of estimates
+Statistical weighta
+Study design
+Control
+Aga and Okada (2003)
+Japan
+4
+139.1
+Before–after
+Numbers of cars
+Bahouth (2005)
+USA
+14
+1910.2
+Before–after
+ESP vehicle hit from rear
+Dang (2004)
+USA
+4
+589.9
+Case-control
+Multi-vehicle collisions
+Farmer (2006)
+USA
+6
+7985.2
+Before–after
+Non-ESC vehicles
+Kreiss et al. (2006)
+Germany
+1
+1318.3
+Case-control
+Accidents not sensitive to ESC
+Lie et al. (2004)
+Sweden
+1
+50.3
+Case-control
+Rear-end collisions on dry roads
+Page and Cuny (2006)
+France
+1
+14.6
+Case-control
+Accidents not sensitive to ESC
+Thomas (2006)
+UK
+7
+7378.5
+Case-control
+Collisions not involving forward
+movement of the vehicle
+a Sum of statistical weights in ﬁxed effects models of meta-analysis (only effects that are included in the meta-analysis).
+
+170
+A. Erke / Accident Analysis and Prevention 40 (2008) 167–173
+the variance. How the statistical weights are computed depends
+on the amount of heterogeneity in the estimates of effect. If
+there is only a small amount of heterogeneity, a ﬁxed effects
+(FE) model of meta-analysis can be applied, in which variance
+is assumed to arise from random variation of the estimates of
+effect around one “ﬁxed” mean effect. In the FE model, the
+statistical weights are computed according to Formula (2).
+FE weight =
+1
+( 1/Number of accidents)
+(2)
+If there is heterogeneity in the estimates of effect, a ran-
+dom effects (RE) model of meta-analysis is applied. In the RE
+model, the variance of the estimates of effect is assumed to arise
+from two sources. One source of variance is random variation
+around the mean effect (as in the FE model). The mean effect
+sizes are additionally assumed to vary between studies. When
+there is heterogeneity, RE models yield slightly different esti-
+mates of effect, and larger conﬁdence intervals than FE models.
+Statistical weights in the RE model are computed according to
+Christensen (2003) as a function of the logarithm of the effects
+and weights in a FE model, and Cochran’s Q statistic (Formula
+(3)). The Cochran’s Q statistic is used to test heterogeneity. It
+is a function of the weighted squared differences between study
+effect estimates and the ﬁxed effects summary effect. Under the
+assumption of no heterogeneity, it follows a Chi-square distribu-
+tion where the number of the degrees of freedom is the number
+of studies minus one.
+RE weight =
+1
+(1/FE weight + (Q −df)/C)
+(3)
+where Q refers to the Cochran’s Q statistic, df is the degrees of
+freedom of Q, and C is computed as shown in Formula (4).
+C =
+
+FE weight −
+ Ln(FE effect) ∗FE weight)2
+ FE weight
+
+(4)
+In order to examine if a RE model is more adequate, it is
+tested if there is a signiﬁcant amount of heterogeneity applying
+Cochran’s Q-test described in Christensen (2003). If Q is sta-
+tistically signiﬁcant, a RE model should be applied. This test is
+quite weak (i.e. the probability of detecting heterogeneity when
+there is heterogeneity is not very high), and the RE will not
+be inappropriate, but approaching the FE model when there is
+low heterogeneity (Christensen, 2003). It is hypothesized that
+the effects of ESC are different for different types of accidents
+(single vehicle, multi-vehicle), and for different accident sever-
+ities (injury accidents, fatal accidents). Therefore, the test for
+heterogeneity is performed within each group of different acci-
+dents and accident severities where the number of estimates of
+effect is larger than one. The results of the heterogeneity test are
+summarized in Table 3 for all groups of effect sizes (types of
+accidents, severities) where more than one effect size is avail-
+able. There are signiﬁcant amounts of heterogeneity within the
+effect sizes for single vehicle accidents. For head-on collisions
+and rollover accidents, the results are not very far from being
+signiﬁcant.
+Summary estimates are computed with the RE model for all
+groups of accidents where more than one effect size is avail-
+able. Each summary estimate is computed by summing up all
+products of the logarithms of the estimates of effects and the
+corresponding RE weights, and dividing this sum by the sum
+of all RE weights. The result is then rescaled from the loga-
+rithmic scale in order to obtain the combined estimate of effect
+in terms of odds ratios. This estimate indicates the proportion
+of accidents that are not prevented by ESC. If the estimate is
+for example 0.87, the reduction in the number of accidents in
+vehicles with ESC is 13% ([1–0.87] * 100% = 13%).
+3.3. Results of meta-analysis
+The estimates of effect for different types of accidents and
+different levels of accident severity are summarized in Table 4.
+Additionally, 95% conﬁdence intervals are shown.
+Large reductions were found for single vehicle, loss of con-
+trol and rollover accidents. The number of head-on collisions
+was also reduced signiﬁcantly. The effects on fatal accidents are
+larger than the effects on injury accidents for head-on and for
+all multi-vehicle accidents. For single vehicle accidents there is
+no signiﬁcant difference.
+A combined effect for all types of accidents was not com-
+puted. Most studies have focused on speciﬁc types of accidents;
+the composition of types of accidents would therefore not be
+representative in a combined effect.
+Three of the studies have investigated effects of ESC under
+different driving conditions (Farmer, 2006; Kreiss et al., 2006;
+Lie et al., 2004). In all studies, the largest effects have been
+found on icy or snowy roads, and the smallest effects on dry
+Table 3
+Test for heterogeneity (Cochran’s Q-test)
+Accident severity
+Type of accident
+df
+Cochran’s Q
+p
+Injury/unspeciﬁed accidents
+Single vehicle
+13
+82.939
+<.000
+Injury/unspeciﬁed accidents
+Loss of control
+2
+57.621
+<.000
+Injury
+Rollover accidents
+2
+3.892
+.143
+Injury/unspeciﬁed accidents
+Head on
+8
+11.530
+.183
+Injury/unspeciﬁed accidents
+Multi-vehicle
+3
+0.721
+.868
+Injury accidents
+Single vehicle
+1
+8.575
+.003
+Fatal accidents
+Single vehicle
+4
+8.379
+.079
+Injury accidents
+Multi-vehicle
+1
+0.050
+.823
+Fatal accidents
+Multi-vehicle
+1
+0.786
+.375
+
+A. Erke / Accident Analysis and Prevention 40 (2008) 167–173
+171
+Table 4
+Estimated reductions of accidents for vehicles equipped with ESC (RE models)
+Change of number of accidents (%)
+Accident severity
+Type of accidents
+Best estimate
+95% conﬁdence interval
+Injury/unspeciﬁed accidents
+Single vehicle
+−49
+(−55; −42)
+Injury/unspeciﬁed accidents
+Loss of Control
+−41
+(−62; −7)
+Injury accidents
+Rollover
+−69
+(−82; −45)
+Injury accidents
+All except for rear-end collisionsa
+−22
+(−41; +3)
+Injury/unspeciﬁed accidents
+Head on
+−13
+(−17; −8)
+Injury/unspeciﬁed accidents
+Side collisionsa
+−7
+(−14; 0)
+Injury/unspeciﬁed accidents
+Multi-vehiclea
++3
+(+1; +5)
+Injury accidents
+Single vehicle
+−46
+(−64; −18)
+Fatal accidents
+Single vehicle
+−49
+(−62; −33)
+Injury accidents
+Head ona
+−10
+(−15; −5)
+Fatal accidents
+Head ona
+−79
+(−97; +61)
+Injury accidents
+Multi-vehicle
++2
+(+1; +3)
+Fatal accidents
+Multi-vehicle
+−32
+(−43; −20)
+a Fixed effects model (too few effect sizes for random effects).
+roads. Meta-effects could not be computed because all studies
+have investigated different types of accidents.
+3.4. Sensitivity analysis
+Sensitivity analyses are conducted to test the robustness of the
+results. Sensitivity analysis focuses on publication bias, outlier
+bias, effects of statistical weighting, and study design.
+3.4.1. Publication bias
+Publication bias exists when studies that do not ﬁnd signif-
+icant effects in the expected direction are not published. When
+there is publication bias, the largest effects are found in small
+studies, because effects have to be larger in smaller studies in
+order to become signiﬁcant. When there is no publication bias,
+studies which do not yield signiﬁcant results in the expected
+direction are also published, and the effects will be uncorre-
+lated with study size. More extreme values will be still more
+frequent in smaller studies. A simple method to test for publi-
+cation bias is to investigate the relationship between the effect
+sizes and the weights of the corresponding studies in funnel
+plots (Christensen, 2003). A funnel plot is a scatter diagram
+with the logarithm of the effect sizes (Ln(effect)) on the x-axis,
+and the statistical weights on the y-axis. Statistical weights are
+computed with the FE model. Logarithms of effect sizes are
+used instead of effect sizes because the weights refer to the log-
+arithm of the effects. A “funnel” is drawn around the average
+Ln(effect). Because FE statistical weights are displayed on the
+y-axis, Ln(effects) are also computed with the FE model, and
+therefore slightly different from the logarithms of the effect size
+shown in Table 4. Without publication bias, the Ln(effects) are
+expected to be assembled symmetrically in the shape of a fun-
+nel around the average, where the largest studies are grouped
+around the average effect. Funnel plots are shown in Fig. 1 for
+single vehicle accidents and in Fig. 2 for head-on collisions.
+Fatal accidents are shown as circles in both ﬁgures. The sum-
+mary estimates in the FE models for injury/unspeciﬁed accidents
+are shown as vertical lines. For other types of accidents, there
+were too few estimates of effect to create a funnel diagram.
+In accordance with the results of the test for heterogeneity,
+there is large variance in the estimates of effects for single vehi-
+cle accidents in Fig. 1, and the effects do not seem to cluster
+around one common value. The distribution is somewhat asym-
+metrical. Large negative effect sizes (large accident reductions)
+Fig. 1. Funnel plot for single vehicle accidents (all severities).
+Fig. 2. Funnel plot for head-on collisions (all severities).
+
+172
+A. Erke / Accident Analysis and Prevention 40 (2008) 167–173
+have been found in smaller studies. This is to be expected when
+there is publication bias. A possible alternative explanation is
+that studies in which the accident severity is unspeciﬁed include
+property damage accidents as well as injury accidents. For prop-
+erty damage accidents no large effects are expected, and they are
+more frequent (produce larger statistical weights) than injury
+accidents or fatal accidents. For fatal single accidents there are
+only four effect sizes, all of which are far away from the sum-
+mary estimate. The effects of ESC on head-on collisions are
+quite symmetrically distributed around the summary estimate.
+They do not seem to be affected by publication bias. For fatal
+head-on collisions there is only one effect size.
+3.4.2. Outlier bias
+The effects of single estimates on the summary estimates
+(outlier bias) are investigated by omitting each of the single
+estimates from the calculation of the summary estimates, one at
+a time. Most of these new summary scores cluster closely around
+the original summary scores, i.e. within the 95% conﬁdence
+interval and not more than 2% above or below. Single vehicle
+accidents are an exception. The new summary scores for injury
+accidents range from −18 to −46%. The new summary scores
+for fatal single vehicle accidents range from −43 to −52%.
+3.4.3. Inﬂuence of statistical weighting
+In order to test the inﬂuence of the statistical weighting of
+the estimates of effect, all summary effects were compared to
+the arithmetic means of the single effect sizes (for all summary
+effects which are based on more than one individual effect size).
+No signiﬁcant differences between the RE summary effects and
+the arithmetic means have been found for any of the accident
+types in the meta-analysis.
+3.4.4. Effects of study design
+Effects of study design on the estimates of effect are exam-
+ined by comparing results between before-and-after studies and
+case-control studies. In before-and-after studies the types of cars
+with and without ESC are identical, but ESC is not the only
+change that has been made to the vehicles as ESC became stan-
+dard equipment. In case-control studies there are different types
+of cars with and without ESC. The vehicles have been matched
+with respect to properties that are relevant for active and passive
+safety, which are not controlled for in before-and-after studies.
+Effects of time trends can be assumed to be present in before-
+and-after studies, but not in case-control studies. Vehicle age has
+been controlled for in most studies. A comparison can be made
+for single vehicle accidents. The estimates of effect for injury
+and unspeciﬁed accidents (RE model) are very similar for the
+two types of study design (−46% in the before-and-after studies,
+−41% in the case-control studies). For fatal single vehicle acci-
+dents the effect is −54% in before-and-after studies and −40%
+in the case-control studies. This might indicate an effect of study
+design. However, none of the differences is signiﬁcant.
+3.4.5. Summary of the sensitivity analysis
+The sensitivity analysis shows that the effects of ESC on
+single vehicle accidents are likely to be inﬂuenced by publica-
+tion bias. The effects on fatal single vehicle accidents are also
+inﬂuenced by outlier bias. Actually, each of the four estimates
+might be regarded as an outlier. Additionally, there may be an
+effect of study design. These results are however inconclusive.
+These results suggest that the effect on single vehicle accidents
+is likely to be smaller than suggested by most accident studies.
+No conclusions at all can be drawn from the results for fatal sin-
+gle vehicle accidents. It is also likely that there are factors that
+affect the effects of ESC that can not be investigated, based on
+the present studies.
+The effects of ESC on head-on collisions are more consistent.
+They show no evidence of publication bias, outlier bias, or
+inﬂuence of statistical weighting. A possible explanation is that
+most studies focus mainly on single vehicle accidents, and that
+effects on head-on collisions are less susceptible to publication
+bias.
+4. Summary and conclusions
+A review of studies that have estimated potential effects of
+ESC on accidents has been conducted and results of empirical
+studies of the effects of ESC on accidents have been summa-
+rizedbymeansofmeta-analysis.Theresultsshowaconsiderable
+potential of ESC to reduce the number of accidents, especially
+single vehicle and rollover accidents, head-on collisions, and
+multi-vehicle fatal accidents.
+The meta-analysis shows large effects on single vehicle acci-
+dents, and a still larger effect on rollover accidents. These effects
+can be explained in terms of the large proportions of these types
+of accidents that involve loss of control. Among head-on col-
+lisions, the proportion that involves loss of control is lower.
+Accordingly, the reduction of head-on collisions is smaller than
+the reduction of single vehicle accidents. For all types of multi-
+vehicle accidents, a signiﬁcant decrease has been found for
+fatal accidents only. This is not surprising because the pro-
+portion of multi-vehicle accidents that involve loss of control
+and that might be affected by ESC is mainly limited to head-
+on collisions, and these represent only a small proportion of
+all multi-vehicle accidents. The larger reductions of fatal head-
+on and multi-vehicle accidents can be attributed to the severe
+consequences that accidents involving loss of control usually
+have.
+So far, the meta-analysis conﬁrms the results of the studies
+that have estimated potential accident reductions. However, a
+closer look at the results casts some doubt on the magnitude
+of the effects on single vehicle accidents. There is large varia-
+tion in the results, the results change signiﬁcantly when single
+estimates are omitted from the analysis, and they are likely to
+be affected by publication bias. In contrast to the results of
+the studies that have estimated potential effects of ESC and
+in contrast to the results of the meta-analysis for head-on and
+all multi-vehicle collisions, the effect on single vehicle injury
+accidents is nearly as large as the effect on fatal single vehicle
+accidents. Additionally, the reductions of the number of single
+vehicle accidents that have been found in the meta-analysis are
+almost the same as the estimated proportions of accidents that
+might be affected by ESC. It seems unrealistic to assume that all
+
+A. Erke / Accident Analysis and Prevention 40 (2008) 167–173
+173
+accidents which theoretically might be affected actually will be
+prevented.
+Studydesign(before-and-afterversuscase-control)mayhave
+affected the estimated effects. Case-control studies yield smaller
+effects than before-and-after studies, where more potential con-
+founding factors are present. However, the difference is not
+signiﬁcant. Other methodological aspects may have contributed
+to the relatively large effects. These include the types of con-
+trol accidents in case-control studies, the (lack of) control for
+properties of the vehicles in the study or for time trends. The
+studies of Dang (2004) and Farmer (2006) have found much
+larger effects on accidents with SUV than with passenger cars.
+Differences may also be found between other types of vehicles,
+depending on weight, centre of gravity, and driving dynamics.
+As ESC is mostly standard equipment in higher-class cars, the
+results may not be transferable to lighter vehicles. Time trends
+which may have contributed to overestimated effects may arise
+from improvements of vehicles (e.g. side-airbags) or infrastruc-
+ture (e.g. improvements of road curvature and speed reductions
+in curves) that aim at reducing the same type of accidents or
+accident consequences as ESC. Due to the small number of stud-
+ies, and partly due to lack of information in the studies, these
+aspects could not be tested systematically. Three of the studies
+in the meta-analysis have found different effects on dry, wet and
+icy roads.
+The results may additionally be affected by differences
+between drivers buying cars with and without ESC. Drivers buy-
+ing cars with ESC may set a higher value on safety, or they may
+choose an ESC-car in order to be able to drive faster. ESC may
+also affect driver behaviour, depending on whether or not the
+driver knows that the vehicle is equipped with ESC and how
+ESC works, whether the driver notices when ESC is getting
+active, and how the activity of ESC is perceived (e.g. as “danger”
+versus “fun”). Effects on driver behaviour may reduce or neu-
+tralize the positive effect of ESC on driving dynamics if drivers
+have too much trust in the system and drive faster, or if they
+neglect shifting out worn tyres. On the other hand, ESC may be
+informative, warning drivers about slippery driving conditions,
+and thus contributing to safer driver behaviour. These effects
+may be different for different drivers. In summary, drivers of
+cars that are equipped with ESC may drive more riskily or less
+riskily than drivers of cars without ESC. None of the studies has
+investigated effects on driver behaviour. A comparison of the
+estimated proportions of accidents that may be affected by ESC
+and the results of the meta-analysis of accident studies does not
+give any clear answer. If ESC were leading to more careful driver
+behaviour, this might partly explain the large empirical effects
+on single vehicle accidents. The larger effects of ESC that have
+been found under slippery driving conditions also suggests that
+drivers do not (over-)compensate the effects of ESC on driving
+dynamics by more risky driving behaviour. The small but signif-
+icant increase of multi-vehicle accidents suggests the contrary
+effect. More research is needed to investigate the size of the
+effects and the sources of the heterogeneity in the effects. The
+aim should be an improved system design of ESC which avoids
+negative behaviour adaptation effects. More knowledge on the
+size of the effects is needed to support increased implementation
+of ESC (e.g. by beneﬁt-cost analysis), and as ESC is becoming
+more common, its effects should be taken into account in studies
+of other safety measures which aim at reducing the same types
+of accidents.
+References
+Alliance of Automobile Manufacturers, 2005. Preliminary results of ESC per-
+formance metric evaluations. Presentation from the meeting of the Alliance
+of Automobile Manufacturers, June 23, 2005.
+Aga, M., Okada, A., 2003. Analysis of vehicle stability control\s effectiveness
+from accident data. ESV paper 541.18th ESV Conference. Nagoya.
+Bahouth,G.,2005.Realworldcrashevaluationofvehiclestabilitycontrol(VSC)
+technology, 49th Annual Proceedings Association for the Advancement of
+Automotive Medicine, September 12–14.
+Campbell,B.N.,Smith,J.D.,Najm,W.G.,2003.Examiningofcrashcontributing
+factors using national crash databases. NHTSA report DOT-VNTSC-
+NHTSA-02–07.
+Christensen, P., 2003. Topics in meta-analysis. Report 692/2003. Oslo: Institute
+of Transport Economics.
+Dang, J.N., 2004. Preliminary results analysing the effectiveness of electronic
+stability control systems. NHTSA, DOT HS 809 790.
+Deutscher Verkehrssicherheitsrat, 2006. Sicherheitstechnik ESP: Kleinwagen
+demSchleudernweiterhinausgesetzt(SafetyequipmentESP:Smallvehicles
+still prone to skidding). DVR Report 728/30.
+Elvik, R., 2005. Introductory guide to systematic reviews and meta-analysis.
+Transportation Research Record 1908, 230–235.
+European Commission, 2005. Cost-beneﬁt assessment and prioritisation of vehi-
+cle safety technologies. European Commission Directorate General Energy
+and Transport, Interim report October 2005.
+Farmer, C.M., 2006. Effects of electronic stability control: An update. Trafﬁc
+Injury Prevention 7, 319–324.
+Fleiss, J.L., 1981. Statistical methods for rates and proportions. Wiley, New
+York.
+InsuranceInstituteforHighwaySafety,2005.ElectronicStabilityControl.Status
+Report, 4(1), 2–4.
+InsuranceInstituteforHighwaySafety,2006.ElectronicStabilityControl.Status
+Report 41(5), 2–3.
+Kreiss, J.-P., Sch¨uler, L., Langwieder, K., 2006. The effectiveness of primary
+safety features in passenger cars in Germany. ESV-paper No. 05-0145. 19th-
+ESV-Conference, Washington D.C. (USA).
+Langwieder, K., Gwehenberger, J., Hummel, T., Bende, J., 2003. Beneﬁt poten-
+tial of ESP in real accident situations involving cars and trucks, 16th
+International Technical Conference on the Enhanced Safety of Vehicles,
+Nagoya (Japan).
+Lie, A., Tingvall, C., Krafft, M., Kullgren, A., 2004. The effectiveness of ESP
+in reducing real life accidents. Trafﬁc Injury Prevention 5, 37–41.
+Motor and Equipment Manufacturers Association, 2006. NHTSA Says Rollover
+Ratings for SUVs Improved in 2006 (http://www.mema.org/services/govt/
+issuedetail.php?id=50currentOnly=yes).
+NHTSA, 2006. DOT Proposes Anti-Rollover Technology for New Vehicles.
+NHTSA Press releases NHTSA 09-06 Thursday, September 14, 2006.
+Page, Y., Cuny, S., 2006. Is electronic stability control effective on French roads?
+Accident Analysis and Prevention 38, 357–364.
+Sferco, R., Page, Y., Lecoz, J.Y., Fay, P.A. S, 2001. Potential effectiveness of
+electronic stability programs (ESP)–what European ﬁeld studies tell us, Pro-
+ceedings of the 17th international technical conference on the enhanced
+safety of vehicles, Amsterdam.
+Thomas, P., 2006. Crash involvement risks of cars with electronic stability
+control systems in Great Britain. International Journal of Vehicle Safety
+1, 267–281.
+Unselt, T., Breuer, J., Eckstein, L., Frank, P., 2004. Avoidance of loss of con-
+trol accidents through the beneﬁts of ESP. FISITA Conference paper no.
+F2004V295, Barcelona.
+Zobel, R., Friedrich, H., Becker, H., 2000. Accident research with regard to
+crashworthiness and crash avoidance, Conference Vehicle Safety 7–9 June
+2000, London, UK.

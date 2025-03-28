@@ -1,0 +1,104 @@
+Tech Library
+[Sep. 2021] Application Note
+Child Presence Detection System
+Contents
+•	 Overview of the child presence detection system
+•	 Components proposed by TDK and their effects
+•	 Passive components that contribute to the communications quality of in-vehicle cameras (ADL series)
+•	 TDK is expanding its sensor portfolio
+•	 TDK products support millimeter wave sensing device development (radio wave absorbent materials, anechoic chambers)
+•	 Summary
+Anechoic Chambers and Radio Wave Absorbers
+Inductors (Coils)
+Sensors and Sensor Systems
+Leaving small children in a vehicle has become a problems resulting in fatalities. In North 
+America, an average 39 children are left in cars and die each year*1. Reducing the number of 
+fatalities in automobiles has become an issue for manufacturers as a part of their mission. For 
+this reason, automakers are developing systems to detect the presence of children or pets in 
+cars. In this chapter, we introduce TDK's related components and technical services regarding 
+child presence detection systems.
+*1. From KidsAndCars.org, a non-profit organization based in the U.S. (KidsAndCars.org)"
+Overview of the child presence detection system
+The child presence detection system uses various sensors to detect the presence of a child or pet in the vehicle and notify and warn the 
+driver. Euro-NCAP (European organisation for automotive safety assessment) is planning to evaluate the safety of vehicles equipped with a 
+system to detect children left in a vehicle starting in 2022. A roadmap for evaluation criteria (Figure 1) has been formulated within Euro-
+NCAP, a European automobile safety testing programme, and it has been announced that evaluation of operation of child presence 
+detection systems will be added to the scope of testing starting in 2022. *2
+(*2) Euro-NCAP
+*2. Euro-NCAP
+Figure 1. Euro-NCAP's Evaluation Roadmap
+© 2021 TDK Corporation
+20211203 / apn_cpd_en
+
+Components proposed by TDK
+Examples of representative circuits for child presence detection systems and TDK products are introduced.
+Automotive/Safety
+Child Presence Detection System
+Here are the optimal products for Child Presence Detection System for automobile safety mechanisms, selected from the TDK Group's product 
+lines, including inductors, EMC Components, and piezo components.
+Figure 2. Application Guide: Child Presence Detection
+Application Guides
+Automotive/Child Presence Detection System
+© 2021 TDK Corporation
+20211203 / apn_cpd_en
+
+Passive components that contribute to the communications quality of in-vehicle cameras (ADL series)
+The data captured by the onboard camera must be analyzed and processed by AI to determine if the object left behind is a child or pet. The 
+most promising candidate for this is camera-based sensing. TDK provides circuit solutions centered on decoupling inductor components 
+(ADL series), which are key products for the PoC (Power over Coaxial) method and are ideal for digital image communications.
+Figure 3. PoC Transmission System Overview
+Application Note
+Automotive communication interface: Products 
+recommended for PoC use (PoC filter inductors, chip 
+beads)
+TDK is expanding its sensor portfolio
+TDK makes proposals for the automotive market using materials, processes, and modularization technologies that employ magnetoresistive 
+elements (Hall sensors and TMR sensors) and MEMS. In the field of in-vehicle sensing, we have commercialized gesture sensors that use 
+ultrasonic waves, CO2 sensors, and MEMS microphones, and we are working to develop various sensor elements and applications in the 
+future. MEMS microphones can be used to identify the cries of children and pets, and it is predicted that there will be a time when future 
+cars can perform sophisticated monitoring functions.
+Figure 4. Sensor Product Portfolio
+© 2021 TDK Corporation
+20211203 / apn_cpd_en
+
+Summary
+Passenger detection systems are expected to be used not just with child presence detection systems, but also in MaaS (Mobility as a 
+Service) and in cabin passenger control management and necessary for autonomous driving. These systems will control the air conditioning, 
+sound, and even the opening and closing of airbags in the vehicle to provide a comfortable, safe, and secure environment. The TDK Group 
+will continue to contribute to the creation of valuable automobiles by advancing its know-how and technologies based on its long-standing 
+track record in automotive products.
+TDK products support millimeter wave sensing device development (radio wave absorbent materials, anechoic 
+chambers)
+Sensing using millimeter wave bands is being considered as a method for detecting objects inside a vehicle. A millimeter wave sensing 
+function with a wide frequency range of 60 GHz will be deployed as a global standard. Compared to imaging methods using visible light 
+cameras, this method overcomes the problem of not being able to detect objects such as in cases where a child or pet is sleeping while 
+completely covered by a blanket.
+Absorbent materials for microwave anechoic chambers: IS materials
+This radio wave absorbent material uses foamed polyethylene as a base and makes use of the ohm loss of carbon.
+The radio wave absorbent IS material has excellent radio wave absorption performance not only for microwaves, but also from millimeter to 
+sub-millimeter waves (up to 1 Thz).
+Anechoic Chambers for Radar and Large Antenna Evaluation
+Figure 5. Radio Wave Absorbent Materials for Microwave 
+Anechoic Chambers: IS materials
+Figure 6. Radio Wave Anechoic Chamber
+© 2021 TDK Corporation
+20211203 / apn_cpd_en
+
+Related Links
+Product Portal
+Inductor (Coil) Product Information
+A comprehensive guide to various information on 
+inductor (coil) products from the TDK Group.
+Anechoic Chambers and Radio Wave 
+Absorbers Product Information
+A comprehensive guide to various information on 
+anechoic chambers and radio wave absorbers from the 
+TDK Group.
+Sensors and Sensor Systems Product 
+Information
+A comprehensive guide to various information on 
+sensors and sensor systems from the TDK Group.
+Contact Information
+ Inquiries on products, sales, or technical matters
+© 2021 TDK Corporation
+20211203 / apn_cpd_en

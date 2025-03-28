@@ -1,0 +1,270 @@
+ABSTRACT
+In recent years, a number of different Blind Spot Monitor
+(BSM) systems have become more and more popular in
+North American automotive market. The BSM system
+advises the driver of vehicles travelling in adjacent lanes
+when these vehicles are also in the driver's outside rearview
+mirror blind spots.
+Similarly, when the vehicle is backing up from a parking
+spot, cross-traffic vehicles can be in the driver's outside
+mirror blind spots. In this situation, the Rear Cross Traffic
+Alert (RCTA) system alerts the driver when the driver shifts
+the vehicle in the reverse gear and there are approaching
+cross-traffic vehicles. The benefits of RCTA system was
+presented by [1].
+The RCTA alert studied in this paper is given by playing an
+audible sound and by flashing the outside mirror indicators.
+The RCTA and BSM systems share the same vehicle sensors
+and most of their vehicle components.
+The work presented in this paper researches a new method to
+properly identify the RCTA alert timing in North America
+where the rate of front-in parking is higher than other regions
+and the parking lots are larger than in other regions allowing
+for larger cross-traffic speeds (typically from 5mph to
+18mph). Therefore, North American customers are more
+likely to experience a situation that would activate the RCTA
+system during backup maneuvers. The drivers need the
+proper alert timing to respond to the different cross-traffic
+speeds. The method proposed in this paper alerts the driver
+when the RCTA system predicts that a cross-traffic vehicle
+will pass behind the driver's vehicle within a given Estimated
+Crossing Time (ECT).
+INTRODUCTION
+The goal of both automakers and vehicle users is to minimize
+the negative impacts of vehicles on society, such as traffic
+accidents and congestion, while optimizing the enjoyment of
+using a car, comfort, and usability. To provide driver support
+while traveling down a multilane road, the Blind Spot
+Monitor (BSM) was developed to detect vehicles in the
+adjacent lanes that are not reflected in the outside mirrors
+(blind spot) and advises the driver of the vehicles existence
+via an indicator in the outside mirror [2]. Using the rear-side
+radar recognition technology developed for the BSM, Toyota
+has also developed the Rear Cross Traffic Alert (RCTA)
+system, which detects vehicles approaching from the sides
+when backing out of a parking space(Fig. 1).
+This article describes the objectives and concept of our
+RCTA system and focused on an alert method. As an alert
+method, Estimated Crossing Time (ECT) is proposed that
+decreases driver annoyance due to early alerts when the
+cross-traffic speed is low, and increases the effectiveness of
+the alert when the cross-traffic speed is high. This is because,
+for different cross-traffic speeds, the ECT method adapts the
+distance between the driver's vehicle and the cross-traffic
+vehicle at which the alert is given. The ECT value should be
+large enough to take into consideration the driver's reaction
+time to the audible alert and the time that it takes for the
+backing up vehicle to stop. However, the ECT alert value
+should not be too large in order to reduce driver's annoyance
+due to early alerts. A panelist study was conducted to confirm
+Alert Method for Rear Cross Traffic Alert System in
+North America
+2013-01-0732
+Published
+04/08/2013
+Yoshihiko Takahashi, Tetsuya Komoguchi  and  Masato Seki
+Toyota Motor Corp.
+Nimesh Patel, David Auner  and  Bruce Campbell
+Toyota Motor Engineering & Mfg NA Inc.
+Copyright © 2013 SAE International
+doi:10.4271/2013-01-0732
+Downloaded from SAE International by University of Liverpool, Sunday, August 12, 2018
+
+the effectiveness of ECT method and the alert timing is
+appropriate in North America
+Figure 1. Outline of BSM and RCTA system
+BACKGROUND
+In North America, an extremely common style of parking is
+to drive forward into the parking space and to leave the
+parking space by backing out (Fig. 2). Possible reasons for
+this include the relative wideness of parking spaces in North
+America, which makes it easy to drive front-first into the
+space, or the fact that driving forward into a space makes it
+easier to load shopping bags and other items into the trunk.
+Figure 2. Parking style in North America
+However, when backing out of a parking space, the drivers'
+rear view may be limited by surrounding vehicles. It may be
+difficult to view the rear cross traffic (Fig. 3).
+Therefore, many people in the U.S. have reported feeling
+concern about backing up and have experienced near-misses
+in every day driving after failure to notice an approaching
+vehicle (Fig. 4). Obviously, drivers in other countries are also
+likely to have experienced similar near-misses when backing
+out of parking spaces. Therefore, the main goal of developing
+the RCTA system was to use the rear-side vehicle detection
+technology developed for the BSM to provide peace of mind
+to the driver by reducing near-misses when backing up.
+Figure 3. View of driver when starting to back out of
+parking space
+Figure 4. Near-misses in everyday driving (internal
+study)
+The RCTA system was installed in the Lexus ES that went on
+sale in North America in August 2012. The number of
+models is likely to increase steadily in the future.
+CONCEPT OF RCTA SYSTEM
+The RCTA system provides driver assistance by detecting
+and warning the driver of a vehicle approaching from behind
+in an area that may not be visible using the mirrors or
+rearview camera. The system notifies the driver using a
+buzzer and a flashing indicator display located at the top of
+the outside mirror surfaces. This concept is illustrated for 90-
+degree parking in Fig. 5; Angled parking up to 60-degrees is
+also covered by the system. Crossing vehicles which are not
+on a path of intersection with the backing vehicle are not
+alerted on; for example, vehicles in the adjacent aisle behind.
+Figure 5. Concept of RCTA system
+Downloaded from SAE International by University of Liverpool, Sunday, August 12, 2018
+
+Alert Objects and Method
+Table 1 shows the Alert objects and method. Following the
+description in SAE J2802, the detection objects of the system
+were defined as vehicles (including motorcycles) with a
+displacement of at least 125 cc. The detection speed range
+was set to between 5 and 18 mph, which covers at least 95%
+of the speed distribution observed in North American car
+parks (Fig. 6).
+Table 1. Alert Object and Method
+Figure 6. Speed distribution in North American car
+parks (N=220, internal study)
+Figure 7. Alert method by ECT
+The Estimated Crossing Time (ECT) method was used to
+determine warning timing that provide peace of mind, for a
+wide range of approaching vehicle speeds. Specifically, the
+RCTA system issues a warning 2.5 seconds before the
+approaching vehicle is estimated to cross the path of the
+vehicle that is backing up. This means that the warning start
+distance increases in accordance with the speed of the
+approaching vehicle (Fig. 7).
+Data has been published by NHTSA (DOT HS 808 531) and
+others recommending warnings in the range of 1.5 to 5.0
+seconds. Figure 8 shows the concept used in this case to set
+the ECT to 2.5 seconds. The driver reaction time to press the
+brake pedal is assumed to be 2 seconds after the RCTA
+warning [3]. The time to stop the vehicle by pressing the
+brake pedal can be calculated as follows, assuming a
+reversing speed (V0) of 1.8km/h (0.5 m/s).
+where, µ m is the friction coefficient between the tires and
+road surface, and g is the gravitational acceleration (9.8 m/
+s2). Since this time is extremely short, the time to stop can be
+rounded down virtually to the reaction time of 2 seconds.
+This 2-second reaction time means that the driver's vehicle
+will take 1 meters to stop (0.5 m/s × 2 seconds). Moreover,
+0.5second of safety margin is added because driver's vehicle
+will stop before the approaching vehicle will come to directly
+behind the subject. Therefore the ECT was set to 2.5 seconds
+after adding these times together.
+Figure 8. Concept behind ECT of 2.5seconds
+System Components and Human-
+Machine Interface (HMI)
+Figure 9 shows the components of the RCTA system. The
+two BSM modules that are installed inside the rear side body
+members each consist of a radar portion for vehicle detection
+with an integrated with an ECU that performs the warning
+control. Both the RCTA and BSM systems use the same
+Downloaded from SAE International by University of Liverpool, Sunday, August 12, 2018
+
+modules. Figure 10 shows an example of BSM module
+installation.
+Figure 9. System components
+Figure 10. Example of BSM module installation
+The RCTA system uses the same indicator display located on
+the outside mirror surfaces as the BSM system (Fig. 11). The
+outside mirrors are two of the places that drivers commonly
+look at when backing up. Both outside mirror indicators flash
+to increase the likelihood of attracting the drivers' attention
+from the investigation of driver's looking points when
+backing up (Fig.12). In addition, implementation of RCTA
+always includes a rear camera system for those drivers who
+prefer that method of direct visual confirmation.
+The same main switch was also selected. Adopting the same
+icon display with outside mirror indicators makes it easier for
+the driver to understand that the BSM and RCTA are similar
+systems that cover the rear-side areas of the vehicle.
+The warning buzzer is installed in the upper back panel at the
+rear of the vehicle. The buzzer tone specifications were set to
+prompt the driver to brake the vehicle to a stop immediately
+after hearing the buzzer. The urgency and importance (i.e.,
+the degree of risk involved) of the system was studied, a tone
+with a frequency of 2.0 kHz and an interruption period of 100
+msec. was selected.
+Figure 11. Warning indicator display
+Figure 12. Different outside views driver looks at while
+backing
+Panelist Study
+Panelist study was conducted to confirm the ECT timing is
+appropriate for North American people. Twenty male and
+female non-auto industry panelists with valid driver's licenses
+were recruited
+Protocol
+A street level public parking lot was used to perform the
+evaluation. Panelists in subject vehicle experienced 4 Target
+car passes per vehicle. (2 at 5 mph, 2 at 15 mph) as Fig 13.
+Panelists answered questions about the appropriateness of the
+alert timing. Panelists were also asked about their preference
+for one (directional indication) or both outside mirror
+indicators flashing. Actual BSM module was used for this
+panelist study, so the ECT value varies because of sensor's
+detection performance ex) accuracy of relative detection
+distance or velocity, angle for the target.
+Figure 13. Protocol
+Downloaded from SAE International by University of Liverpool, Sunday, August 12, 2018
+
+Results
+The result of the alert timing is depicted in Fig.14. The alert
+timing of low speed(5mph) and high speed(15mph) was both
+appropriate and the merit of ECT method was confirmed for
+the set of 2.5sec over of ECT. Most panelists judged that the
+timing between the alert starting and the target vehicle
+passing as being appropriate with a few judging a little too
+early or a little too late. For the ECT value, the set of 2.5sec
+or over of ECT was judged appropriate than the set of 2.5sec
+or lower from the two different set of ECT at 15mph target
+speed.
+Figure 14. Appropriateness of alert timing (
+: ECT =
+2.5sec or over, 
+: ECT= lower than 2.5sec)
+Figure 15. Usefulness of the directional lighting
+Figure 15 shows the panelist judgment of the usefulness of
+lighting one outside mirror indicator to display target vehicle
+direction. There was not a strong preference for using the
+outside mirrors to indicate target vehicle direction. Some
+panelist preferred both outside mirror indicators lighting
+because of the high likelihood of seeing the alert when they
+are backing up.
+CONCLUSION
+Our RCTA system was developed to help provide peace of
+mind to customers. The ECT alert method was proposed and
+finely tuned. The effectiveness of the alert method and the
+appropriateness of ECT value were confirmed by panelist
+studies in North America.
+Toyota intends to continue refining the performance and
+expanding the functions of this radar to further enhance the
+safety and peace of mind of the customer.
+REFERENCES
+1.  Neurauter, M., Llaneras, R., Li, B., and Green, C., “Issues
+Related to the Use and Design of a Backing Rear Cross
+Traffic Alert System,” SAE Int. J. Passeng. Cars - Mech.
+Syst. 4(1):462-466, 2011, doi: 10.4271/2011-01-0578.
+2.  Oda, T., Kawasaki, T., Okuda, M., “Development of Blind
+Spot Monitor,” Toyota Technical Review 58(1):53-57, 2012.
+3.  JOHANSSON GUNNAR and RUMAR KARE, “Drivers'
+Brake Reaction Times,” HUMAN FACTORS, 13(1), 23-2,
+1971.
+The Engineering Meetings Board has approved this paper for publication. It has
+successfully completed SAE's peer review process under the supervision of the session
+organizer. This process requires a minimum of three (3) reviews by industry experts.
+All rights reserved. No part of this publication may be reproduced, stored in a
+retrieval system, or transmitted, in any form or by any means, electronic, mechanical,
+photocopying, recording, or otherwise, without the prior written permission of SAE.
+ISSN 0148-7191
+Positions and opinions advanced in this paper are those of the author(s) and not
+necessarily those of SAE. The author is solely responsible for the content of the paper.
+SAE Customer Service:
+Tel: 877-606-7323 (inside USA and Canada)
+Tel: 724-776-4970 (outside USA)
+Fax: 724-776-0790
+Email: CustomerService@sae.org
+SAE Web Address: http://www.sae.org
+Printed in USA
+Downloaded from SAE International by University of Liverpool, Sunday, August 12, 2018

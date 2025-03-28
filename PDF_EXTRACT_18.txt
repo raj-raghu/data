@@ -1,0 +1,692 @@
+Whitepaper:
+ADAS (Advanced Driver 
+Assistance Systems) – 
+attraction or distraction? 
+Do you know what they all are 
+and what they do to help?
+drivetech.co.uk
+With grateful thanks for a significant contribution from 
+Dr. Lisa Dorn, Research Director at DriverMetrics
+
+Introduction 
+Advanced driver-assistance systems (popularly abbreviated to 
+“ADAS”) are systems designed to help the driver in an increasingly 
+technology-assisted mobile world. 
+More and more road vehicles have built-in driver assistance 
+technology either fitted as standard or offered as after-market 
+fitment options. Of course, many of them may be optionally turned 
+on or off by the driver, but by default it is likely that many are on as 
+the standard setting.
+The endgame might be the fully autonomous (driverless) vehicle, 
+but in the meantime, driver assistance systems are intended mainly 
+to improve safety on the road. However, as they appear increasingly 
+on new vehicles, does the driver really understand them, their 
+benefits and their best use?
+Interestingly, in a JD Power 2019 U.S. Tech Experience Index 
+Study, it was noted that some alerts on ADAS are so annoying 
+or bothersome that many drivers disable the systems and may 
+even try to avoid them on future car purchases. Confusion and 
+frustration are commonly cited.
+As we move to more screen based technology interfaces, what is 
+the difference between the use of a modern smartphone in-vehicle 
+and the increasing adoption of large single tablet computer style 
+screens with variable functions that appear depending on mode –
+ 
+versus the fixed location of more traditional buttons to control key 
+aspects of the vehicle to help minimise distraction.
+And what are the distinct behavioural and attitudinal impacts 
+on drivers? We are exceptionally grateful for a collaborative 
+input to this paper from Dr Lisa Dorn of Cranfield University and 
+DriverMetrics who assesses this area with a helpful summary of 
+academic studies and reports, and some key observations about 
+the prospective development of the driver training curriculum.
+
+The Road Safety Challenge 
+Safety features are designed to avoid collisions by offering 
+technologies that alert the driver to potential hazards by 
+implementing safeguards and taking over control of the vehicle. 
+Adaptive features may automate lights, provide adaptive cruise 
+control and collision avoidance, pedestrian crash avoidance 
+mitigation (PCAM), incorporate satnav/traffic warnings, connect 
+to smartphones, alert drivers to other cars or dangers, lane 
+departure warning system, automatic lane centering, or show 
+what is in blind spots.
+Many drivers are becoming increasingly reliant on ADAS systems 
+which in frequent cases may not even be working after the fitted 
+vehicle has been involved in a harsh collision, compromising their 
+safety against what may be a backdrop of poor basic driving 
+skills. Drivers often misunderstand or misuse the systems and, in 
+particular, may over-rely on them, which can lead to more crashes 
+ironically (imagine a scenario where one’s regular vehicle has 
+parking sensors front and rear, and then an older vehicle is driven 
+without these aids. It can be difficult to revert to parking without 
+assistance – especially when these skills can fade over time).
+Professional and accurate recalibration of ADAS (for example after 
+a collision or major electronics investigation work) is important 
+because, for example, an un-calibrated replacement windscreen 
+could fail to warn drivers of potential road hazards in a timely 
+manner. Even just a tiny inaccuracy in the position of a windscreen 
+camera can significantly impair the effectiveness of one or more 
+ADAS systems. This is an issue that the insurance industry, 
+and the wider automotive sector are facing. As vehicle servicing 
+and maintenance becomes significantly transitioned from 
+mechanical and engineering expertise to precision electronic device 
+calibration, it inevitably poses reliability, liability and warranty issues.
+Whilst the dynamics of road safety is complex combining human 
+behaviour, road infrastructure, road use regulations and policing,
+ 
+and increasing vehicle technology – notably including ADAS, it is 
+interesting, if not concerning, that after a period of virtually static 
+recorded annual road deaths and serious injuries (Department for 
+Transport - DfT), the most recent annual provisional figures indicate 
+a slight worsening of the road death figures.
+Thatcham Research hold an eminent research 
+position in the motor industry – with the specific aim 
+of containing or reducing the cost of motor insurance 
+claims while maintaining safety standards. Richard 
+Billyeald, Thatcham Research Chief Technical Officer, 
+comments: ‘‘The whole industry needs to work together 
+to make sure ADAS repairs are safe and vehicles are 
+returned to the road quickly and efficiently. Equipment 
+suppliers must ensure that verifiable evidence of a 
+successful calibration is provided. Repairers must 
+invest in training to ensure competent persons are 
+reinstating ADAS safely. And Vehicle Manufacturers 
+must provide ADAS fitment data and consistent advice 
+around which repair scenarios will result in successful 
+ADAS calibration.’’
+
+Systems Range 
+Typically, ADAS relies on inputs from multiple data sources, 
+including automotive imaging, LiDAR*, radar, image processing, 
+computer vision, and in-car networking. Additional inputs are 
+possible from other sources separate from the primary vehicle 
+platform, such as other vehicles, referred to as Vehicle-to-Vehicle 
+(V2V), or Vehicle-to-Infrastructure (such as mobile telephony or  
+Wi-Fi data network) systems.
+*LiDAR – stands for Light Detection and Ranging, and is a remote 
+sensing method that uses light in the form of a pulsed laser to 
+measure ranges and distance to a target).
+The range of different systems is wide and growing! Just some 
+are listed here and we’ve highlighted a few of the more popular 
+ones including a brief indicative description.
+Don’t forget DriveTech can help provide driver training 
+for your business drivers to include knowledge and 
+a full appreciation of the systems prevalent in their own 
+vehicles.
+ 
+Increasingly Popular & Prevalent ADAS Systems:
+Adaptive Cruise Control (ACC)
+Switch on the adaptive cruise control and put in the maximum 
+speed you want to drive and the distance at which you’re 
+comfortable following other cars. As long as there’s no one in front 
+of you the car will maintain that speed without any driver input. 
+When you inevitably come across a slower vehicle, or even stop and 
+go traffic, the vehicle will automatically brake and accelerate to keep 
+up with traffic.
+CON: This system tries to always keep the pre-set distance to the 
+car in front of you. This can often lead to significant braking and 
+acceleration, which can create a poor road usage capacity, and 
+might also increase fuel consumption.
+Anti-lock braking system
+Possibly one of the earlier ADAS introductions, an anti-lock  
+braking system (ABS) is a safety anti-skid braking system used on 
+aircraft and on land vehicles, such as cars, motorcycles, trucks, and 
+buses. ABS operates by preventing the wheels from locking  
+up during braking, thereby maintaining tractive contact with the road 
+surface.
+
+Automatic Parking
+Automatic parking is an autonomous car-manoeuvring system 
+that moves a vehicle from a traffic lane into a parking spot to 
+perform parallel, perpendicular, or angle parking. The automatic 
+parking system aims to enhance the comfort and safety of driving 
+in constrained environments where much attention and experience 
+is required to steer the car. The parking manoeuvre is achieved 
+by means of coordinated control of the steering angle and speed 
+which takes into account the actual situation in the environment to 
+ensure collision-free motion within the available space.
+Automotive navigation system with typically GPS* and 
+TMC* for providing up-to-date traffic information.
+An automotive navigation system is part of the vehicle controls or a 
+third-party add-on used to find direction. It typically uses a satellite 
+navigation device to get its position data which is then correlated to 
+a position on a road. When directions are needed routing can 
+be calculated. On the fly traffic information can be used to adjust 
+the route. *GPS - Global positioning system. *TMC – Traffic Message Channel
+Automotive Night Vision
+An automotive night vision system uses a thermographic camera 
+to increase a driver’s perception and seeing distance in darkness 
+or poor weather beyond the reach of the vehicle’s headlights. This 
+may help to highlight humans and other objects that wouldn’t 
+otherwise be seen as clearly with just normal vehicle headlights. 
+Such systems are offered as optional equipment on certain 
+premium vehicles.
+Blind Spot Monitor
+The blind spot monitor is a vehicle-based sensor device that 
+detects other vehicles located to the driver’s side and rear. 
+Warnings can be visual, audible, vibrating, or tactile.
+Blind spot monitors are an option that may do more than monitor 
+the sides and rear of the vehicle. They may also include “Cross 
+Traffic Alert”, “which alerts drivers backing out of a parking space 
+when traffic is approaching from the sides.
+CON: Every system will have serious consequences when not 
+operating properly, but with the blind spot information system the 
+consequences are catastrophic. When drivers count on the proper 
+function of the system in high speed traffic situations if the system 
+is broken people will be seriously injured or even worse.
+Collision Avoidance System (Pre-Crash System)
+Also referred to as forward collision warning (FCW), or collision 
+mitigating system, it typically uses RADAR or LiDAR or camera 
+(or a combination of these technologies) to detect an imminent 
+crash and works to avoid the impact completely, or at least reduce 
+the magnitude of impact – normally by automatically cancelling 
+acceleration and applying the brakes. GPS sensors can detect 
+fixed dangers such as an approaching stop sign at a dangerous 
+T-junction through a location database.
+CON: Collision mitigation is based on algorithms that are inserted 
+by the developer of the system. These algorithms cannot always 
+represent all the possible things that could go wrong in traffic.
+Crosswind Stabilisation
+Crosswind stabilisation is among the relatively new ADAS, aiming 
+to compensate for strong crosswinds. It uses sensors to detect 
+forces acting on the vehicle through side wind gusts – be it on 
+a bridge or when overtaking a truck. The system’s response 
+also takes account of vehicle speed, vehicle load and steering 
+characteristics of the driver. Brakes are applied to the wheels on 
+the side of the vehicle facing the wind, depending on the situation, 
+and counteract the side wind interference.
+Cruise Control
+Another increasingly prevalent/standard fit, cruise control 
+(sometimes known as speed control or autocruise, or tempomat in 
+some countries) is a system that automatically controls the speed 
+of a motor vehicle. The system is a servomechanism that takes 
+over the throttle of the car to maintain a steady speed as set by the 
+driver.
+Dashcam
+Increasingly popular, mainly as a standalone accessory for 
+windscreen (and/or rear screen) affixing, the ability for dashcam 
+systems to help record on road events might be regarded as 
+an assistance system, not so much to assist live driving but to 
+record events in the event of an insurance issue or similar on road 
+incident. It can be argued that the mere presence of a recording 
+device will influence many drivers to conform to good driving 
+practice and observe the Highway Code. Some models include 
+warnings of ‘hazards’ or landmarks ahead.
+
+Driver Drowsiness Detection
+Driver drowsiness detection is a car safety technology which helps 
+prevent accidents caused by the driver getting drowsy. Various 
+studies have suggested that around 20% of all road accidents are 
+fatigue-related, up to 50% on certain roads. See the AA Drowsy 
+Driver campaign video here 
+www.drivetech.co.uk/news-and-resources/aa-trust-supported-
+by-drivetech-launches-new-drows
+Some of the current systems learn driver patterns and can detect 
+when a driver is becoming drowsy. One example of the benefits 
+of lane departure warning is to warn when the driver becomes 
+tired or is distracted. A question that rises is that the system 
+might cause this inattention just by making the driver aware that 
+something is controlling him.
+Driver Monitoring System
+The Driver Monitoring System, also known as Driver Attention 
+Monitor, is a vehicle safety system first introduced by Toyota 
+in 2006. The system uses infrared sensors to monitor driver 
+attentiveness. Specifically, the Driver Monitoring System includes 
+a CCD camera placed on the steering column which is capable of 
+eye tracking via infrared LED detectors. If the driver is not paying 
+attention to the road ahead and a dangerous situation is detected, 
+the system will warn the driver with flashing lights and warning 
+sounds. If no action is taken, the vehicle will apply the brakes (a 
+warning alarm will sound followed by a brief automatic application 
+of the braking system). 
+Electric Vehicle Warning Sounds Used In Hybrids 
+& Plug-In Electric Vehicles
+Electric vehicle warning sounds are sounds designed to alert 
+pedestrians to the presence of electric drive vehicles such as hybrid 
+electric vehicles (HEVs), plug-in hybrid electric vehicles (PHEVs), 
+and all-electric vehicles (EVs) travelling at low speeds. Warning 
+sound devices were deemed necessary by some government 
+regulators because vehicles operating in all-electric mode produce 
+less, if not virtually no, noise than traditional combustion engine 
+vehicles and can make it more difficult for pedestrians, the blind, 
+cyclists, and others, to be aware of their presence.
+Emergency Driver Assistant
+Emergency Assist is a driver assistance system that monitors driver 
+behaviour by observing delays between the use of the accelerator 
+and the brake. Once a preset threshold of time has been exceeded 
+the system will take control of the vehicle in order to bring it to a safe 
+stop. This is on the assumption that the driver has, for example, 
+fallen asleep at the wheel.
+Forward Collision Warning (FCW)
+A collision avoidance system, also known as a pre-crash system, 
+forward collision warning system, or collision mitigating system, is 
+a vehicle safety system designed to prevent or reduce the severity 
+of a collision. It uses radar (all-weather) and sometimes laser 
+(LIDAR) and camera (employing image recognition) to detect an 
+imminent crash. GPS sensors can detect fixed dangers such as 
+approaching stop signs through a location database
+Hill Descent Control
+When the driver is descending a hill at a slow speed, by selecting 
+Hill Descent Control (a dashboard button typically) the vehicle will 
+be restrained to not allow gravity to naturally accelerate the vehicle 
+downhill. When on, the vehicle will descend using the anti-lock 
+braking system (ABS) to control each wheel’s speed. If the vehicle 
+accelerates without driver input, the system will automatically 
+apply the brakes to slow down to the desired vehicle speed. 
+Cruise control buttons can adjust the speed to a comfortable 
+level. Applying pressure to the accelerator or brake pedal will 
+override the HDC system when the driver requires.
+Hill Start Assist
+This feature can prevent roll back on an incline by holding the 
+brakes while you switch between the brake and acceleration 
+pedals. Some versions can also prevent your car from rolling 
+forward on a decline. Sensors in the vehicle are used to detect 
+when a vehicle is on an incline. The hill start assist maintains the 
+brake pressure for a set period of time as you switch from the 
+brakes to the accelerator pedal. Once you press the accelerator, it 
+releases the brake. In cars with manual transmission that have this 
+feature, the hill start assist will also maintain brake pressure until 
+the driver releases the clutch.
+
+Intelligent speed adaptation or intelligent speed advice (ISA):
+Intelligent speed adaptation (ISA), also known as alerting, and 
+intelligent authority, is any system that ensures that vehicle speed 
+does not exceed a safe or legally enforced speed. In case of 
+potential speeding, a human driver can be alerted, or the speed 
+reduced automatically. Intelligent speed adaptation uses information 
+about the road to determine the required speed. Information can 
+be obtained from knowledge of the vehicle position, taking into 
+account speed limits known for the position, and by interpreting 
+road features such as signs. ISA systems are designed to detect 
+and alert a driver when a vehicle has entered a new speed zone, or 
+when different speed limits are in force according to time of day and 
+conditions.
+Intersection Assistant
+Junctions in cities can be major accident black spots. The collisions 
+here can mostly be put down to driver distraction or misjudgement. 
+Whereas humans often react too slowly, assistance systems are 
+immune from the brief moment of human hesitation. The system 
+monitors cross traffic in an intersection/road junction. If this 
+anticipatory system detects a hazardous situation of this type, it 
+prompts the driver to start emergency braking by activating visual 
+and acoustic warnings and automatically engaging brakes.
+Lane Centering
+Lane centering, also known as auto steer, is a mechanism designed 
+to keep a car centered in the lane, relieving the driver of the task of 
+steering. Lane centering is similar to lane departure warning, but 
+rather than warn the driver, or bouncing the car away from the lane 
+edge, it keeps the car centered in the lane.
+Lane Departure Warning System (LDW): 
+A lane departure warning system is a mechanism designed to warn 
+the driver when the vehicle begins to move out of its lane (unless 
+a turn signal is on in that direction) on motorways and arterial 
+roads. These systems are designed to minimize accidents by 
+addressing the main causes of collisions: driver error, distractions 
+and drowsiness.
+Parking Sensor
+Parking sensors are proximity sensors for road vehicles designed to 
+alert the driver of obstacles while parking. These systems use either 
+electromagnetic or ultrasonic sensors and their signal (sound and 
+sometimes visual indicators) tend to accelerate in frequency and 
+volume when the obstacle becomes nearer.
+Pedestrian Protection System
+These are developing all the time but might consist of redesigns to 
+the vehicle itself (e.g. bumper, bonnet and windshield pillars, and/or 
+the provision of exterior airbag systems to minimise the damage to 
+pedestrians on impact.
+Rain Sensor
+An automatic sensor that detects rain on the windscreen and 
+activates the wipers without necessary manual intervention by the 
+driver.
+Surround View System
+Omniview technology (also known as “surround view” or “bird view 
+technology”) is a vehicle parking assistant technology that is a 
+vehicle parking assistant technology that is designed to help drivers 
+park a vehicle in a small or confined space.
+
+Tyre Pressure Monitoring
+A tyre-pressure monitoring system (TPMS) is an electronic system 
+designed to monitor the air pressure inside the pneumatic tyres on 
+various types of vehicles. A TPMS reports real-time tyre-pressure 
+information to the driver of the vehicle, either via a gauge, a 
+pictogram display, or a simple low-pressure warning light.
+Traffic Sign Recognition
+Traffic-sign recognition (TSR) is a technology by which a vehicle is 
+able to recognise the traffic signs put on the road e.g. “speed limit” 
+or “children” or “turn ahead”. The technology is being developed 
+by a variety of automotive suppliers. It uses image processing 
+techniques to detect the traffic signs. The detection methods can 
+be generally divided into colour-based, shape-based and learning 
+based methods.
+Turning Assistant
+The system monitors opposing traffic when turning left at low 
+speeds. In critical situations, it brakes the car. This is a common 
+scenario at busy city intersections as well as on highways, where 
+the speed limits are higher.
+Vehicular Communication Systems
+Vehicular communication systems are computer networks in 
+which vehicles and roadside units are the communicating nodes, 
+providing each other with information, such as safety warnings and 
+traffic information. They can be effective in avoiding accidents and 
+traffic congestion.
+Wrong-Way Driving Warning
+In the case of signs imposing access restrictions, through the 
+wrong-way driver warning function an acoustic warning is emitted 
+together with a visual warning in the instrument cluster.
+
+Introduction 
+As already highlighted in this paper, Advanced Driver Assistance 
+Systems (ADAS) are defined as technologies which can assist 
+drivers with relevant information (for example, a lane departure 
+warning system) and can assume control over a single vehicle 
+function (for example, an adaptive cruise control system) or a 
+combined vehicle function (for example, an adaptive cruise control 
+system combined with a lane centring system). These are labelled 
+as vehicle automation levels 0, 1, and 2 by NHTSA (2013). ADAS 
+is expected to improve safety by reducing human error. This is 
+achieved by removing some elements of the driving task including 
+increasing safety margins that would be larger than those tolerated 
+by a human driver or reacting faster in dangerous situations than 
+a human driver could. In its most simplistic form, a calculation of 
+safety would just assume that these kinds of systems would reduce 
+the number of crashes caused by the type of error which the 
+system takes account of.
+However, different systems offer different levels of safety 
+improvements and some systems even appear to show unintended 
+consequences and can have a detrimental effect on driving 
+performance. Studies show that drivers change behaviour in 
+response to new technology and the intended safety benefit is 
+not always realised. Unwanted behavioural changes for Intelligent 
+Speed Adaptation (ISA) show that drivers reduce their maximum 
+speed but accept smaller gaps when merging and spend more
+ 
+time at short headways (Comte, 2000). Drivers using Antilock 
+Braking System (ABS) adapt their behaviour by driving faster in built 
+up areas and wet road conditions (Sagberg, Fosser & Sätermo, 
+1997); and increase their speed (Hoyes, Dorn, Desmond and 
+Taylor, 1996). Studies have also found that vehicles fitted with ABS 
+were significantly more likely to be involved in crashes fatal to their 
+own occupants and were less likely to be involved in crashes fatal 
+to occupants of other vehicles. Overall, antilock brakes seemed 
+to have little effect on fatal crash involvement (Farmer et al, 1997; 
+Farmer, 2001).
+Behavioural Responses to 
+Advanced Driver Assistance 
+Systems
+Dr. Lisa Dorn, Research Director 
+at DriverMetrics
+
+Behavioural Responses to 
+Adaptive Cruise Control (ACC)
+Studies investigating the effectiveness of ACC have also reported 
+some surprising findings. ACC is a longitudinal support system that 
+can not only maintain a chosen velocity as with Cruise Control, 
+but also keep a safe distance to a lead vehicle. ACC has been 
+commercially available since 1998 and the driver only has to steer 
+while the system manages vehicle speed and distance to make 
+it easier to comply with speed limits and to keep safe distances 
+especially on long trips, predominantly on motorways and A-roads, 
+requiring fewer speed changes. 
+Whilst field studies have shown that ACC leads to increased 
+distances towards leading cars and to following speed limits 
+better, there is also strong evidence that drivers have difficulties 
+keeping an adequate level of situation awareness which leads to 
+prolonged response times in some situations. They may also shift 
+their attention away from driving and engage in secondary tasks 
+and attentional resources may be diminished by reduced workload 
+(Young and Stanton, 2002). It appears that mental workload 
+decreases because ACC takes over a part of the driving task and 
+the driver withdraws their attention. This means that the driver has 
+less capacity to observe relevant cues for hazards.
+In a driving simulator study on a motorway with and without ACC, 
+smaller headways were chosen with ACC compared with manual 
+driving and all drivers drove faster with ACC (Hoedemaeker and 
+Brookhuis, 1998). In the study by Törnros et al. (2002), drivers 
+drove longer in the overtaking lane with ACC and the minimum 
+time-to-collision was reduced. ACC can also encourage faster 
+speeds on narrow curves and lead to poorer lane keeping 
+performance (Buld and Krüger, 2002). Rudin-Brown and Parker 
+(2004) found that while driving with ACC drivers performed better in 
+a secondary task, but the response time to brake increased when 
+a safety hazard was introduced. Cho et al. (2006) also found that 
+drivers tended to shift their attention away from driving when they 
+used ACC. Finally, when ACC fails and does not adapt speed
+ 
+correctly, drivers have significantly longer reactions times than in 
+similar situations when driving without ACC (Young and Stanton, 
+2007). 
+Stanton and Young found in a series of studies (Stanton et al., 
+1997; Stanton and Young, 2000, 2005; Young and Stanton, 
+2002a,b, 2004) that while a reduction of workload when driving 
+with ACC might be described as a positive effect, situation 
+awareness when driving with ACC is also reduced. Situation 
+awareness is defined as “...the perception of the elements in the 
+environment within a span of time and space, the comprehension 
+of their meaning and the projection of their status in the near future” 
+(Endsley, 1995, p. 36). As drivers rely on the ACC system they do 
+not monitor the surrounding as carefully and lose some of their 
+situation awareness.
+In summary, ACC can lead to behavioural changes that can 
+counteract the intended safety effect as drivers become less 
+engaged in the driving task and more reliant on technology and 
+adapt their behaviour and take greater risks in so doing. The 
+evidence clearly shows then that driver behaviour is influenced 
+when using various systems and that the driver assistance system 
+is not always being used as planned by its designers. 
+
+Delayed Skill Development 
+and Skill Decay
+Previous research has shown that drivers demonstrate lower levels 
+of skill when using ADAS due to their adaptation to the assistance 
+offered and the evidence suggests that these performance 
+decrements can carry over into other driving task situations. The 
+difference between the adaptation effect and the arrested skill 
+development effect is that for adaptation, high skill has been 
+achieved but is not applied, because the driver has learned a 
+different behaviour. 
+The adaptation effect is thus a more rapid effect than arrested 
+skill. This can be seen in experiments where the effect is 
+apparent between situations for the same drivers (Hoedemaeker 
+& Brookhuis, 1998). As automation increases, drivers will have 
+less opportunity to develop their driving skills, and therefore their 
+driving experience and skills will not increase as fast compared with 
+driving in fully manual mode. Delayed skill development will have 
+the same kind of effect as skill decay but stems from a different 
+source. Over-learned skills are less prone to decay but with regular 
+fully autonomous driving, skill decay can be expected within a few 
+months.
+Our relationship with vehicles and how we drive for work then is 
+changing. New technology in vehicles is being introduced with 
+little understanding about its effect on driving for work. ADAS 
+technology has many advantages, such as providing drivers with 
+important information, relieving drivers by occasionally taking over 
+parts of the driving task, and sometimes providing added control to 
+aid drivers in critical situations. These advantages could potentially 
+augment driver performance and reduce crash rates. This 
+represents an opportunity for driver training to step up and deliver 
+new structure and content.
+Evolving the Driver Training 
+Curriculum
+The essential driving sub-tasks is evolving and using ADAS is quite 
+different to the task taught in conventional driver training courses. 
+First, speed control is often applied through instant adjustments of 
+the cruise control settings on the steering wheel and this means 
+that the instruments of control move from foot-pedals to hand 
+operated buttons. Second, although steering is still applied through 
+the wheel, lane-keeping assistance alters the characteristics of a 
+driver’s response from the steering system, while warning systems 
+add potentially distracting auditory elements too. ADAS also means 
+that more driving subtasks are taken away and studies reported 
+here have shown that this can lead to driver disengagement. Plus, 
+with increasing automation driver skills will be lost and new skills will 
+be needed. 
+It’s clear that the driver needs to be trained differently for the task of 
+driving than is currently the case. Driver training needs to address 
+the requirements for driving in today’s vehicles so that drivers are 
+prepared for full automation. Training will be required to upskill 
+drivers and avoid the dangers of delayed skill development and skill 
+decay when switching to manual mode in emergency situations 
+or for driving as a leisure activity. Importantly, driver training must 
+focus on how to ensure that drivers remain alert and vigilant whilst 
+using ADAS. Given the behavioural responses discussed, training 
+fleet drivers must take into account the impact of time pressure to 
+complete schedules, deliveries and appointments on time whilst 
+simultaneously using ADAS. How to avoid unwanted behavioural 
+responses to in-vehicle systems must be part of the fleet driver 
+training curriculum if ADAS is to realise its potential to improve road 
+safety. 
+
+Conclusions 
+There is an increasing proliferation of ADAS on vehicles, many of 
+which are sold as terrific breakthrough driver aids but are literally 
+unknown or misunderstood by the vast majority of drivers acquiring 
+and driving these vehicles. The tendency to abbreviate the names 
+of many of these new assistance systems doesn’t help basic 
+appreciation and understanding.
+There is little if no explanation of these features and benefits at point 
+of purchase, and therefore a driver gets behind the wheel of this 
+new ‘fully loaded’ vehicle often not knowing what the additional 
+sounds and indications mean, never mind how they can help keep 
+the roads safer. This is more acceptable/forgiveable when users 
+purchasing a state-of-the-art new computer only typically use about 
+10% of the functionality available. It is a very different proposition 
+when the new purchase is a “speeding bullet” with humans both 
+inside and surrounding it.
+This uncertainty around some new ADAS, and in fact confusion and 
+annoyance, around some systems documented in the JD Power 
+2019 U.S. Tech Experience Index (TXI) Study indicates that drivers 
+get turned off, and then literally switch them off.
+There is a body of academic study evidence provided here by 
+Dr Lisa Dorn perversely indicating that human behaviour doesn’t 
+always work the way the new ADAS designers and engineers 
+envisaged and intended. In overall summary, the presence of a 
+particular driver aid system can create a real false sense of security 
+and infallibility – which is a very dangerous state when in control of a 
+fast-moving vehicle.
+The driver is still the single default owner of the safety imperative 
+in a vehicle and should not feel that they have delegated this 
+responsibility to “assistance” systems. The systems are there to 
+assist – not override – and the driver must be clearly aware that he 
+or she makes the final call for safety’s sake.
+
+References 
+Buld, S., Krüger, H.-P., 2002. Wirkungen von Assistenz und Automation auf 
+Fahrerzustand und Fahrsicherheit – Projekt EMPHASIS (Effort-Management 
+and Performance Handling in Sicherheitsrelevanten Situationen). IZVW, 
+Würzburg. Available from: http://www.psychologie.uni-wuerzburg.de/
+methoden/texte/ 2002 buld krueger Wirkungen von Assistenz und 
+Automation.pdf.
+Cho, J.H., Nam, H.K., Lee, W.S., 2006. Driver behaviour with adaptive cruise 
+control. International Journal of Automotive Engineering 7 (5), 603–608.
+Comte, S. L. (2000). New systems: New behaviour? Transportation Research 
+Part F: Traffic Psychology and Behaviour, 3(2), 95–111.
+Edworthy, J., Loxley, S., & Dennis, I. (1991). Improving auditory warning 
+design: Relationship between warning sound parameters and perceived 
+urgency.
+Human Factors, 33, 205–232.
+Endsley, M.R., 1995. Measurement of situation awareness in dynamic 
+systems. Human Factors 37 (1), 65–84.
+EPSRC. Engineering and Physical Sciences Research Council.
+ESRC. Economic and Social Research Council.
+Farmer, C. M. (2001). New evidence concerning fatal crashes of passenger 
+vehicles before and after adding antilock braking systems. Accident Analysis 
+and Prevention, 33, 361-369.
+Farmer, C. M., Lund, A. K., Trempel, E. R., & Braver, A. R. (1997). Fatal 
+crashes of passenger vehicles before and after adding antilock braking 
+systems. Accident Analysis and Prevention, 29, 745-757.
+Hoedemaeker, M., & Brookhuis, K. A. (1998). Behavioural adaptation to 
+driving with an adaptive cruise control. Transportation Research Part F, 1, 
+95-106.
+Hoyes, T. W. Dorn, L. Desmond, P. A. and Taylor, D. R. (1996). Risk 
+Homeostasis Theory: Utility and accident loss in a simulated driving task.  
+Special issue; Risk homeostasis and risk assessment Safety Science, 22 
+(1-3) pp 49-62.
+JD Power 2019 U.S. Tech Experience Index (TXI) Study – August 2019; 
+measures drivers’ experiences, usage and interaction with driver centric 
+vehicle technology at 90 days of ownership.
+NHTSA (2013). U.S. Department of Transportation Releases Policy on 
+Automated Vehicle Development. 
+ 
+Rudin-Brown, C. M., & Parker, H. A. (2004). Behavioural adaptations 
+to adaptive cruise control (ACC): implications for preventive strategies. 
+Transportation Research Part F, 7, 59-76.
+Sagberg, F., Fosser, S., & Sätermo, I.-A. (1997). An investigation of 
+behavioural adaptation to airbags and antilock brakes among taxi drivers. 
+Accident Analysis and Prevention, 29, 293-302.
+Stanton, N.A., Young, M.S., 2000. The Role of Mental Models in Using 
+Adaptive Cruise Control. Paper Presented at the IEA 2000/HFES 2000 
+Proceedings.
+Stanton, N.A., Young, M.S., 2005. Driver behaviour with adaptive cruise 
+control. Ergonomics 48 (10), 1294–1313.
+Stanton, N.A., Young, M.S., McCaulder, B., 1997. Drive-by-wire: the case of 
+driver workload and reclaiming control with adaptive cruise control. Safety 
+Science 27 (2/3), 149–159.
+Törnros, J., Nilsson, L., Östlund, J., Kircher, A., 2002. Effects of ACC 
+on Driver Behaviour, Workload and Acceptance in Relation to Minimum 
+Time Headway. Paper Presented at the 9th World Congress on Intelligent 
+Transport Systems, Chicago.
+Young, M.S., Stanton, N.A., 2002a. Attention and automation: new 
+perspectives on mental underload and performance. Theoretical Issues in 
+Ergonomics Science 3 (2), 178–194.
+Young, M.S., Stanton, N.A., 2002b. Malleable attentional resources theory: a 
+new explanation for the effects of mental underload on performance. Human 
+Factors 44 (3), 365–375.
+Young, M.S., Stanton, N.A., 2004. Taking the load off: investigations of 
+how adaptive cruise control affects mental workload. Ergonomics 47 (9), 
+1014–1035.
+Young, M.S., Stanton, N.A., 2007. Back to the future: brake reaction times 
+for manual and automated vehicles. Ergonomics 50 (1), 46–58.
+
+drivetech.co.uk
+About DriveTech 
+DriveTech is the world leader in fleet risk and safety management, 
+and driver training. It is also the UK’s largest provider of driver 
+offender retraining courses.
+With a track record built over the last 25 years, DriveTech now 
+delivers fleet consultancy, driver assessment and training services in 
+over 95 countries, in 35 languages through over 40 partners.
+Our fleet solutions improve driver safety, reduce fleet running costs 
+and ensure compliance with legal and duty of care responsibilities.
+Our customers range from companies with small fleets through to 
+large corporate customers where driver training is a core activity, 
+an understanding of their sector required and a clear return on 
+investment is demanded.
+DriveTech is part of the Automobile Association.
+About Dr Lisa Dorn 
+& Driver Metrics
+Dr Lisa Dorn is an Associate Professor of Driver Behaviour at 
+Cranfield University and Research Director for DriverMetrics. Lisa 
+has conducted research on driver behaviour for over 30 years and 
+has won more than £2.5 million in research revenues as Principal 
+Investigator. She has worked on a range of EU, EPSRC, ESRC 
+and consultancy projects particularly focusing on behavioural 
+interventions to reduce the risk of crash involvement for vulnerable 
+road users. Currently, Lisa is Principal Investigator on a Horizon 
+2020 Framework Programme for Research and Innovation funded 
+by the European Commission called MeBeSafe (Measures for 
+Behaving Safely in Traffic) to develop in-vehicle and infrastructure 
+nudges towards safer road use.
+DriverMetrics was established by Dr Dorn at Cranfield University 
+in 2005, to make scientific research into employee driver safety 
+more widely available.  Today, its portfolio of scientifically validated 
+driver risk assessments, together with integrated eLearning and 
+driver coaching interventions are used worldwide by hundreds of 
+organisations including Unilever, Greyhound Bus, Shell and the 
+emergency services. 
+www.drivermetrics.com
+Contact Us 
+DriveTech UK
+Fanum House, Basing View, Basingstoke 
+Hampshire, RG21 4EA, UK
+T	 01256 610907
+E	 tellmemore@drivetech.co.uk.
+DriveTech International
+Fanum House, Basing View, Basingstoke 
+Hampshire, RG21 4EA, UK
+T	 +44 (0) 1256 610759
+E	 info@drivetech-international.com
+Although this whitepaper is designed to provide accurate and authoritative information with regard to 
+the subject matter concerned, the authors and their organisations accept no responsibility for errors and 
+omissions. No part of these pages may be reproduced without the written prior permission of DriveTech.
+© DriveTech 2020 – DTR703 / Issue 2 / May 2020

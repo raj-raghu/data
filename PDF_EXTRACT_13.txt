@@ -1,0 +1,757 @@
+Building Driver’s Trust in Lane Change Assistance Systems by
+Adapting to Driver’s Uncertainty States*
+Fei Yan1, Mark Eilers1, Andreas L¨udtke1, Martin Baumann2
+Abstract— Driver’s uncertainty during decision-making in
+overtaking results in long reaction times and potentially danger-
+ous lane change maneuvers. Current lane change assistance sys-
+tems focus on safety assessments providing either too conserva-
+tive or excessive warnings, which inﬂuence driver’s acceptance
+and trust in these systems. Inspired by the emancipation theory
+of trust, we expect systems providing information adapted to
+driver’s uncertainty states to simultaneously help to reduce long
+reaction times and build the overall trust in automation. In
+previous work, we presented an adaptive lane change assistance
+system based on this concept utilizing a probabilistic model of
+driver’s uncertainty. In this paper, we investigate whether the
+proposed system is able to improve reaction times and build
+trust in the automation as expected. A simulator study was
+conducted to compare the proposed system with an unassisted
+baseline and three reference systems not adaptive to driver’s
+uncertainty. The results show while all systems reduce reaction
+times compared to the baseline, the proposed adaptive system
+is the most trusted and accepted.
+I. INTRODUCTION
+As a complex and frequently performed driving behavior
+on motorways, the lane change maneuver has been ranked as
+one of the most dangerous maneuvers [1]. Statistics released
+by the German Federal Statistical Ofﬁce [2] report that
+approx. 13 percent of crashes on motorways in 2014 occurred
+during lane change maneuvers. Typically, the driving task of
+changing a lane on motorways is time-demanding, in that
+the driver has to make a lane change decision within a very
+restricted time frame.
+According to the four-stage model of human-information
+processing [3], during a lane change maneuver drivers must
+perceive information, interpret this information, make deci-
+sions for lane changes and execute the respective actions.
+As the decision-making process usually involves uncertainty
+[4], driver’s uncertainty is supposed to greatly inﬂuence
+the driver’s decision-making process during lane change
+maneuvers. As reported by [5], driver’s uncertainty about
+the current situation can substantially prolong this decision-
+making process, potentially leading to dangerous lane change
+maneuvers. The development of lane change assistance sys-
+tems that consider driver’s uncertainty can therefore essen-
+tially contribute to improving trafﬁc safety, by providing
+*Research received funding from the funding initiative Nieders¨achsisches
+Vorab of the Volkswagen Foundation and the Ministry of Science and
+Culture of Lower Saxony.
+1Fei Yan, Mark Eilers and Andreas L¨udtke are with the OFFIS
+Institute for Information Technology, Escherweg 2, 26121 Oldenburg,
+Germany
+fei.yan@offis.de,mark.eilers@offis.de,
+andreas.luedtke@offis.de
+2Martin
+Baumann
+is
+with
+the
+Department
+of
+Human
+Factors,
+University of Ulm, Albert-Einstein-Allee 41, 89081 Ulm, Germany
+martin.baumann@uni-ulm.de
+relevant information when the driver is highly uncertain
+to reduce decision and consequently overall reaction times.
+In the context of this paper, driver’s uncertainty during
+decision-making shall be deﬁned as driver’s difﬁculty to
+decide whether to overtake or to wait in a given lane change
+situation. We note that our notion of driver’s uncertainty
+exclusively refers to the difﬁculties during decision-making
+after the perception process.
+Another important issue in human-machine interaction is
+the notion of trust. Trust is deﬁned as the attitude that an
+agent will help achieve an individual’s goals in a situation
+characterized by uncertainty and vulnerability [6] and can
+greatly inﬂuence the human use of systems [7]. Hence,
+while developing lane change assistance systems, building
+appropriate trust in assistance systems needs also to be
+adequately considered. The automotive industry has already
+provided many lane change assistance systems. For instance,
+Ford and Mercedes Benz provide Blind Spot Warning func-
+tions [8] that monitor the blind spot on the left and right
+adjacent to the driver’s vehicle and provide warnings if
+the blind spot is occupied [9]; Audi and BMW offer Lane
+Change Warning systems [8], which enhance the Blind Spot
+Warning with Closing Vehicle Warning functions that aim to
+detect approaching vehicles through monitoring the adjacent
+lanes behind the driver’s own vehicle [9]. However, the
+information provided to the driver primarily focuses on safety
+assessments of the driving situation but does not target
+the driver’s uncertainty during decision-making in a given
+situation. As this non-adaptive assistance in respect to the
+driver’s uncertainty has an impact on driver’s mental model
+[10] and further inﬂuences driver’s trust in these systems
+[11], the interaction with current lane change systems can
+be annoying and even disturbing as they might provide
+information when the driver is already certain about the
+situation. Such an inappropriate support without considering
+driver’s uncertainty states can decrease driver’s trust in
+assistance systems and further result in the disuse of systems,
+which implies an inﬂuence of uncertainty on trust. In social
+interaction, the emancipation theory of trust states that there
+is a relation between social uncertainty and building of
+trust [12]. Inspired by this theory, and adapting it to the
+context of human-machine interaction, we assume that when
+humans are not certain and the machine can provide useful
+information at that time to help reducing their uncertainty,
+they may demonstrate a general trust in the machine. In the
+automotive domain, we assume that drivers (when they are
+uncertain in their decisions) tend to build trust in lane change
+assistance systems, when these systems can help to reduce
+2017 IEEE Intelligent Vehicles Symposium (IV)
+June 11-14, 2017, Redondo Beach, CA, USA
+978-1-5090-4804-5/17/$31.00 ©2017 IEEE
+529
+
+their uncertainty with useful advices when needed.
+Therefore, it is essential to develop lane change assis-
+tance systems adapting to driver’s uncertainty states during
+decision-making in lane change maneuvers for building
+driver’s trust in automation.
+II. A LANE CHANGE ASSISTANCE SYSTEM
+ADAPTING TO DRIVER’S UNCERTAINTY
+In previous work [13] [14] [15], we have studied driver’s
+uncertainty during lane change decisions in a driving sim-
+ulator and developed an adaptive lane change assistance
+system designed for speciﬁc lane change scenarios on two-
+lane motorways illustrated in Fig. 1: the subject vehicle (red)
+drives on the right lane, approaching a slower vehicle (lead
+vehicle), while a third vehicle (approaching vehicle) on the
+left lane is approaching the subject vehicle.
+The system adapts to driver’s uncertainty during decision-
+making in lane change maneuvers while also considering
+the criticality of the trafﬁc situation to provide sufﬁcient
+trafﬁc safety [13]. A schematic overview of the proposed
+system is shown in Fig. 2. With a frequency of 60 Hz, the
+system receives information about the current trafﬁc scene
+in terms of distance gap, closing speed and the resulting
+Time-to-Collision (TTC) between the subject vehicle, the
+lead vehicle, and the approaching vehicle. This information
+is used by a probabilistic model of driver’s uncertainty [14]
+to classify the current uncertainty state of the driver as either
+certain or uncertain, and by a safety analysis component that
+determines the criticality of the trafﬁc situation to classify
+the situation as either safe or unsafe for performing a lane
+change maneuver [13]. Together, they trigger appropriate
+action suggestions to the driver via a dedicated Human
+Machine Interface (HMI).
+The model of driver’s uncertainty is realized as a tree-
+augmented na¨ıve Bayesian classiﬁer [14], learned from ex-
+perimental data, obtained in a simulator study [15]. Let U
+denote a binary variable representing the driver’s uncertainty,
+where U = 0 represents that the driver is uncertain and
+U = 1 represents that the driver is certain, TTCA (resp.
+TTCB) denotes a discrete random variable representing the
+TTC between the subject and the lead-vehicle (resp. the
+approaching and the subject vehicle), and GA (resp. GB)
+denotes a discrete random variable representing the distance
+gap between the subject and the lead vehicle (resp. the
+approaching and the subject vehicle). The model factorizes
+the joint probability over all variables as [14]:
+P (U, TTCA, GA, TTCB, GB) = P (U) P (TTCB|U)
+P (GB|TTCB, U) P (GA|GB, U) P (TTCA|GA, U)
+(1)
+Fig. 1.
+Basic lane change scenario used in the experiment
+Fig. 2.
+A schematic overview of the proposed system
+The
+model
+of
+driver’s
+uncertainty
+is
+then
+used
+to
+infer
+the
+conditional
+probability
+of
+the
+driver’s
+uncertainty
+for
+a
+given
+trafﬁc
+situation
+P (U|TTCA = ttca, GA = ga, TTCB = ttcb, GB = gb).
+Although simple, evaluations on test data show an average
+accuracy of approx. 0.78 [14].
+The safety analysis component classiﬁes the current trafﬁc
+situation as either safe or unsafe for performing a lane change
+maneuver in order to overtake the lead vehicle by comparing
+the current distance gap between the subject and approaching
+vehicle to three distinct distance thresholds (36m, 42m,
+and 48m) for three important closing speeds between the
+subject and the approaching vehicle (2.78 m/s, 4.17 m/s and
+5.56 m/s). For a given closing speed, the safety analysis
+classiﬁes the trafﬁc situation as safe for changing a lane if the
+distance gap between the subject vehicle and the approaching
+vehicle is above the corresponding distance threshold, and as
+unsafe otherwise. The thresholds were derived from a driving
+simulator study and represent the participants’ subjective
+limits on minimal distance gaps, below which 90 % of all
+participants decided against a lane change maneuver [13].
+The classiﬁcations provided by the model of driver’s
+uncertainty and the safety analysis are then used to trigger
+action suggestions on the HMI via three symbols represent-
+ing abstract faces with distinct emotional expressions (Fig.
+3):
+• If drivers are certain and the lane change is safe, the
+system suggests to overtake in a conservative way, using
+a transparent “yes” symbol;
+• If drivers are uncertain and the lane change is safe, it
+suggests to overtake in an active way, using a green
+“yes” symbol;
+• When the lane change is unsafe, it suggests to decelerate
+in an active way, using the red “no” symbol.
+Fig. 3.
+Designed symbols for the interface of the proposed lane change
+assistance system. We choose symbols of abstract faces with distinct
+emotional expressions due to their properties to be perceived quickly and
+almost capacity-free by humans [16].
+530
+
+III. METHOD
+In this paper, we evaluate the previously developed lane
+change assistance system [13] in regards to its abilities to
+reduce reaction times and build trust in automation. More
+speciﬁcally, we focus on the following research questions:
+• RQ 1: Can the use of the proposed system reduce
+reaction times?
+• RQ 2: Can trust be built between driver and the
+proposed lane change assistance system that adapts to
+driver’s uncertainty?
+• RQ 3: Is the proposed system more trusted and accepted
+than comparable reference systems that don’t consider
+driver’s uncertainty?
+To answer these research questions, we have conducted a
+driving simulator study, targeting a speciﬁc lane change
+scenario on two-lane motorways shown in Fig. 1. The subject
+vehicle drives with a constant speed of 130 km/h, approach-
+ing a lead vehicle travelling with a constant speed of 100
+km/h, while a third vehicle on the left lane is approaching
+the subject vehicle with a constant speed of 140 km/h but
+in varying distances. Importantly, all vehicles, including the
+subject vehicle, drive autonomously, with the participants
+only deciding lane changes through game controllers (Fig.
+4) without actually accelerating or braking.
+A. Participants
+20 volunteers (5 males, 15 females) with an average age of
+24.3 years (SD = 6.5 years) recruited from the University of
+Oldenburg took part in the experiment. They all held a valid
+German driver license and had an average driving experience
+of 6.7 years (SD = 6.3 years). They were paid 15 for their
+approx. 90-minute participation.
+B. Apparatus
+The experiment was conducted in a ﬁxed based driving
+simulator at the OFFIS Institute for Information Technology.
+The simulator comprises a mockup of the driver’s cap of a
+BMW, positioned amidst three projection surfaces for a simu-
+lated 3D-enviroment, providing a ﬁeld of view of approx. 150
+degrees. The instruments and exterior mirrors are simulated
+on tablet pcs embedded in the mockup. The simulation
+environment is generated by the driving simulation software
+SILAB. A game controller is additionally used for inputs of
+the participants (Fig. 4).
+C. Experimental Design
+In regards to RQ 1 and RQ 2, it is necessary to set an
+unassisted baseline condition to which the proposed system
+can be compared. Considering RQ 3, a set of reference
+systems is needed to be compared to the proposed. In total,
+we designed three reference systems, resulting in a set of ﬁve
+experimental conditions: The baseline, a reference system
+A, a reference system B, the proposed system C, and an
+additional reference system D. The reference systems A and
+B only consider criticality and use either a more salient
+(system B using the green symbol) or a less salient (system
+A using the transparent symbol) character for indicating a
+safe lane change situation, and the same red symbol for
+indicating an unsafe lane change situation. If a lane change
+is safe, system A will suggest to change the lane with the
+transparent symbol, while system B will suggest to overtake
+with the green symbol. When a lane change is unsafe, both
+will suggest to decelerate with the red symbol.
+As the proposed system C uses three symbols (Fig. 3)
+while the reference systems A and B only use two, it is
+difﬁcult to determine whether an effect between reference
+systems (A or B) and C actually results from the the use of
+an additional symbol or from the integration of the model
+of driver’s uncertainty. Therefore, a third reference system
+D is considered that utilizes the same set of symbols as the
+proposed system C. In contrast to the proposed system C,
+system D does not utilize a model of driver’s uncertainty
+but instead uses a ﬁxed time delay of 1.2 seconds between
+showing the transparent symbol and the green symbol. Based
+on pre-tests, we opted for 1.2 seconds as the maximal time
+required to perceive the ﬁrst symbol shown in the left side
+mirror. When a lane change is safe, the transparent symbol
+is ﬁrst shown. After 1.2 seconds and if a lane change is still
+safe, the transparent symbol changes to the green symbol;
+when a lane change is unsafe, the braking action with the red
+symbol is suggested. Although the four systems differ in how
+they visualize the suggestion to perform a lane change, they
+rely on the same safety thresholds for determining whether
+a situation is safe or unsafe for performing a lane change.
+In order to counterbalance a potential ordering effect
+among the conditions (Baseline, A, B, C and D), a 5*5
+Latin Square Design with repeated measures was used, i.e.,
+each subject tested all conditions and every four subjects
+had the same order of conditions. There were eight lane
+change situations differing in the distance gap between the
+subject vehicle and the approaching vehicle on the left lane,
+each repeated ten times for each experimental condition and
+subject.
+D. Procedure
+Participants signed an informed consent and wrote down
+information about age, gender, driving experience, and driv-
+ing miles. They were then given a handout with the experi-
+ment procedure and safety instructions.
+At the beginning of each trial, participants were instructed
+to look at the lead vehicle. After 4.5 seconds, an acoustic
+signal was given and the approaching vehicle on the left
+lane appeared. The participants were then allowed to look
+at the left side mirror in order to estimate the possibility of
+changing the lane. If subjects found it was possible to change
+the lane in front of the approaching vehicle, they had to press
+the left button on the top side of the game controller (Fig. 4)
+to show decisions for the lane change; if subjects found it was
+not possible to overtake in front of the approaching vehicle,
+they had to press the right button to indicate their decision
+to initiate a braking maneuver. After pressing the buttons,
+the lead vehicle and the approaching vehicle disappeared
+and the next trial began. The participants had no time
+pressure while making the decision and were asked to behave
+531
+
+as usual as possible on real motorways. Participants were
+told that four lane change assistance systems (A, B, C,
+and D) were developed to support their decision-making
+for lane changes. They could decide themselves, whether
+they would follow the system’s suggestions. Subjects were
+then assigned to the designed order of conditions. Prior to
+each condition involving an assistance system, a handout
+with an explanation of the assistance output on the HMI
+was provided, describing the meaning of the different sym-
+bols in respect to the action suggestion of the assistance
+system. We note that participants were not aware of that
+system C considered the driver’s uncertainty. After reading
+this handout, a training session of 10 trials with the ﬁrst
+experiment condition for each participant followed to let
+them familiarize with the simulator and the game controller.
+After completing a condition involving an assistance system,
+a questionnaire with 11 questions concerning the system’s
+reliability, safety, sympathy, efﬁciency, and the subjects’
+expectancy, acceptance, and trust in the tested system was
+given, which was adapted from the trust questionnaire of
+Jian et al. [17]. In the end, an interview for comparing all
+systems was conducted with the following questions:
+• In comparison with driving without systems, are the
+systems helpful?
+• In which system do you build most trust?
+• Which system is most accepted?
+For the last two questions, participants were also asked to
+give reasons for their choice.
+E. Data Collection
+For answering the addressed research questions, we focus
+on measurements of reaction times and the building of trust.
+To get a precise measurement of driver’s reaction time,
+participants were asked to show their decisions by pressing
+the button in the game controller instead of really steering or
+braking in the driving simulator. The measured reaction time
+is then deﬁned as the duration between the acoustic signal
+triggering the start of a trial and the participant pressing a
+button in the game controller.
+In contrast to reaction times, trust cannot be measured
+directly, but is usually assessed by means of questionnaires
+or interviews (e.g., the trust questionnaire of Jian et al. [17]).
+As an quantitative measure of trust, we propose two surrogate
+measurements, which we denote as the follow rate or rate of
+agreement (RoA) and the follow time (FT), which reﬂect
+Fig. 4.
+Participants’ perspective in the driving simulator (left). Front side
+(right above) and top side (right below) of the game controller.
+separately how often participants follow the suggestions of
+the assistance systems and how fast they follow them. We
+assume that if a participant has built trust in an assistance
+system, s/he is more likely to agree with and follow the
+suggestion. Moreover, it is assumed that the more the system
+is trusted, the quicker participants follow the advice.
+The RoA for an assistance system is calculated as the ratio
+between the number of times the participants choose the ma-
+neuver suggested by the assistance (Number of Agreements:
+NoA) and the total number of trials n: RoA = NoA/n
+for the resp. system. Different to reaction times, which
+are calculated for all the actions regardless of participants’
+following actions, FT is calculated from the subset of trials,
+where participants follow the suggestions of systems.
+Problematically, both the RoA and FT are ambiguous in
+that we can’t distinguish whether participants actually agreed
+with and followed the suggestion of the assistance, implying
+a certain level of trust in the automation, or whether the
+suggestion simply conformed to the participants’ decision but
+did not inﬂuence it. As all conditions included the same eight
+trafﬁc situations, we use the trials of the baseline condition
+to calculate a hypothetical RoA and FT against which we can
+compare the RoAs and FTs of the four assistance systems.
+For this, we use the safety analysis component to determine
+what the assistance systems would have suggested at the time
+the participants made their decisions. As all four systems
+use the same thresholds for determining the criticality of the
+situation, all result in the same hypothetical RoA and FT. If
+there is a notable difference between the actual RoAs and
+FTs derived from the assisted conditions and the hypothetical
+RoA and FT, we assume that there is an actual inﬂuence
+of the suggestions proposed by the assistance on the actual
+decisions of the driver.
+IV. RESULTS
+The data obtained from the driving simulator was used
+to calculate reaction times, FT, and the NoA needed for
+the calculation of the RoA, which were then analyzed in
+the free software environment for statistical computing R
+(https://www.r-project.org/). The results for mean reaction
+time (MRT), RoA and FT are summarized in Table I.
+A. Mean Reaction Time
+Compared to the baseline, all four systems are able to
+reduce the MRT, with reference system D resulting in the
+best average reduction of 0.24s and the proposed system
+C resulting in the second best average reduction of 0.1s.
+In order to test the signiﬁcant difference among the ﬁve
+TABLE I
+SUMMARY OF RESULTS
+Measure
+A
+B
+C
+D
+Baseline
+MRT (s)
+1.99
+2.00
+1.97
+1.83
+2.07
+RoA (%)
+85.4
+84.4
+87.6
+87.3
+81.6*
+FT (s)
+1.98
+1.98
+1.94
+1.80
+2.02*
+*: Hypothetical values
+532
+
+conditions, a three-way ANOVA was conducted for the Latin
+Square design with repeated measures. The results of the
+analysis indicate a signiﬁcant effect of the experimental
+condition (F (4, 72) = 3.90, p = .006) but no signiﬁcant
+effects of columns and rows, which separately shows the
+absence of learning effects or effects caused by individual
+differences from subject groups. A post-hoc pairwise t-test
+with Bonferroni adjustment of p-values shows signiﬁcant
+differences in the MRT between the baseline and the re-
+maining conditions (p < 0.05), and between system D and
+the remaining conditions (p < 0.01).
+B. Rate of Agreement and Follow Time
+As shown in Table I, all systems are able to increase the
+RoA compared to the baseline, with the proposed system
+C resulting in the highest RoA of 87.6 %, increasing the
+hypothetical RoA by 6 %. As a summary of NoA, the RoA
+cannot be used directly for signiﬁcant tests. To compare
+the differences of the RoA between the different systems,
+we therefore conducted a Friedman test on the raw NoAs
+among all conditions. It shows a signiﬁcant difference among
+the distribution of the ﬁve experimental conditions (X (4) =
+49.893, p < .01). A post-hoc Wilcoxon test with Bonferroni
+correction shows signiﬁcant differences between system C
+and B (p < 0.01) and between the baseline condition and
+systems A, C and D (p < 0.01). Considering the Latin Square
+design, a three-way ANOVA with repeated measures was
+used, which shows a signiﬁcant effect of the experimental
+condition on the FT (F (4, 72) = 3.29, p = .02). A post-
+hoc pairwise t-test with Bonferroni adjustment of p-values
+shows that there is a signiﬁcant difference in the follow time
+between system D and all other four conditions (p < 0.05),
+but no signiﬁcant difference with system C.
+C. Questionnaire and Interviews
+After trials with a speciﬁc system, participants completed
+a questionnaire with eleven questions adjusted from the trust
+questionnaire of Jian et al. [17], rating each system separately
+with scores from 1 (no agreement) to 7 (total agreement).
+The summary of the mean values of the questions, with
+the highest score in bold, is shown in Table II. It can
+be seen that reference system B is preferred in questions
+regarding reliability, trafﬁc safety, efﬁciency, etc. However,
+more interesting for us are the questions regarding trust and
+the will to follow the system’s suggestion, in which the
+proposed system C is preferred. In addition, participants also
+reported that they had the most conﬁdence in system C,
+which means that they tend to trust system C more than other
+systems. However, the difference among systems is quite
+small. Treating the given scores (1 to 7) as continuous data,
+a one-way ANOVA was conducted to compare the scores
+among the four systems for all questions and there were no
+signiﬁcant results among systems. We performed additional
+interviews to let each participant choose a single preferred
+system in respect to helpfulness, trust and acceptance. All
+participants found all systems helpful compared to no as-
+sistance. 55% of the participants chose System C as their
+TABLE II
+SUMMARY OF THE TRUST QUESTIONNAIRES DEPICTING MEAN VALUES
+FOR QUESTION AND SYSTEM (A-D), AND FOR ALL SYSTEMS (T:TOTAL).
+Focus of questions
+A
+B
+C
+D
+T
+Understandability
+6.2
+6.0
+5.8
+5.4
+5.8
+Conﬁdence
+5.2
+5.1
+5.3
+5.0
+5.1
+Reliability
+5.3
+5.5
+5.3
+4.8
+5.2
+Trafﬁc safety
+4.9
+5.3
+5.0
+5.1
+5.1
+Efﬁciency
+4.5
+5.0
+4.7
+4.5
+4.6
+Sympathy
+4.8
+4.6
+4.5
+4.4
+4.4
+Support on time
+4.8
+5.0
+4.7
+4.9
+4.8
+Expectancy
+4.9
+5.0
+4.8
+4.8
+4.9
+Acceptance
+4.8
+5.1
+4.9
+4.7
+4.9
+Follow the system
+3.1
+3.4
+3.6
+3.0
+3.3
+Trust
+4.5
+4.7
+4.9
+4.6
+4.7
+favorite system with more acceptance and building of trust
+than other three reference systems (A: 20%, B: 20%, D: 5%).
+V. DISCUSSION
+Regarding the general reduction of reaction times (RQ 1),
+the proposed system is able to signiﬁcantly reduce reaction
+times by an average of 0.1s when compared to the baseline.
+Regarding the general building of trust (RQ 2), the pro-
+posed system is able to increase the RoA by 6 % compared
+to the hypothetical RoA representing the baseline. Assuming
+that the RoA can be used as an indicator for the building of
+trust and based on the interviews, we conclude that trust can
+be built with the proposed system.
+Regarding the acceptance and trust of the proposed system
+compared to the reference systems (RQ 3), the proposed
+system C is the most accepted and trusted based on the RoA
+and feedback from the interviews. Comparing the proposed
+system with the reference systems (A and B), there is a
+signiﬁcant difference of RoA between the proposed system
+and system B, but not system A. This suggests an advantage
+of the proposed system over the more salient system and
+also implies the beneﬁts of obtrusive systems, which is also
+reﬂected by the reasons stated in the interviews. In addition,
+three symbols were preferred to two symbols and were espe-
+cially helpful for participants with less driving experiences
+(< 1 year). Although system D resulted in the shortest
+reaction time, it was somehow surprisingly the least accepted
+and trusted, which implies that reaction time alone cannot be
+treated as an appropriate parameter to reﬂect driver’s trust in
+automation. The shortest reaction time might result from the
+effect of the ﬁxed time delay between symbols, which forced
+participants unconsciously to react to the symbols.
+Summarizing the results above, we conclude that the
+proposed system adapting to driver’s uncertainty during
+decision-making is able to both reduce reaction times and
+build driver’s trust in the automation.
+A. Limitations
+We are aware of the current limitations of the conducted
+study in the driving simulator when compared to potential
+533
+
+ﬁeld studies in the real world, where participants may
+perceive relevant trafﬁc information and behave themselves
+differently. Additionally, although the ﬁxed setting with the
+game controller used in the evaluation study helped to
+precisely measure reaction times, it was rather unnatural,
+in that participants did not really execute the lane change
+maneuvers by themselves but only showed their decisions
+through pressing buttons on the game controller. As an
+alternative for future studies, we will investigate the use of
+the steering wheel instead of buttons on the game controller.
+B. Measurement of Trust
+Regarding the measure of trust, subjective questionnaires
+are widely used to measure the trust in automation. In this
+paper, we proposed the RoA as a potential surrogate measure
+of trust. Although the RoA does not actually measure trust,
+we expect it to at least positively correlate with it. However,
+the potential problem of RoA lies in the difﬁculty to ensure
+whether the participants’ agreements with the systems sug-
+gestions are caused by trusting the system or whether the
+suggestions just ﬁt to the scene. We tried to circumvent this
+problem by the introduction of a hypothetical RoA for the
+baseline condition against which the RoAs of the assistance
+systems could be compared.
+Furthermore, it is possible that the RoA is also inﬂuenced
+by the exact moment of when participants looked at the left
+side mirror. We tried to limit such an inﬂuence by the use
+of an acoustic signal to trigger the view at the left side
+mirror to ensure that participants have similar temporal gaze
+sequences.
+C. System C and System D
+Regarding the results of the quantitative measurements,
+both system C and system D show a good performance
+on reaction times, RoA and FT. However, following the
+subjective interviews, system C is more accepted and trusted
+than system D. According to the feedbacks of participants,
+the possible reasons could be twofold. On the one hand,
+the handout for system D stated the meaning of both the
+transparent and the green symbol as “The lane change is safe,
+please turn left”, leaving the participants somehow confused
+about the function of system D and resulting in an initial
+bad impression of it. On the other hand, some participants
+reported the transition from the transparent to the green and
+red symbols as too fast, which also potentially biased their
+impression of system D.
+Lastly, the overall small difference between the proposed
+system and system D may be a result of the limited abilities
+of the underlying model to recognize driver’s uncertainty.
+We assume that a “better” model considering more complete
+parameters will lead to a better distinguishable acceptance.
+VI. CONCLUSIONS
+Trust has been built and reaction times have been reduced
+with the proposed lane change assistance system adapting
+to driver’s uncertainty, which has proved our concept of
+building the trust in automation inspired by the emanci-
+pation theory of trust. We hope that our approach can be
+transferred to other domains to help building trust between
+humans and machines and further help designing trustworthy
+adaptive systems. Complemental to Lane Change Decision
+Aid Systems focusing on the safety assessment and pro-
+viding warning functions during the perception process, the
+proposed system additionally considers driver’s uncertainty
+states during the decision-making process, which usually
+occurs beyond the typical warned risk range monitored by
+existing systems. Besides, because of the adaption to driver’s
+mental states, it is treated much more as a “partner” who
+understands driver’s uncertainty than a machine.
+REFERENCES
+[1] D. Harris, “The subjective probability of involvement in an overtaking
+accident in the vicinity of a junction,” in Road User Behaviour: Theory
+and Research. Van Gorcum, Assen/Maastricht, 1988.
+[2] German Federal Statistical Ofﬁce, “Trafﬁc Accidents”, 2016, vol.8.
+[3] R. Parasuraman., T. B. Sheridan and C. D. Wickens, “A model
+for types and levels of human interaction with automation,” IEEE
+Transactions on systems, man, and cybernetics-Part A: Systems and
+Humans, vol. 30, no. 3, pp. 286-297, 2000.
+[4] B. Beresford and P. Sloper, Understanding the dynamics of decision-
+making and choice: A scoping study of key psychological theories to
+inform the design and analysis of the Panel Study. York: Social Policy
+Research Unit, University of York, 2008.
+[5] T. Petzoldt and J. F. Krems, “How does a lower predictability of
+lane changes affect performance in the lane change task?” Applied
+ergonomics, vol. 45, no. 4, pp. 12181224, 2014.
+[6] J. D. Lee, and K. A. See, “Trust in automation: Designing for
+appropriate reliance,” Human Factors: The Journal of the Human
+Factors and Ergonomics Society, vol.46.no.1, pp. 50-80, 2004.
+[7] R. Parasuraman., T. B. Sheridan and C. D. Wickens, “Situation
+awareness, mental workload, and trust in automation: Viable, empiri-
+cally supported cognitiveengineering constructs,” Journal of Cognitive
+Engineering and Decision Making , vol. 2, no. 2, pp. 140160, 2008.
+[8] A. Bartels, M. M. Meinecke and S. Steinmeyer, Lane change assis-
+tance. Handbook of Intelligent Vehicles. Springer London, 2012, pp.
+729-757.
+[9] Intelligent transport systems - Lane change decision aid systems
+(LCDAS), ISO Standard 17387, 2008.
+[10] C. M. Rudin-Brown, “’Intelligent in-vehicle intelligent transport sys-
+tems: Limiting behavioural adaptation through adaptive design,” IET
+intelligent transport systems, vol. 4, no. 4, pp. 252-261, 2010.
+[11] M. Beggiato, M. Pereira, T. Petzoldt and J. Krems, “Learning and
+development of trust, acceptance and the mental model of ACC. A
+longitudinal on-road study,” Transportation research part F: trafﬁc
+psychology and behavior, vol.35, pp. 75-84, 2015.
+[12] T. Yamagishi, K. S. Cook, and M. Watabe, “Uncertainty, trust, and
+commitment formation in the united states and japan 1,” American
+Journal of Sociology, vol. 104, no. 1, pp. 165194, 1998.
+[13] F. Yan, M. Eilers, M. Baumann and A. L¨udtke, “Development of
+a Lane Change Assistance System adapting to Driver’s Uncertainty
+during Decision-Making,” in Proceedings of the 8th International
+Conference on Automotive User Interfaces and Interactive Vehicular
+Applications, pp. 93-98, 2016.
+[14] F. Yan, M. Eilers, A. L¨udtke and M. Baumann, “Developing a model
+of driver’s uncertainty in lane change situations for trustworthy lane
+change decision aid systems,” in 2016 IEEE Intelligent Vehicles
+Symposium (IV), pp. 406-411, 2016.
+[15] F. Yan, L. Weber and A. L¨udtke, “Classifying driver’s uncertainty
+about the distance gap at lane changing for developing trustworthy
+assistance systems,” in 2015 IEEE Intelligent Vehicles Symposium (IV),
+pp. 1276-1281, 2015.
+[16] A. Frischen, J. D. Eastwood and D. Smilek, “Visual search for faces
+with emotional expressions,” Psychological bulletin, vol. 134, no. 5,
+pp. 662, 2008.
+[17] J. Jian, A. M. Bisantz and C. G. Drury, “Foundations for an empirically
+determined scale of trust in automated systems,” International Journal
+of Cognitive Ergonomics, vol. 4, pp. 53-71, 2000.
+534
